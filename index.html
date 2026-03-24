@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluebird Café & Diner – Arlington, WA | Est. 1958</title>
+  <meta name="description" content="Family-owned since 1958. Bluebird Café & Diner in Arlington, WA serves legendary breakfasts, farm-fresh lunches, and weekend dinners." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:    #eef5fc;
+      --warm:     #daeaf8;
+      --gold:     #c8973a;
+      --gold-lt:  #e8bb6a;
+      --deep:     #0b2545;
+      --charcoal: #1a3a6e;
+      --muted:    #4a7fa8;
+      --white:    #ffffff;
+      --sky:      #4a9fd4;
+      --sky-lt:   #b8d9f0;
+      --navy:     #1d3461;
+      --ease:     cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; cursor: none; }
+
+    /* ── CURSOR ── */
+    #cursor { width:12px;height:12px;background:var(--sky);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s; }
+    #cursor-ring { width:40px;height:40px;border:1.5px solid var(--sky);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s var(--ease),width .2s,height .2s,opacity .2s;opacity:.7; }
+    body:has(a:hover) #cursor,body:has(button:hover) #cursor { width:20px;height:20px; }
+    body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring { width:60px;height:60px;opacity:.4; }
+
+    /* ── LOADER ── */
+    #loader { position:fixed;inset:0;background:var(--deep);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .8s var(--ease),visibility .8s; }
+    #loader.hidden { opacity:0;visibility:hidden; }
+    .loader-bird { font-size:64px;animation:birdFloat 1.5s ease-in-out infinite; }
+    .loader-text { font-family:'Cormorant Garamond',serif;color:var(--sky-lt);font-size:clamp(22px,4vw,36px);letter-spacing:.3em;text-transform:uppercase; }
+    .loader-bar { width:200px;height:2px;background:rgba(74,159,212,.2);border-radius:2px;overflow:hidden; }
+    .loader-fill { height:100%;background:var(--sky);border-radius:2px;animation:loaderFill 1.8s var(--ease) forwards; }
+    @keyframes loaderFill { from{width:0} to{width:100%} }
+    @keyframes birdFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    /* ── NAVBAR ── */
+    nav { position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 clamp(24px,5vw,80px);height:80px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,box-shadow .4s; }
+    nav.scrolled { background:rgba(11,37,69,.93);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(74,159,212,.25); }
+    .nav-logo { font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--white);letter-spacing:.05em;text-decoration:none;display:flex;align-items:center;gap:10px; }
+    .nav-logo span { color:var(--sky-lt); }
+    .nav-links { display:flex;gap:36px;list-style:none; }
+    .nav-links a { font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;position:relative;transition:color .3s; }
+    .nav-links a::after { content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--sky);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease); }
+    .nav-links a:hover { color:var(--white); }
+    .nav-links a:hover::after { transform:scaleX(1);transform-origin:left; }
+    .nav-cta { background:var(--sky)!important;color:var(--white)!important;padding:10px 24px;border-radius:2px;font-weight:600!important;transition:background .3s,transform .2s!important; }
+    .nav-cta:hover { background:var(--sky-lt)!important;color:var(--deep)!important;transform:translateY(-1px); }
+    .nav-cta::after { display:none!important; }
+    .hamburger { display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px; }
+    .hamburger span { display:block;width:26px;height:2px;background:var(--white);border-radius:2px;transition:.3s var(--ease); }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none;position:fixed;inset:0;background:var(--deep);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:40px; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-family:'Cormorant Garamond',serif;font-size:42px;color:var(--white);text-decoration:none;letter-spacing:.05em;transition:color .3s; }
+    .mobile-menu a:hover { color:var(--sky); }
+
+    /* ── HERO ── */
+    #hero { min-height:100vh;background:var(--deep);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center; }
+    .hero-bg { position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 60%,rgba(74,159,212,.15) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(29,52,97,.3) 0%,transparent 60%); }
+    .particle { position:absolute;pointer-events:none;font-size:clamp(16px,2vw,28px);opacity:0;animation:particleDrift var(--dur,12s) var(--delay,0s) infinite ease-in-out; }
+    @keyframes particleDrift { 0%{opacity:0;transform:translate(0,0) rotate(0deg) scale(.6)} 10%{opacity:.6} 90%{opacity:.6} 100%{opacity:0;transform:translate(var(--tx,40px),var(--ty,-120px)) rotate(var(--rot,30deg)) scale(1.1)} }
+    .hero-content { position:relative;z-index:2;text-align:center;padding:clamp(24px,6vw,80px);max-width:900px; }
+    .hero-badge { display:inline-block;font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--sky-lt);border:1px solid rgba(74,159,212,.4);padding:8px 20px;border-radius:2px;margin-bottom:32px;animation:fadeSlideUp .8s .3s var(--ease) both; }
+    .hero-title { font-family:'Cormorant Garamond',serif;font-size:clamp(52px,10vw,120px);font-weight:300;line-height:.95;color:var(--white);animation:fadeSlideUp .9s .5s var(--ease) both; }
+    .hero-title em { font-style:italic;color:var(--sky-lt);display:block; }
+    .hero-sub { font-size:clamp(14px,2vw,18px);color:rgba(255,255,255,.55);font-weight:300;letter-spacing:.04em;line-height:1.7;margin:28px 0 48px;animation:fadeSlideUp .9s .7s var(--ease) both; }
+    .hero-actions { display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeSlideUp .9s .9s var(--ease) both; }
+    .btn-primary { background:var(--sky);color:var(--white);padding:16px 40px;border-radius:2px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:none;cursor:none;transition:background .3s,transform .2s,box-shadow .3s;display:inline-flex;align-items:center;gap:8px; }
+    .btn-primary:hover { background:var(--sky-lt);color:var(--deep);transform:translateY(-2px);box-shadow:0 12px 40px rgba(74,159,212,.4); }
+    .btn-outline { background:transparent;color:var(--white);padding:16px 40px;border-radius:2px;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.3);cursor:none;transition:border-color .3s,color .3s,transform .2s;display:inline-flex;align-items:center;gap:8px; }
+    .btn-outline:hover { border-color:var(--sky);color:var(--sky);transform:translateY(-2px); }
+    .hero-scroll { position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeSlideUp .9s 1.2s var(--ease) both; }
+    .hero-scroll span { font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4); }
+    .scroll-line { width:1px;height:50px;background:rgba(74,159,212,.4);position:relative;overflow:hidden; }
+    .scroll-line::after { content:'';position:absolute;top:-50px;left:0;width:1px;height:50px;background:var(--sky);animation:scrollDrop 2s 1.5s ease-in-out infinite; }
+    @keyframes scrollDrop { 0%{top:-50px} 100%{top:100%} }
+    .hero-dish-3d { position:absolute;right:clamp(20px,8vw,140px);top:50%;transform:translateY(-50%);width:clamp(220px,28vw,420px);aspect-ratio:1;animation:dishFloat 6s ease-in-out infinite,fadeSlideRight .9s .8s var(--ease) both;pointer-events:none; }
+    .dish-ring { position:absolute;inset:0;border-radius:50%;animation:ringRotate 20s linear infinite; }
+    .dish-ring:nth-child(1) { border:1px solid rgba(74,159,212,.3);transform:rotateX(75deg); }
+    .dish-ring:nth-child(2) { inset:10%;border:1px solid rgba(74,159,212,.2);transform:rotateX(75deg) rotateZ(30deg);animation-duration:15s;animation-direction:reverse; }
+    .dish-ring:nth-child(3) { inset:20%;border:1px solid rgba(74,159,212,.12);transform:rotateX(75deg) rotateZ(60deg);animation-duration:25s; }
+    .dish-center { position:absolute;inset:15%;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(74,159,212,.2),rgba(74,159,212,.04));border:1px solid rgba(74,159,212,.25);display:flex;align-items:center;justify-content:center;font-size:clamp(60px,8vw,110px);filter:drop-shadow(0 20px 60px rgba(74,159,212,.4)); }
+    @keyframes dishFloat { 0%,100%{transform:translateY(-50%) rotateY(0deg)} 50%{transform:translateY(-54%) rotateY(8deg)} }
+    @keyframes ringRotate { from{transform:rotateX(75deg) rotateZ(0deg)} to{transform:rotateX(75deg) rotateZ(360deg)} }
+    @keyframes fadeSlideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeSlideRight { from{opacity:0;transform:translateY(-50%) translateX(40px)} to{opacity:1;transform:translateY(-50%) translateX(0)} }
+
+    /* ── SECTIONS ── */
+    section { padding:clamp(80px,12vw,160px) clamp(24px,6vw,100px); }
+    .section-label { font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--sky);margin-bottom:16px;display:flex;align-items:center;gap:12px; }
+    .section-label::before { content:'';flex:0 0 32px;height:1px;background:var(--sky); }
+    .section-title { font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.05;color:var(--deep); }
+    .section-title em { font-style:italic;color:var(--muted); }
+    .section-title.light { color:var(--white); }
+    .section-title.light em { color:var(--sky-lt); }
+    .reveal { opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease); }
+    .reveal.visible { opacity:1;transform:translateY(0); }
+    .reveal-left { opacity:0;transform:translateX(-40px);transition:opacity .8s var(--ease),transform .8s var(--ease); }
+    .reveal-left.visible { opacity:1;transform:translateX(0); }
+    .reveal-right { opacity:0;transform:translateX(40px);transition:opacity .8s var(--ease),transform .8s var(--ease); }
+    .reveal-right.visible { opacity:1;transform:translateX(0); }
+
+    /* ── MARQUEE ── */
+    .marquee-strip { background:var(--navy);padding:18px 0;overflow:hidden;display:flex;border-top:2px solid var(--sky);border-bottom:2px solid var(--sky); }
+    .marquee-track { display:flex;gap:48px;white-space:nowrap;animation:marqueeScroll 30s linear infinite; }
+    .marquee-track span { font-size:13px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--sky-lt);display:flex;align-items:center;gap:16px; }
+    .marquee-track span::before { content:'✦';font-size:10px;color:var(--sky); }
+    @keyframes marqueeScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── ABOUT ── */
+    #about { background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:center; }
+    .about-visual { position:relative;aspect-ratio:.85; }
+    .about-img-frame { width:100%;height:100%;background:linear-gradient(135deg,rgba(74,159,212,.1) 0%,rgba(29,52,97,.04) 100%);border-radius:4px;border:1px solid rgba(74,159,212,.3);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center; }
+    .about-img-emoji { font-size:clamp(80px,14vw,180px);animation:aboutFloat 5s ease-in-out infinite;filter:drop-shadow(0 20px 60px rgba(74,159,212,.4)); }
+    @keyframes aboutFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-12px) scale(1.03)} }
+    .about-badge { position:absolute;bottom:-20px;right:-20px;width:clamp(100px,14vw,160px);aspect-ratio:1;background:var(--navy);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(11,37,69,.5);border:3px solid var(--sky); }
+    .about-badge-year { font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,48px);font-weight:600;color:var(--sky-lt);line-height:1; }
+    .about-badge-text { font-size:clamp(7px,1vw,9px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,217,240,.6); }
+    .about-accent { position:absolute;top:-16px;left:-16px;width:80px;aspect-ratio:1;border:1px solid rgba(74,159,212,.35);border-radius:2px; }
+    .about-text p { font-size:clamp(15px,1.5vw,17px);line-height:1.85;color:var(--muted);margin-bottom:20px; }
+    .about-text p strong { color:var(--charcoal);font-weight:600; }
+    .about-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;padding-top:40px;border-top:1px solid rgba(74,159,212,.25); }
+    .stat-num { font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:500;color:var(--sky);line-height:1;display:block; }
+    .stat-label { font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px;display:block; }
+
+    /* ── MENU SECTION SHELL ── */
+    #menu { background:var(--deep);padding-bottom:clamp(80px,12vw,160px); }
+    .menu-tabs { display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:48px;margin-top:48px; }
+    .menu-tab { padding:14px 28px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);background:none;border:none;border-bottom:2px solid transparent;cursor:none;margin-bottom:-1px;transition:color .3s,border-color .3s; }
+    .menu-tab.active,.menu-tab:hover { color:var(--sky-lt);border-bottom-color:var(--sky); }
+    .menu-panel { display:none; }
+    .menu-panel.active { display:block; }
+
+    /* ── BREAKFAST MENU (image-matched layout) ── */
+    .bfmenu-wrap {
+      background: #c5d8e8;
+      background-image: repeating-linear-gradient(
+        180deg,
+        rgba(255,255,255,.18) 0px, rgba(255,255,255,.18) 28px,
+        rgba(180,210,230,.12) 28px, rgba(180,210,230,.12) 30px
+      );
+      border-radius: 6px;
+      overflow: hidden;
+      border: 2px solid rgba(29,52,97,.3);
+    }
+    /* header area */
+    .bfmenu-header {
+      background: #d6e8f5;
+      background-image: repeating-linear-gradient(
+        180deg,
+        rgba(255,255,255,.25) 0px, rgba(255,255,255,.25) 24px,
+        transparent 24px, transparent 26px
+      );
+      padding: 28px 32px 0;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 32px;
+      align-items: start;
+      border-bottom: 4px solid var(--navy);
+    }
+    .bfmenu-logo-box {
+      display: flex; flex-direction: column; align-items: center;
+      padding-bottom: 20px;
+    }
+    .bfmenu-logo-circle {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 5px double var(--navy);
+      background: linear-gradient(135deg, #1d3461, #0b2545);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 4px; box-shadow: 0 8px 30px rgba(11,37,69,.4);
+    }
+    .bfmenu-logo-bird { font-size: 48px; }
+    .bfmenu-logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; color: var(--sky-lt);
+      letter-spacing: .04em; line-height: 1.1; text-align: center;
+    }
+    .bfmenu-logo-sub {
+      font-size: 11px; color: rgba(184,217,240,.65);
+      letter-spacing: .1em; text-transform: uppercase; margin-top: 2px;
+    }
+    .bfmenu-story {
+      font-size: 13.5px; line-height: 1.7; color: #1a3a6e;
+      padding-bottom: 24px;
+      border-left: 3px solid var(--sky);
+      padding-left: 16px;
+    }
+    .bfmenu-title-row {
+      background: var(--navy);
+      padding: 14px 32px;
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+    }
+    .bfmenu-main-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 600; color: var(--white);
+      letter-spacing: .04em;
+    }
+    /* two-column body */
+    .bfmenu-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .bfmenu-col { padding: 0; }
+    .bfmenu-col-left { border-right: 3px solid var(--navy); }
+
+    /* section headers inside menu */
+    .bfms-head {
+      background: var(--navy);
+      padding: 10px 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .bfms-head h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 600; color: var(--gold-lt);
+      letter-spacing: .02em;
+    }
+    .bfms-head .arrow {
+      color: var(--sky-lt); font-size: 20px;
+    }
+    /* sub-note inside header */
+    .bfms-note {
+      background: rgba(29,52,97,.15);
+      padding: 6px 20px;
+      font-size: 11px; font-weight: 600;
+      color: #1a3a6e; letter-spacing: .04em;
+      text-transform: uppercase; line-height: 1.5;
+    }
+    /* item rows */
+    .bfms-items { padding: 12px 18px; }
+    /* numbered combo */
+    .bfmi-combo {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(29,52,97,.15);
+    }
+    .bfmi-combo:last-child { border-bottom: none; }
+    .bfmi-combo-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--navy); grid-column: 1;
+      line-height: 1.1;
+    }
+    .bfmi-combo-num sup { font-size: 12px; }
+    .bfmi-combo-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--navy); text-align: right;
+      grid-row: 1; grid-column: 2; align-self: start;
+    }
+    .bfmi-combo-desc {
+      font-size: 11.5px; line-height: 1.55;
+      color: #1a3a6e;
+      grid-column: 1 / 3;
+      margin-top: -2px;
+    }
+    .bfmi-combo-note {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .06em; color: var(--navy);
+      text-transform: uppercase; grid-column: 1 / 3;
+      padding-top: 4px; text-align: center;
+    }
+    /* regular item */
+    .bfmi {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4px 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(29,52,97,.15);
+    }
+    .bfmi:last-child { border-bottom: none; }
+    .bfmi-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 700;
+      color: var(--navy); letter-spacing: .02em;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .bfmi-name .dot { color: #cc2222; font-size: 16px; }
+    .bfmi-name .star { color: var(--navy); font-size: 13px; }
+    .bfmi-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 700;
+      color: var(--navy); text-align: right;
+      white-space: nowrap; align-self: start;
+    }
+    .bfmi-desc {
+      font-size: 11.5px; line-height: 1.55;
+      color: #1a3a6e;
+      grid-column: 1 / 3;
+    }
+    .bfmi-price-inline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; font-weight: 700; color: var(--navy);
+    }
+    /* separators */
+    .bfms-sep { height: 3px; background: var(--navy); margin: 0; }
+    /* footer notes */
+    .bfmenu-footer {
+      background: var(--navy);
+      padding: 20px 32px;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+      border-top: 4px solid var(--sky);
+    }
+    .bfmenu-footer p {
+      font-size: 11.5px; color: rgba(184,217,240,.8);
+      line-height: 1.6; flex: 1; min-width: 200px;
+      text-align: center;
+    }
+    .bfmenu-footer .dot-red { color: #ff6666; }
+    .tractor-col {
+      padding: 24px 20px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px;
+    }
+    .tractor-emoji { font-size: 56px; }
+    .tractor-notes { font-size: 11.5px; color: #1a3a6e; text-align: center; line-height: 1.7; }
+    .tractor-notes .dot-red { color: #cc2222; }
+
+    /* ── LUNCH / OTHER MENU CARDS ── */
+    .menu-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:24px; }
+    .menu-card { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:28px 32px;display:flex;gap:20px;align-items:flex-start;transition:background .3s,border-color .3s,transform .3s;position:relative;overflow:hidden; }
+    .menu-card::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(74,159,212,.06) 0%,transparent 60%);opacity:0;transition:opacity .3s; }
+    .menu-card:hover { background:rgba(255,255,255,.07);border-color:rgba(74,159,212,.3);transform:translateY(-2px); }
+    .menu-card:hover::before { opacity:1; }
+    .menu-emoji { font-size:36px;flex-shrink:0; }
+    .menu-info { flex:1; }
+    .menu-name { font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--white);margin-bottom:6px; }
+    .menu-desc { font-size:13px;line-height:1.65;color:rgba(255,255,255,.45); }
+    .menu-price { font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--sky-lt);white-space:nowrap;font-weight:500; }
+    .menu-badge-tag { display:inline-block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(74,159,212,.15);color:var(--sky-lt);padding:3px 8px;border-radius:2px;margin-top:8px; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background:var(--warm); }
+    .exp-grid { display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:16px;margin-top:64px; }
+    .exp-card { border-radius:4px;overflow:hidden;position:relative;aspect-ratio:1.2;background:linear-gradient(135deg,var(--charcoal),var(--deep));display:flex;align-items:flex-end;transition:transform .4s var(--ease);cursor:none; }
+    .exp-card:hover { transform:scale(1.02); }
+    .exp-card:nth-child(1) { grid-column:span 5;aspect-ratio:.9; }
+    .exp-card:nth-child(2) { grid-column:span 7; }
+    .exp-card:nth-child(3) { grid-column:span 4; }
+    .exp-card:nth-child(4) { grid-column:span 4; }
+    .exp-card:nth-child(5) { grid-column:span 4; }
+    .exp-emoji { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(48px,6vw,80px);animation:expFloat 4s ease-in-out infinite; }
+    .exp-card:nth-child(2) .exp-emoji { animation-delay:.5s; }
+    .exp-card:nth-child(3) .exp-emoji { animation-delay:1s; }
+    .exp-card:nth-child(4) .exp-emoji { animation-delay:1.5s; }
+    .exp-card:nth-child(5) .exp-emoji { animation-delay:2s; }
+    @keyframes expFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .exp-bg-gradient { position:absolute;inset:0;transition:opacity .4s; }
+    .exp-card:nth-child(1) .exp-bg-gradient { background:linear-gradient(135deg,#0b2545,#0d1e38); }
+    .exp-card:nth-child(2) .exp-bg-gradient { background:linear-gradient(135deg,#1d3461,#0b2545); }
+    .exp-card:nth-child(3) .exp-bg-gradient { background:linear-gradient(135deg,#0d2a42,#0a1e30); }
+    .exp-card:nth-child(4) .exp-bg-gradient { background:linear-gradient(135deg,#162b48,#0b1e2f); }
+    .exp-card:nth-child(5) .exp-bg-gradient { background:linear-gradient(135deg,#1a3461,#0d2040); }
+    .exp-label { position:relative;z-index:2;padding:20px 24px;width:100%;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%); }
+    .exp-label h3 { font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,26px);color:var(--white);font-weight:400; }
+    .exp-label p { font-size:12px;color:rgba(255,255,255,.5);margin-top:2px; }
+
+    /* ── SPECIALS ── */
+    #specials { background:var(--cream); }
+    .specials-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:32px;margin-top:64px; }
+    .special-card { perspective:1000px;height:420px;cursor:none; }
+    .special-inner { position:relative;width:100%;height:100%;transition:transform .7s var(--ease);transform-style:preserve-3d; }
+    .special-card:hover .special-inner { transform:rotateY(180deg); }
+    .special-front,.special-back { position:absolute;inset:0;border-radius:4px;backface-visibility:hidden;overflow:hidden; }
+    .special-front { background:var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;border:1px solid rgba(74,159,212,.2); }
+    .special-front-emoji { font-size:80px;animation:specialFloat 4s ease-in-out infinite; }
+    @keyframes specialFloat { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-8px) rotate(4deg)} }
+    .special-front h3 { font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--white);font-weight:400; }
+    .special-front p { font-size:12px;color:var(--sky);letter-spacing:.1em;text-transform:uppercase; }
+    .special-back { background:var(--navy);transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;padding:40px;border:1px solid rgba(74,159,212,.3); }
+    .special-back h3 { font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--sky-lt);font-weight:500;margin-bottom:16px; }
+    .special-back p { font-size:15px;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:20px; }
+    .special-back .price { font-family:'Cormorant Garamond',serif;font-size:42px;color:var(--gold-lt);font-weight:600; }
+
+    /* ── VISIT ── */
+    #visit { background:var(--deep); }
+    .visit-grid { display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start;margin-top:64px; }
+    .hours-list { list-style:none; }
+    .hours-item { display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px;color:rgba(255,255,255,.7);transition:color .3s; }
+    .hours-item:hover { color:var(--white); }
+    .hours-day { font-weight:500; }
+    .hours-time { color:var(--sky-lt);font-family:'Cormorant Garamond',serif;font-size:20px; }
+    .hours-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4caf50;background:rgba(76,175,80,.1);padding:4px 12px;border-radius:20px;margin-bottom:28px; }
+    .hours-badge::before { content:'';width:6px;height:6px;background:#4caf50;border-radius:50%;animation:blink 1.5s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .visit-info { display:flex;flex-direction:column;gap:32px; }
+    .info-block { display:flex;gap:20px;padding:28px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;transition:border-color .3s,background .3s; }
+    .info-block:hover { border-color:rgba(74,159,212,.35);background:rgba(255,255,255,.06); }
+    .info-icon { font-size:28px;flex-shrink:0; }
+    .info-content h4 { font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--white);font-weight:400;margin-bottom:6px; }
+    .info-content p { font-size:14px;line-height:1.65;color:rgba(255,255,255,.5); }
+    .info-content a { color:var(--sky-lt);text-decoration:none; }
+    .info-content a:hover { text-decoration:underline; }
+    .map-placeholder { width:100%;aspect-ratio:16/9;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin-top:32px;font-size:48px; }
+    .map-placeholder p { font-size:15px;color:rgba(255,255,255,.4); }
+    .map-pin-anim { animation:pinBounce 2s ease-in-out infinite; }
+    @keyframes pinBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    /* ── CTA STRIP ── */
+    #cta-strip { background:linear-gradient(135deg,var(--navy),var(--charcoal));padding:clamp(60px,8vw,100px) clamp(24px,6vw,100px);text-align:center;position:relative;overflow:hidden;border-top:3px solid var(--sky);border-bottom:3px solid var(--sky); }
+    #cta-strip::before { content:'';position:absolute;inset:-50%;background:radial-gradient(ellipse at center,rgba(74,159,212,.12) 0%,transparent 60%);animation:ctaPulse 4s ease-in-out infinite; }
+    @keyframes ctaPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+    #cta-strip h2 { font-family:'Cormorant Garamond',serif;font-size:clamp(36px,6vw,70px);font-weight:300;color:var(--white);position:relative;z-index:1;margin-bottom:16px; }
+    #cta-strip p { font-size:17px;color:rgba(255,255,255,.55);position:relative;z-index:1;margin-bottom:40px; }
+    #cta-strip .btn-sky { background:var(--sky);color:var(--white);padding:16px 48px;border-radius:2px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:background .3s,transform .2s,box-shadow .3s;position:relative;z-index:1; }
+    #cta-strip .btn-sky:hover { background:var(--sky-lt);color:var(--deep);transform:translateY(-2px);box-shadow:0 12px 40px rgba(74,159,212,.35); }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background:var(--cream); }
+    .testimonials-track { display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:24px;margin-top:64px; }
+    .testi-card { background:var(--white);border-radius:4px;padding:36px;border:1px solid rgba(74,159,212,.2);transition:transform .3s,box-shadow .3s;position:relative; }
+    .testi-card:hover { transform:translateY(-4px);box-shadow:0 20px 60px rgba(11,37,69,.1); }
+    .testi-stars { color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:16px; }
+    .testi-quote { font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--charcoal);line-height:1.5;margin-bottom:24px; }
+    .testi-author { font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted); }
+    .testi-mark { position:absolute;top:28px;right:28px;font-family:'Cormorant Garamond',serif;font-size:80px;line-height:1;color:rgba(74,159,212,.08);pointer-events:none; }
+
+    /* ── FOOTER ── */
+    footer { background:var(--deep);padding:clamp(60px,8vw,100px) clamp(24px,6vw,100px) 40px; }
+    .footer-grid { display:grid;grid-template-columns:2fr repeat(3,1fr);gap:clamp(32px,4vw,60px);padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.07); }
+    .footer-brand p { font-size:14px;line-height:1.7;color:rgba(255,255,255,.4);margin-top:16px;max-width:280px; }
+    .footer-col h4 { font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:20px; }
+    .footer-col ul { list-style:none;display:flex;flex-direction:column;gap:10px; }
+    .footer-col ul a { font-size:14px;color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s; }
+    .footer-col ul a:hover { color:var(--white); }
+    .footer-bottom { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-top:32px; }
+    .footer-bottom p { font-size:13px;color:rgba(255,255,255,.25); }
+    .social-links { display:flex;gap:12px; }
+    .social-btn { width:40px;height:40px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;font-size:16px;transition:border-color .3s,color .3s,transform .2s; }
+    .social-btn:hover { border-color:var(--sky);color:var(--sky);transform:translateY(-2px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:1024px) {
+      .hero-dish-3d { display:none; }
+      #about { grid-template-columns:1fr; }
+      .about-visual { aspect-ratio:1.5;max-width:420px;margin:0 auto; }
+      .visit-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+      .bfmenu-header { grid-template-columns:1fr; }
+      .bfmenu-logo-box { flex-direction:row; gap: 16px; }
+    }
+    @media (max-width:900px) {
+      .bfmenu-body { grid-template-columns:1fr; }
+      .bfmenu-col-left { border-right:none;border-bottom:3px solid var(--navy); }
+    }
+    @media (max-width:768px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .exp-card:nth-child(1) { grid-column:span 12; }
+      .exp-card:nth-child(2) { grid-column:span 12; }
+      .exp-card:nth-child(3),.exp-card:nth-child(4),.exp-card:nth-child(5) { grid-column:span 4; }
+      .footer-grid { grid-template-columns:1fr; }
+      .about-stats { grid-template-columns:repeat(3,1fr); }
+    }
+    @media (max-width:480px) {
+      .exp-card:nth-child(3),.exp-card:nth-child(4),.exp-card:nth-child(5) { grid-column:span 12; }
+      .about-stats { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (hover:none) {
+      #cursor,#cursor-ring { display:none; }
+      body { cursor:auto; }
+      .nav-cta,.btn-primary,.btn-outline,.hamburger,.menu-tab,.special-card,.exp-card,.social-btn { cursor:pointer; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-bird">🫐</div>
+  <div class="loader-text">Bluebird Café</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">Our Story</a>
+  <a href="#menu" onclick="closeMobile()">Menu</a>
+  <a href="#specials" onclick="closeMobile()">Specials</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#visit" onclick="closeMobile()">Visit Us</a>
+  <a href="https://www.toasttab.com" onclick="closeMobile()" style="color:var(--sky)">Order Online →</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">🫐 <span>Bluebird</span> Café</a>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#specials">Specials</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#visit">Visit Us</a></li>
+    <li><a href="https://www.toasttab.com" class="nav-cta">Order Online</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="particle" style="left:8%;top:20%;--dur:14s;--delay:0s;--tx:30px;--ty:-100px;--rot:20deg">🥞</div>
+  <div class="particle" style="left:15%;top:60%;--dur:11s;--delay:2s;--tx:-20px;--ty:-80px;--rot:-15deg">☕</div>
+  <div class="particle" style="left:5%;top:40%;--dur:16s;--delay:4s;--tx:40px;--ty:-120px;--rot:35deg">🫐</div>
+  <div class="particle" style="left:90%;top:25%;--dur:13s;--delay:1s;--tx:-30px;--ty:-90px;--rot:-25deg">🍳</div>
+  <div class="particle" style="left:85%;top:65%;--dur:10s;--delay:3s;--tx:-40px;--ty:-110px;--rot:40deg">🥓</div>
+  <div class="particle" style="left:75%;top:15%;--dur:15s;--delay:5s;--tx:-20px;--ty:-70px;--rot:-10deg">🍊</div>
+  <div class="particle" style="left:50%;top:80%;--dur:12s;--delay:2.5s;--tx:20px;--ty:-130px;--rot:25deg">🧇</div>
+  <div class="particle" style="left:30%;top:10%;--dur:17s;--delay:6s;--tx:35px;--ty:-100px;--rot:-30deg">🥚</div>
+  <div class="particle" style="left:65%;top:70%;--dur:9s;--delay:7s;--tx:-25px;--ty:-85px;--rot:15deg">🍓</div>
+  <div class="particle" style="left:40%;top:85%;--dur:13s;--delay:1.5s;--tx:-30px;--ty:-95px;--rot:-20deg">🥛</div>
+  <div class="hero-content">
+    <div class="hero-badge">Est. 1958 · Arlington, Washington</div>
+    <h1 class="hero-title">Where Every<em>Morning Shines</em></h1>
+    <p class="hero-sub">Three generations of family warmth, legendary breakfasts,<br/>and the kind of hospitality that turns strangers into regulars.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">Explore Our Menu →</a>
+      <a href="#visit" class="btn-outline">Find Us</a>
+    </div>
+  </div>
+  <div class="hero-dish-3d">
+    <div class="dish-ring"></div><div class="dish-ring"></div><div class="dish-ring"></div>
+    <div class="dish-center">🥞</div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Family Owned Since 1958</span><span>Farm-Fresh Breakfasts</span><span>Bottomless Mimosas</span><span>Arlington's Favorite Diner</span><span>Generous Portions</span><span>Prime Rib Fridays</span><span>Blueberry Pancakes</span><span>Handcrafted Milkshakes</span><span>Open 7 Days a Week</span><span>Order Online · Dine In · Takeout</span>
+    <span>Family Owned Since 1958</span><span>Farm-Fresh Breakfasts</span><span>Bottomless Mimosas</span><span>Arlington's Favorite Diner</span><span>Generous Portions</span><span>Prime Rib Fridays</span><span>Blueberry Pancakes</span><span>Handcrafted Milkshakes</span><span>Open 7 Days a Week</span><span>Order Online · Dine In · Takeout</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal-left">
+    <div class="about-img-frame"><div class="about-img-emoji">🫐</div></div>
+    <div class="about-badge"><span class="about-badge-year">65+</span><span class="about-badge-text">Years of Joy</span></div>
+    <div class="about-accent"></div>
+  </div>
+  <div class="about-text reveal-right">
+    <div class="section-label">Our Story</div>
+    <h2 class="section-title">A Family Tradition <em>Worth Savoring</em></h2>
+    <p style="margin-top:28px"><strong>Bluebird Café & Diner</strong> opened its doors in 1958 when Merle and Florence Peper decided Arlington deserved a place where families could gather over honest, soul-nourishing food. More than six decades later, we're still family-owned, still pouring bottomless coffee, and still perfecting those legendary blueberry pancakes.</p>
+    <p>Today the café is owned and run by their youngest daughter, Shirley Parris. Every plate that leaves our kitchen carries the same commitment to quality and warmth that Merle and Florence instilled from day one — generous portions, familiar flavors, and a dining room that feels like home from the moment you walk in.</p>
+    <div class="about-stats">
+      <div><span class="stat-num">1958</span><span class="stat-label">Founded</span></div>
+      <div><span class="stat-num">3</span><span class="stat-label">Generations</span></div>
+      <div><span class="stat-num">65+</span><span class="stat-label">Years Serving</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="reveal">
+    <div class="section-label" style="color:var(--sky-lt)">What We Serve</div>
+    <h2 class="section-title light">Crafted with <em>Love &amp; Tradition</em></h2>
+  </div>
+  <div class="menu-tabs reveal">
+    <button class="menu-tab active" onclick="switchTab('breakfast',this)">Breakfast</button>
+    <button class="menu-tab" onclick="switchTab('lunch',this)">Lunch</button>
+    <button class="menu-tab" onclick="switchTab('drinks',this)">Drinks</button>
+    <button class="menu-tab" onclick="switchTab('weekend',this)">Weekend Dinner</button>
+  </div>
+
+  <!-- ═══════════════ BREAKFAST MENU ═══════════════ -->
+  <div class="menu-panel active" id="tab-breakfast">
+    <div class="bfmenu-wrap reveal">
+
+      <!-- HEADER -->
+      <div class="bfmenu-header">
+        <div class="bfmenu-logo-box">
+          <div class="bfmenu-logo-circle">
+            <div class="bfmenu-logo-bird">🫐</div>
+            <div class="bfmenu-logo-name">BlueBird<br/>Café &amp; Diner</div>
+            <div class="bfmenu-logo-sub">Since 1958</div>
+          </div>
+        </div>
+        <p class="bfmenu-story">In 1958, Merle and Florence Peper opened up The Blue Bird Café for 24-hour services. Weekday mornings log trucks would line main street by 3am so Florence could fill their bellies and send them off to work with a sack lunch. The whole family was involved; The older kids would shred hash browns and grind beef in the basement of their home. Florence was so devoted she was still making her homemade biscuits into her early 70's. Today the café is owned and ran by their youngest daughter, Shirley Parris. Memories of Florence still fill these walls every day.</p>
+      </div>
+
+      <div class="bfmenu-title-row">
+        <span style="font-size:28px">🍳</span>
+        <h2 class="bfmenu-main-title">Breakfast Menu</h2>
+        <span style="font-size:28px">🫐</span>
+      </div>
+
+      <!-- TWO-COLUMN BODY -->
+      <div class="bfmenu-body">
+
+        <!-- LEFT COLUMN -->
+        <div class="bfmenu-col bfmenu-col-left">
+
+          <!-- BREAKFAST COMBOS -->
+          <div class="bfms-head">
+            <h3>Breakfast Combos</h3>
+            <span class="arrow">▶</span>
+          </div>
+          <div class="bfms-items">
+            <div class="bfmi-combo">
+              <div class="bfmi-combo-num">NO.1<sup>*</sup></div>
+              <div class="bfmi-combo-price">11.75</div>
+              <div class="bfmi-combo-desc">Bowl of fresh fruit or hot cereal w. raisins &amp; walnuts add a banana for 1.75 add blueberries 1.25 w. choice of biscuit– English Muffin – Toast*</div>
+            </div>
+            <div class="bfmi-combo">
+              <div class="bfmi-combo-num">NO.2<sup>*</sup></div>
+              <div class="bfmi-combo-price">17.95</div>
+              <div class="bfmi-combo-desc">Choice of bacon- sausage - or ham ($1.00 upcharge for German sausage) &amp; two eggs choice of cottage cheese – fruit – or potato choice of toast* - biscuit- or English muffin</div>
+            </div>
+            <div class="bfmi-combo">
+              <div class="bfmi-combo-num">NO.3<sup>*</sup></div>
+              <div class="bfmi-combo-price">16.50</div>
+              <div class="bfmi-combo-desc">Choice of three small pancakes - two pc French toast Swedish pancakes or Belgin waffle w. choice of bacon - sausage – or ham ($1.00 upcharge for German sausage) &amp; two eggs *banana – blueberry – chocolate chip – or triple berry 2.25 extra add strawberries + whip cream 3.25 extra</div>
+            </div>
+            <div class="bfmi-combo">
+              <div class="bfmi-combo-num">NO.4<sup>*</sup></div>
+              <div class="bfmi-combo-price">18.95</div>
+              <div class="bfmi-combo-desc">Banana split breakfast bowl (vanilla yogurt-granola almonds – coconut – banana- blueberries-strawberries) served w. meat choice &amp; two eggs</div>
+            </div>
+            <div class="bfmi-combo">
+              <div class="bfmi-combo-num">NO.5<sup>*</sup></div>
+              <div class="bfmi-combo-price">22.50</div>
+              <div class="bfmi-combo-desc">Full biscuits and gravy meal choice of bacon sausage - or ham &amp; two eggs choice of cottage cheese fruit - or potato</div>
+            </div>
+            <div class="bfmi-combo">
+              <div class="bfmi-combo-num">NO.6<sup>*</sup></div>
+              <div class="bfmi-combo-price">12.50</div>
+              <div class="bfmi-combo-desc">Two eggs &amp; choice of cottage cheese – fruit – potato choice of biscuit – English muffin – or toast*</div>
+              <div class="bfmi-combo-note">Potato Choices Include:<br/>Hash Brown, O'Brien, or American Fries</div>
+            </div>
+          </div>
+
+          <div class="bfms-sep"></div>
+
+          <!-- BISCUITS & GRAVY -->
+          <div class="bfms-head"><h3>Biscuits &amp; Gravy</h3></div>
+          <div class="bfms-items">
+            <div class="bfmi">
+              <div class="bfmi-name">Half Order <span class="dot">●</span></div>
+              <div class="bfmi-price">7.99</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Half B&amp;G with Two Eggs <span class="dot">●</span></div>
+              <div class="bfmi-price">11.95</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Full Order <span class="dot">●</span></div>
+              <div class="bfmi-price">9.75</div>
+            </div>
+          </div>
+
+          <div class="bfms-sep"></div>
+
+          <!-- BREAKFAST SANDWICHES -->
+          <div class="bfms-head"><h3>Breakfast Sandwiches</h3></div>
+          <div class="bfms-note">Choice of Ham – Bacon – Sausage &amp; Egg to Your Liking<br/>Choice of American -Cheddar – Pepper Jack – Swiss<br/>Choice of Cottage Cheese – Fruit – Potato</div>
+          <div class="bfms-items">
+            <div class="bfmi">
+              <div class="bfmi-name">Small Sandwich <span class="dot">●</span></div>
+              <div class="bfmi-price">14.95</div>
+              <div class="bfmi-desc">English muffin - Brioche bun - or biscuit w. one egg.</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Large Sandwich<span class="star">*</span><span class="dot">●</span></div>
+              <div class="bfmi-price">17.95</div>
+              <div class="bfmi-desc">Grilled bread of your choice w. two eggs</div>
+            </div>
+          </div>
+
+          <div class="bfms-sep"></div>
+
+          <!-- BENEDICTS -->
+          <div class="bfms-head"><h3>Benedicts</h3></div>
+          <div class="bfms-note">Choice of Cottage Cheese – Fruit – or Potato</div>
+          <div class="bfms-items">
+            <div class="bfmi">
+              <div class="bfmi-name">Eggs Benedict <span class="dot">●</span></div>
+              <div class="bfmi-price">17.50</div>
+              <div class="bfmi-desc">Canadian bacon or bacon strips – two poached eggs – English muffin hollandaise sauce</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Country Style Benedict <span class="dot">●</span></div>
+              <div class="bfmi-price">18.95</div>
+              <div class="bfmi-desc">Chicken fried steak or sausage patty two poached eggs – grilled biscuit homemade sausage gravy</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Florentine Benedict <span class="dot">●</span></div>
+              <div class="bfmi-price">17.50</div>
+              <div class="bfmi-desc">Grilled English muffin – two poached eggs spinach – tomato – green onions hollandaise sauce</div>
+            </div>
+          </div>
+        </div><!-- /left col -->
+
+        <!-- RIGHT COLUMN -->
+        <div class="bfmenu-col">
+
+          <!-- MEAT COMBINATIONS -->
+          <div class="bfms-head"><h3>Meat Combinations</h3></div>
+          <div class="bfms-note">Served w. two eggs &amp; choice of cottage cheese – fruit<br/>or potato &amp; choice of biscuit – English muffin – or toast*</div>
+          <div class="bfms-items">
+            <div class="bfmi">
+              <div class="bfmi-name">Chicken Fried Steak <span class="dot">●</span></div>
+              <div class="bfmi-price">22.95</div>
+              <div class="bfmi-desc">Homemade sausage gravy or homemade brown gravy</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Two Tender Pork Loin Chops <span class="dot">●</span></div>
+              <div class="bfmi-price">22.95</div>
+              <div class="bfmi-desc">Smokehouse maple seasoning &amp; served w. applesauce</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">8 oz Flat Iron Steak <span class="dot">●</span></div>
+              <div class="bfmi-price">30.95</div>
+              <div class="bfmi-desc">Montreal steak seasoning</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Hamburger Steak <span class="dot">●</span></div>
+              <div class="bfmi-price">22.95</div>
+              <div class="bfmi-desc">Montreal steak seasoning served w. grilled onions &amp; sautéed mushrooms</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Homemade Hash<span class="star">*</span><span class="dot">●</span></div>
+              <div class="bfmi-price">17.95</div>
+              <div class="bfmi-desc">Corned beef or brisket hash &amp; two eggs choice of biscuit - English muffin -or toast*</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Breakfast Burrito <span class="dot">●</span></div>
+              <div class="bfmi-price">17.95</div>
+              <div class="bfmi-desc">Choice of bacon- sausage - ham - chorizo - or brisket choice of American -cheddar pepper jack- or Swiss choice of potato scrambled eggs - served w. sour cream &amp; salsa</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">G.G. Special <span class="dot">●</span></div>
+              <div class="bfmi-price">27.50</div>
+              <div class="bfmi-desc">Choice of potato bacon - sausage - ham tomato - green pepper - onion - olive - spinach mushroom + covered with cheese choice and smothered in sausage gravy or hollandaise sauce topped with 3 eggs</div>
+            </div>
+          </div>
+
+          <div class="bfms-sep"></div>
+
+          <!-- OMELETTES / SCRAMBLES -->
+          <div class="bfms-head"><h3>Omelettes / Scrambles<span class="star" style="font-size:18px">*</span></h3></div>
+          <div class="bfms-items">
+            <div class="bfmi">
+              <div class="bfmi-name">Build Your Own <span class="dot">●</span></div>
+              <div class="bfmi-price" style="font-size:14px">Starting at 15.95</div>
+              <div class="bfmi-desc">American -cheddar -feta -pepper jack -Swiss served w. choice of cottage cheese - fruit- or potato &amp; choice of biscuit – English muffin or toast*</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Add Meat</div>
+              <div class="bfmi-price" style="font-size:14px">2.25 per meat</div>
+              <div class="bfmi-desc">Chili -bacon -ham -German sausage -ground beef sausage patty -chorizo -brisket -taco ground beef</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Add Vegetable</div>
+              <div class="bfmi-price" style="font-size:14px">.95 per vegetable</div>
+              <div class="bfmi-desc">Green peppers – mushrooms -olives -onions -spinach -tomatoes -jalapeños -green onion &nbsp; Side of avocado 2.95</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">"Remember The Aalmo"</div>
+              <div class="bfmi-price">18.95</div>
+              <div class="bfmi-desc">Ground beef - onions - cheddar cheese</div>
+            </div>
+          </div>
+
+          <!-- TRACTOR / NOTES -->
+          <div class="tractor-col">
+            <div class="tractor-emoji">🚜</div>
+            <div class="tractor-notes">
+              $1.99 charge to split plate in kitchen<br/>
+              *Indicates food is gluten free for upcharge<br/>
+              Half orders available for 2.00 off<br/>
+              <span class="dot-red">●</span> Consuming raw / undercooked foods may cause illness <span class="dot-red">●</span>
+            </div>
+          </div>
+
+        </div><!-- /right col -->
+      </div><!-- /body -->
+
+      <!-- FOOTER -->
+      <div class="bfmenu-footer">
+        <p>$1.99 charge to split plate in kitchen</p>
+        <p>*Indicates food is <strong style="color:var(--sky-lt)">gluten free for upcharge</strong> &nbsp;·&nbsp; Half orders available for 2.00 off</p>
+        <p><span class="dot-red">●</span> Consuming raw / undercooked foods may cause illness <span class="dot-red">●</span></p>
+      </div>
+
+    </div><!-- /bfmenu-wrap -->
+  </div><!-- /tab-breakfast -->
+
+  <!-- LUNCH -->
+  <div class="menu-panel" id="tab-lunch">
+    <div class="menu-grid">
+      <div class="menu-card reveal"><div class="menu-emoji">🍔</div><div class="menu-info"><div class="menu-name">Bluebird Classic Burger</div><div class="menu-desc">Half-pound hand-pattied beef, lettuce, tomato, pickles, and our secret Bluebird sauce on a brioche bun.</div><span class="menu-badge-tag">Best Seller</span></div><div class="menu-price">$16</div></div>
+      <div class="menu-card reveal" style="transition-delay:.05s"><div class="menu-emoji">🥪</div><div class="menu-info"><div class="menu-name">Club Sandwich</div><div class="menu-desc">Triple-decker with turkey, bacon, avocado, tomato, and Swiss cheese on sourdough.</div></div><div class="menu-price">$14</div></div>
+      <div class="menu-card reveal" style="transition-delay:.1s"><div class="menu-emoji">🍲</div><div class="menu-info"><div class="menu-name">Soup of the Day</div><div class="menu-desc">House-made from scratch every morning. Ask your server for today's selection.</div></div><div class="menu-price">$8</div></div>
+      <div class="menu-card reveal" style="transition-delay:.15s"><div class="menu-emoji">🥙</div><div class="menu-info"><div class="menu-name">Grilled Chicken Wrap</div><div class="menu-desc">Marinated chicken breast, romaine, tomato, cheddar, and ranch in a toasted flour tortilla.</div></div><div class="menu-price">$13</div></div>
+    </div>
+  </div>
+
+  <!-- DRINKS -->
+  <div class="menu-panel" id="tab-drinks">
+    <div class="menu-grid">
+      <div class="menu-card reveal"><div class="menu-emoji">☕</div><div class="menu-info"><div class="menu-name">Bottomless Coffee</div><div class="menu-desc">Fresh-brewed house blend. We keep it coming all morning long.</div><span class="menu-badge-tag">Unlimited Refills</span></div><div class="menu-price">$3</div></div>
+      <div class="menu-card reveal" style="transition-delay:.05s"><div class="menu-emoji">🥂</div><div class="menu-info"><div class="menu-name">Bottomless Mimosas</div><div class="menu-desc">Fresh-squeezed orange juice and chilled sparkling wine.</div><span class="menu-badge-tag">Weekends Only</span></div><div class="menu-price">$18</div></div>
+      <div class="menu-card reveal" style="transition-delay:.1s"><div class="menu-emoji">🥤</div><div class="menu-info"><div class="menu-name">Classic Milkshake</div><div class="menu-desc">Hand-blended with premium ice cream — vanilla, chocolate, or strawberry. Topped with whipped cream.</div></div><div class="menu-price">$9</div></div>
+      <div class="menu-card reveal" style="transition-delay:.15s"><div class="menu-emoji">🍊</div><div class="menu-info"><div class="menu-name">Fresh-Squeezed OJ</div><div class="menu-desc">Freshly squeezed to order. Bright, sweet, and full of morning sunshine.</div></div><div class="menu-price">$5</div></div>
+    </div>
+  </div>
+
+  <!-- WEEKEND DINNER -->
+  <div class="menu-panel" id="tab-weekend">
+    <div class="menu-grid">
+      <div class="menu-card reveal"><div class="menu-emoji">🥩</div><div class="menu-info"><div class="menu-name">Prime Rib</div><div class="menu-desc">Slow-roasted to perfection, served with au jus, creamy horseradish, and your choice of sides.</div><span class="menu-badge-tag">Friday &amp; Saturday</span></div><div class="menu-price">$32</div></div>
+      <div class="menu-card reveal" style="transition-delay:.05s"><div class="menu-emoji">🍗</div><div class="menu-info"><div class="menu-name">Roasted Half Chicken</div><div class="menu-desc">Free-range chicken roasted golden with herbs, garlic mashed potatoes and seasonal vegetables.</div></div><div class="menu-price">$24</div></div>
+      <div class="menu-card reveal" style="transition-delay:.1s"><div class="menu-emoji">🐟</div><div class="menu-info"><div class="menu-name">Pacific Northwest Salmon</div><div class="menu-desc">Pan-seared wild-caught salmon with lemon caper butter, rice pilaf, and fresh asparagus.</div></div><div class="menu-price">$28</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">The Atmosphere</div>
+    <h2 class="section-title">Where Families <em>Make Memories</em></h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card reveal-left"><div class="exp-bg-gradient"></div><div class="exp-emoji">🥞</div><div class="exp-label"><h3>Legendary Breakfasts</h3><p>Open daily from 7 AM</p></div></div>
+    <div class="exp-card reveal-right"><div class="exp-bg-gradient"></div><div class="exp-emoji">☕</div><div class="exp-label"><h3>Morning Coffee Ritual</h3><p>Bottomless, always fresh</p></div></div>
+    <div class="exp-card reveal"><div class="exp-bg-gradient"></div><div class="exp-emoji">👨‍👩‍👧</div><div class="exp-label"><h3>Family Friendly</h3><p>Kids welcome always</p></div></div>
+    <div class="exp-card reveal" style="transition-delay:.1s"><div class="exp-bg-gradient"></div><div class="exp-emoji">🥂</div><div class="exp-label"><h3>Weekend Brunch</h3><p>Mimosas all morning</p></div></div>
+    <div class="exp-card reveal" style="transition-delay:.2s"><div class="exp-bg-gradient"></div><div class="exp-emoji">🥩</div><div class="exp-label"><h3>Fri &amp; Sat Dinner</h3><p>Prime rib &amp; more</p></div></div>
+  </div>
+</section>
+
+<!-- SPECIALS -->
+<section id="specials">
+  <div class="reveal">
+    <div class="section-label">Chef's Picks</div>
+    <h2 class="section-title">House <em>Signatures</em></h2>
+    <p style="margin-top:20px;color:var(--muted);font-size:15px;max-width:480px">Hover each card to reveal what makes it special.</p>
+  </div>
+  <div class="specials-grid">
+    <div class="special-card reveal"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥞</div><h3>Blueberry Stack</h3><p>House Signature</p></div><div class="special-back"><h3>Blueberry Stack</h3><p>Cloud-like buttermilk pancakes loaded with plump Pacific Northwest blueberries. Served with real maple syrup and cultured butter.</p><span class="price">$12</span></div></div></div>
+    <div class="special-card reveal" style="transition-delay:.1s"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥩</div><h3>Prime Rib</h3><p>Weekend Only</p></div><div class="special-back"><h3>Prime Rib</h3><p>Slow-roasted for 12 hours and sliced to order. Served with savory au jus, creamy horseradish, and two sides.</p><span class="price">$32</span></div></div></div>
+    <div class="special-card reveal" style="transition-delay:.2s"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥤</div><h3>Classic Milkshake</h3><p>Made to Order</p></div><div class="special-back"><h3>Classic Milkshake</h3><p>Hand-spun with premium ice cream in the classic Bluebird tradition. Vanilla, chocolate, or strawberry — thick and rich.</p><span class="price">$9</span></div></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="cta-strip" class="reveal">
+  <h2>Ready for the Best Breakfast in Arlington?</h2>
+  <p>Order online or come find us at 308 N Olympic Ave — we can't wait to see you.</p>
+  <a href="tel:+13604352724" class="btn-sky">📞 Call Us · (360) 435-2724</a>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="reveal">
+    <div class="section-label">Guest Love</div>
+    <h2 class="section-title">What Our <em>Guests Say</em></h2>
+  </div>
+  <div class="testimonials-track">
+    <div class="testi-card reveal"><div class="testi-mark">"</div><div class="testi-stars">★★★★★</div><p class="testi-quote">"Best pancakes in Washington State. Period. The blueberry stack is everything — and the staff remembers your name after your first visit."</p><div class="testi-author">— Sarah M., Yelp Review</div></div>
+    <div class="testi-card reveal" style="transition-delay:.1s"><div class="testi-mark">"</div><div class="testi-stars">★★★★★</div><p class="testi-quote">"Generous portions, flavorful food, and the friendliest staff you'll ever meet. This place is a treasure. My family has been coming here for 20 years."</p><div class="testi-author">— James K., TripAdvisor</div></div>
+    <div class="testi-card reveal" style="transition-delay:.2s"><div class="testi-mark">"</div><div class="testi-stars">★★★★★</div><p class="testi-quote">"A charming diner with real soul. The prime rib on Friday nights is absolutely worth the drive. Nothing pretentious, just genuinely great food."</p><div class="testi-author">— Rachel T., Google Review</div></div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit" style="padding-top:clamp(80px,12vw,160px)">
+  <div class="reveal">
+    <div class="section-label" style="color:var(--sky-lt)">Plan Your Visit</div>
+    <h2 class="section-title light">Come Find <em>Us</em></h2>
+  </div>
+  <div class="visit-grid">
+    <div>
+      <div class="hours-badge">● Open Today</div>
+      <ul class="hours-list">
+        <li class="hours-item reveal"><span class="hours-day">Sunday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.05s"><span class="hours-day">Monday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.1s"><span class="hours-day">Tuesday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.15s"><span class="hours-day">Wednesday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.2s"><span class="hours-day">Thursday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.25s"><span class="hours-day">Friday</span><span class="hours-time">7 AM – 7 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.3s"><span class="hours-day">Saturday</span><span class="hours-time">7 AM – 7 PM</span></li>
+      </ul>
+    </div>
+    <div class="visit-info">
+      <div class="info-block reveal"><div class="info-icon">📍</div><div class="info-content"><h4>Location</h4><p>308 N Olympic Ave<br/>Arlington, WA 98223</p></div></div>
+      <div class="info-block reveal" style="transition-delay:.1s"><div class="info-icon">📞</div><div class="info-content"><h4>Phone</h4><p><a href="tel:+13604352724">(360) 435-2724</a></p></div></div>
+      <div class="info-block reveal" style="transition-delay:.2s"><div class="info-icon">🛍️</div><div class="info-content"><h4>Online Ordering</h4><p>Order ahead for pickup via <a href="https://www.toasttab.com">Toast Tab →</a></p></div></div>
+      <div class="info-block reveal" style="transition-delay:.3s"><div class="info-icon">🅿️</div><div class="info-content"><h4>Parking</h4><p>Free street parking available on N Olympic Ave and surrounding streets.</p></div></div>
+      <div class="map-placeholder reveal" style="transition-delay:.4s"><div class="map-pin-anim">📍</div><p>308 N Olympic Ave, Arlington WA</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="text-decoration:none;display:inline-flex">🫐 <span style="color:var(--sky-lt)">Bluebird</span> Café</div>
+      <p>Family-owned and operated since 1958. Three generations of great food and genuine hospitality in the heart of Arlington, Washington.</p>
+    </div>
+    <div class="footer-col"><h4>Explore</h4><ul><li><a href="#about">Our Story</a></li><li><a href="#menu">Full Menu</a></li><li><a href="#specials">Daily Specials</a></li><li><a href="#experience">The Experience</a></li></ul></div>
+    <div class="footer-col"><h4>Visit</h4><ul><li><a href="#visit">Hours &amp; Location</a></li><li><a href="tel:+13604352724">(360) 435-2724</a></li><li><a href="https://www.toasttab.com">Order Online</a></li><li><a href="https://www.facebook.com/bluebirdcafearlington">Facebook</a></li></ul></div>
+    <div class="footer-col"><h4>Follow Us</h4><ul><li><a href="https://www.facebook.com/bluebirdcafearlington">Facebook</a></li><li><a href="https://www.yelp.com">Yelp Reviews</a></li><li><a href="https://www.tripadvisor.com">TripAdvisor</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Bluebird Café &amp; Diner · Arlington, WA · Est. 1958 by Merle &amp; Florence Peper</p>
+    <div class="social-links">
+      <a href="https://www.facebook.com/bluebirdcafearlington" class="social-btn" aria-label="Facebook">f</a>
+      <a href="https://www.yelp.com" class="social-btn" aria-label="Yelp">y</a>
+      <a href="https://www.tripadvisor.com" class="social-btn" aria-label="TripAdvisor">t</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', () => { setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2000); });
+
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+  (function animateRing(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animateRing); })();
+
+  // NAVBAR
+  window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>60); }, {passive:true});
+
+  // MOBILE MENU
+  function toggleMobile(){ document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('hamburger').classList.toggle('open'); }
+  function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); }
+
+  // SCROLL REVEAL
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, {threshold:0.1});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+
+  // MENU TABS
+  function switchTab(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    btn.classList.add('active');
+    document.querySelectorAll('#tab-'+id+' .reveal').forEach(el => { el.classList.remove('visible'); setTimeout(()=>obs.observe(el),50); });
+  }
+
+  // COUNTER
+  const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ document.querySelectorAll('.stat-num').forEach(el => { const t=parseInt(el.textContent.replace(/\D/g,'')); const s=el.textContent.replace(/\d/g,''); if(!t)return; let st=0; const run=ts=>{ if(!st)st=ts; const p=Math.min((ts-st)/2000,1); const ease=1-Math.pow(1-p,3); el.textContent=Math.round(ease*t)+s; if(p<1)requestAnimationFrame(run); }; requestAnimationFrame(run); }); statsObs.disconnect(); } });
+  }, {threshold:0.5});
+  const statsEl = document.querySelector('.about-stats');
+  if(statsEl) statsObs.observe(statsEl);
+
+  // PARALLAX HERO
+  window.addEventListener('scroll', () => { const s=window.scrollY; const hc=document.querySelector('.hero-content'); if(hc){ hc.style.transform=`translateY(${s*.35}px)`; hc.style.opacity=Math.max(0,1-s/600); } }, {passive:true});
+
+  // CARD TILT
+  document.querySelectorAll('.menu-card').forEach(c => {
+    c.addEventListener('mousemove', e => { const r=c.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width-.5; const y=(e.clientY-r.top)/r.height-.5; c.style.transform=`translateY(-2px) rotateX(${-y*5}deg) rotateY(${x*5}deg)`; });
+    c.addEventListener('mouseleave', () => { c.style.transform=''; });
+  });
+
+  // HERO 3D DISH
+  document.addEventListener('mousemove', e => { const d=document.querySelector('.hero-dish-3d'); if(!d)return; const cx=window.innerWidth/2; const cy=window.innerHeight/2; d.style.transform=`translateY(-50%) rotateX(${-(e.clientY-cy)/cy*8}deg) rotateY(${(e.clientX-cx)/cx*12}deg)`; });
+</script>
+</body>
+</html>
