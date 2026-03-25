@@ -37,7 +37,7 @@
     /* ── LOADER ── */
     #loader { position:fixed;inset:0;background:var(--deep);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .8s var(--ease),visibility .8s; }
     #loader.hidden { opacity:0;visibility:hidden; }
-    .loader-bird { font-size:64px;animation:birdFloat 1.5s ease-in-out infinite; }
+    .loader-bird { width:100px;height:100px;object-fit:contain;border-radius:50%;animation:birdFloat 1.5s ease-in-out infinite;filter:drop-shadow(0 8px 24px rgba(74,159,212,.5)); }
     .loader-text { font-family:'Cormorant Garamond',serif;color:var(--sky-lt);font-size:clamp(22px,4vw,36px);letter-spacing:.3em;text-transform:uppercase; }
     .loader-bar { width:200px;height:2px;background:rgba(74,159,212,.2);border-radius:2px;overflow:hidden; }
     .loader-fill { height:100%;background:var(--sky);border-radius:2px;animation:loaderFill 1.8s var(--ease) forwards; }
@@ -49,6 +49,7 @@
     nav.scrolled { background:rgba(11,37,69,.93);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(74,159,212,.25); }
     .nav-logo { font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--white);letter-spacing:.05em;text-decoration:none;display:flex;align-items:center;gap:10px; }
     .nav-logo span { color:var(--sky-lt); }
+    .nav-logo img { height:48px;width:48px;object-fit:contain;border-radius:50%;filter:drop-shadow(0 2px 8px rgba(74,159,212,.4)); }
     .nav-links { display:flex;gap:36px;list-style:none; }
     .nav-links a { font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;position:relative;transition:color .3s; }
     .nav-links a::after { content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--sky);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease); }
@@ -599,13 +600,14 @@
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-bird">🫐</div>
+  <img class="loader-bird" src="logo.png" alt="Bluebird Café" />
   <div class="loader-text">Bluebird Café</div>
   <div class="loader-bar"><div class="loader-fill"></div></div>
 </div>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
+  <img src="logo.png" alt="Bluebird Café" style="width:80px;height:80px;object-fit:contain;border-radius:50%;margin-bottom:8px;filter:drop-shadow(0 4px 16px rgba(74,159,212,.4))" />
   <a href="#about" onclick="closeMobile()">Our Story</a>
   <a href="#menu" onclick="closeMobile()">Menu</a>
   <a href="#specials" onclick="closeMobile()">Specials</a>
@@ -616,7 +618,7 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">🫐 <span>Bluebird</span> Café</a>
+  <a href="#" class="nav-logo"><img src="logo.png" alt="Bluebird Café logo" /><span>Bluebird</span> Café</a>
   <ul class="nav-links">
     <li><a href="#about">Our Story</a></li>
     <li><a href="#menu">Menu</a></li>
@@ -793,7 +795,7 @@
       <div class="bfmenu-header">
         <div class="bfmenu-logo-box">
           <div class="bfmenu-logo-circle">
-            <div class="bfmenu-logo-bird">🫐</div>
+            <img src="logo.png" alt="Bluebird Café" style="width:80px;height:80px;object-fit:contain;border-radius:50%;" />
             <div class="bfmenu-logo-name">BlueBird<br/>Café &amp; Diner</div>
             <div class="bfmenu-logo-sub">Since 1958</div>
           </div>
@@ -802,9 +804,9 @@
       </div>
 
       <div class="bfmenu-title-row">
-        <span style="font-size:28px">🍳</span>
+        <img src="logo.png" alt="" style="width:40px;height:40px;object-fit:contain;opacity:.85;" />
         <h2 class="bfmenu-main-title">Breakfast Menu</h2>
-        <span style="font-size:28px">🫐</span>
+        <img src="logo.png" alt="" style="width:40px;height:40px;object-fit:contain;opacity:.85;" />
       </div>
 
       <!-- TWO-COLUMN BODY -->
@@ -1120,7 +1122,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="nav-logo" style="text-decoration:none;display:inline-flex">🫐 <span style="color:var(--sky-lt)">Bluebird</span> Café</div>
+      <div class="nav-logo" style="text-decoration:none;display:inline-flex"><img src="logo.png" alt="Bluebird Café logo" /><span style="color:var(--sky-lt)">Bluebird</span> Café</div>
       <p>Family-owned and operated since 1958. Three generations of great food and genuine hospitality in the heart of Arlington, Washington.</p>
     </div>
     <div class="footer-col"><h4>Explore</h4><ul><li><a href="#about">Our Story</a></li><li><a href="#menu">Full Menu</a></li><li><a href="#specials">Daily Specials</a></li><li><a href="#experience">The Experience</a></li></ul></div>
