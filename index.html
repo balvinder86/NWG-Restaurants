@@ -136,6 +136,118 @@
     .stat-num { font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:500;color:var(--sky);line-height:1;display:block; }
     .stat-label { font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px;display:block; }
 
+    /* ── ABOUT — RICH STORY ── */
+    #about { background:var(--cream); display:block; padding:clamp(80px,12vw,160px) clamp(24px,6vw,100px); }
+    .about-inner { max-width:1200px; margin:0 auto; }
+    .about-top { display:grid; grid-template-columns:1fr 420px; gap:clamp(40px,6vw,90px); align-items:start; margin-bottom:clamp(60px,8vw,100px); }
+    .about-top-text {}
+    .about-top-text p { font-size:clamp(15px,1.4vw,17px); line-height:1.9; color:var(--muted); margin-bottom:20px; }
+    .about-top-text p strong { color:var(--charcoal); font-weight:600; }
+    .story-quote {
+      margin:36px 0;
+      padding:28px 32px;
+      border-left:4px solid var(--sky);
+      background:linear-gradient(135deg,rgba(74,159,212,.07),rgba(29,52,97,.03));
+      border-radius:0 4px 4px 0;
+      position:relative;
+    }
+    .story-quote::before {
+      content:'"'; position:absolute; top:-8px; left:20px;
+      font-family:'Cormorant Garamond',serif; font-size:80px;
+      color:rgba(74,159,212,.18); line-height:1; pointer-events:none;
+    }
+    .story-quote p {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(18px,2vw,22px); font-style:italic;
+      color:var(--charcoal); line-height:1.6; margin-bottom:12px !important;
+    }
+    .story-quote cite {
+      font-size:12px; font-weight:600; letter-spacing:.12em;
+      text-transform:uppercase; color:var(--sky); font-style:normal;
+    }
+    /* Timeline */
+    .timeline-wrap { margin:clamp(60px,8vw,100px) 0; }
+    .timeline-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(28px,4vw,44px); font-weight:300;
+      color:var(--deep); margin-bottom:8px;
+    }
+    .timeline-subtitle {
+      font-size:11px; font-weight:600; letter-spacing:.25em;
+      text-transform:uppercase; color:var(--sky); margin-bottom:48px;
+      display:flex; align-items:center; gap:12px;
+    }
+    .timeline-subtitle::after { content:''; flex:1; height:1px; background:rgba(74,159,212,.25); }
+    .timeline-track {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:0; position:relative;
+    }
+    .timeline-track::before {
+      content:''; position:absolute;
+      top:28px; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,var(--sky),rgba(74,159,212,.2));
+    }
+    .timeline-item { padding:0 20px 0 0; position:relative; }
+    .timeline-dot {
+      width:14px; height:14px; border-radius:50%;
+      background:var(--sky); border:3px solid var(--cream);
+      box-shadow:0 0 0 2px var(--sky);
+      position:relative; z-index:1; margin-bottom:20px;
+    }
+    .timeline-era {
+      font-size:10px; font-weight:700; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--sky); margin-bottom:8px;
+    }
+    .timeline-head {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(16px,1.8vw,20px); font-weight:600;
+      color:var(--deep); margin-bottom:8px; line-height:1.2;
+    }
+    .timeline-desc { font-size:13px; line-height:1.7; color:var(--muted); }
+    /* Values */
+    .values-wrap { margin:clamp(60px,8vw,100px) 0 0; }
+    .values-header { margin-bottom:48px; }
+    .values-header h3 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(28px,4vw,44px); font-weight:300; color:var(--deep);
+    }
+    .values-header h3 em { font-style:italic; color:var(--muted); }
+    .values-header p { font-size:clamp(15px,1.4vw,17px); color:var(--muted); margin-top:12px; max-width:600px; line-height:1.8; }
+    .values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:40px; }
+    .value-card {
+      padding:32px 28px;
+      background:var(--white);
+      border:1px solid rgba(74,159,212,.15);
+      border-radius:4px;
+      transition:transform .3s,box-shadow .3s,border-color .3s;
+    }
+    .value-card:hover { transform:translateY(-4px); box-shadow:0 20px 50px rgba(11,37,69,.08); border-color:rgba(74,159,212,.35); }
+    .value-icon { font-size:36px; margin-bottom:16px; }
+    .value-title { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:var(--deep); margin-bottom:8px; }
+    .value-desc { font-size:13.5px; line-height:1.7; color:var(--muted); }
+    .about-closing {
+      padding:36px 40px;
+      background:linear-gradient(135deg,rgba(74,159,212,.06),rgba(29,52,97,.04));
+      border:1px solid rgba(74,159,212,.18);
+      border-radius:4px;
+      margin-bottom:48px;
+    }
+    .about-closing p { font-size:clamp(15px,1.4vw,17px); line-height:1.9; color:var(--muted); margin-bottom:16px; }
+    .about-closing p:last-child { margin-bottom:0; color:var(--charcoal); font-weight:500; }
+
+    @media (max-width:1024px) {
+      .about-top { grid-template-columns:1fr; }
+      .about-visual { max-width:400px; aspect-ratio:1.4; }
+      .timeline-track { grid-template-columns:repeat(2,1fr); gap:32px; }
+      .timeline-track::before { display:none; }
+      .values-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:600px) {
+      .timeline-track { grid-template-columns:1fr; }
+      .values-grid { grid-template-columns:1fr; }
+      .about-stats { grid-template-columns:repeat(3,1fr); }
+    }
+
     /* ── MENU SECTION SHELL ── */
     #menu { background:var(--deep);padding-bottom:clamp(80px,12vw,160px); }
     .menu-tabs { display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:48px;margin-top:48px; }
@@ -557,21 +669,106 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-visual reveal-left">
-    <div class="about-img-frame"><div class="about-img-emoji">🫐</div></div>
-    <div class="about-badge"><span class="about-badge-year">65+</span><span class="about-badge-text">Years of Joy</span></div>
-    <div class="about-accent"></div>
-  </div>
-  <div class="about-text reveal-right">
-    <div class="section-label">Our Story</div>
-    <h2 class="section-title">A Family Tradition <em>Worth Savoring</em></h2>
-    <p style="margin-top:28px"><strong>Bluebird Café & Diner</strong> opened its doors in 1958 when Merle and Florence Peper decided Arlington deserved a place where families could gather over honest, soul-nourishing food. More than six decades later, we're still family-owned, still pouring bottomless coffee, and still perfecting those legendary blueberry pancakes.</p>
-    <p>Today the café is owned and run by their youngest daughter, Shirley Parris. Every plate that leaves our kitchen carries the same commitment to quality and warmth that Merle and Florence instilled from day one — generous portions, familiar flavors, and a dining room that feels like home from the moment you walk in.</p>
-    <div class="about-stats">
+  <div class="about-inner">
+
+    <!-- TOP: heading + story + visual -->
+    <div class="about-top">
+      <div class="about-top-text reveal">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Where It <em>All Began</em></h2>
+        <p style="margin-top:28px">Over six decades ago, in the heart of Arlington, Washington, a small café opened its doors with nothing more than a warm kitchen, an honest menu, and a deep belief in the power of a good meal shared among neighbors. That café was the Blue Bird — and it was the dream of <strong>Merle and Florence Peper</strong>.</p>
+        <p>Merle and Florence weren't restaurateurs by trade. They were simply two people who believed that a community deserved a place to gather — somewhere the coffee was always hot, the portions were generous, and every face that walked through the door was welcomed like family.</p>
+
+        <blockquote class="story-quote">
+          <p>"We just wanted people to feel at home the moment they sat down. Like somebody was glad they came."</p>
+          <cite>— Florence Peper, Founder</cite>
+        </blockquote>
+      </div>
+
+      <div class="about-visual reveal-right">
+        <div class="about-img-frame"><div class="about-img-emoji">🫐</div></div>
+        <div class="about-badge"><span class="about-badge-year">65+</span><span class="about-badge-text">Years of Joy</span></div>
+        <div class="about-accent"></div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline-wrap reveal">
+      <div class="timeline-subtitle">Six Decades of Mornings</div>
+      <h3 class="timeline-title">Through <em>the Years</em></h3>
+      <div class="timeline-track" style="margin-top:48px">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-era">The Beginning</div>
+          <div class="timeline-head">Doors Open</div>
+          <p class="timeline-desc">Merle and Florence Peper open the Blue Bird Café in downtown Arlington, serving breakfast and lunch to locals who quickly make it their daily ritual.</p>
+        </div>
+
+        <div class="timeline-item reveal" style="transition-delay:.1s">
+          <div class="timeline-dot"></div>
+          <div class="timeline-era">Growing Roots</div>
+          <div class="timeline-head">A Town's Living Room</div>
+          <p class="timeline-desc">Word spreads across Snohomish County. Farmers, loggers, and families all find their way to a corner booth. The Blue Bird becomes the unofficial gathering place of Arlington.</p>
+        </div>
+
+        <div class="timeline-item reveal" style="transition-delay:.2s">
+          <div class="timeline-dot"></div>
+          <div class="timeline-era">A Legacy Carried Forward</div>
+          <div class="timeline-head">Second Generation</div>
+          <p class="timeline-desc">The spirit Merle and Florence built continues — the same scratch recipes, the same unhurried pace, the same faces returning now with children of their own.</p>
+        </div>
+
+        <div class="timeline-item reveal" style="transition-delay:.3s">
+          <div class="timeline-dot" style="background:var(--gold);box-shadow:0 0 0 2px var(--gold)"></div>
+          <div class="timeline-era" style="color:var(--gold)">Today</div>
+          <div class="timeline-head">Still Standing</div>
+          <p class="timeline-desc">Still on the same ground where it all began, the Blue Bird Café remains Arlington's beloved gathering place — a reminder that some things are worth keeping exactly as they are.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VALUES -->
+    <div class="values-wrap reveal">
+      <div class="values-header">
+        <div class="section-label">What We Stand For</div>
+        <h3 class="section-title">More Than <em>a Meal</em></h3>
+        <p>The Blue Bird has always been about more than the food — though the food has always been worth the drive. It's about the ritual of sitting down, slowing down, and being in the company of people who know your name.</p>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-icon">🍳</div>
+          <div class="value-title">Honest Food</div>
+          <p class="value-desc">Scratch cooking, real ingredients, and recipes that have stood the test of time. No shortcuts, no pretense.</p>
+        </div>
+        <div class="value-card reveal" style="transition-delay:.1s">
+          <div class="value-icon">🤝</div>
+          <div class="value-title">Community First</div>
+          <p class="value-desc">Arlington's people built this place. Every seat is a welcome seat — from the first-timer to the family that's been coming since 1962.</p>
+        </div>
+        <div class="value-card reveal" style="transition-delay:.2s">
+          <div class="value-icon">🏡</div>
+          <div class="value-title">A Place to Belong</div>
+          <p class="value-desc">Familiar, unhurried, and genuinely glad you're here. The kind of place you come back to not because you have to, but because it feels right.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="about-closing reveal">
+      <p>From the sizzle of the griddle on a quiet Tuesday morning to the full-house buzz of a weekend breakfast rush, every day at the Blue Bird carries the warmth that Merle and Florence poured into these walls. That warmth doesn't fade — it deepens.</p>
+      <p>Today, when you pull up a chair at the Blue Bird, you're not just ordering breakfast. You're stepping into something that Merle and Florence started long ago — a tradition of care, of craft, and of showing up for your community, one cup at a time. We're grateful you found us. We hope you keep coming back.</p>
+    </div>
+
+    <!-- STATS -->
+    <div class="about-stats reveal">
       <div><span class="stat-num">1958</span><span class="stat-label">Founded</span></div>
       <div><span class="stat-num">3</span><span class="stat-label">Generations</span></div>
       <div><span class="stat-num">65+</span><span class="stat-label">Years Serving</span></div>
     </div>
+
   </div>
 </section>
 
