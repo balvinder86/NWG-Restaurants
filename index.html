@@ -563,27 +563,71 @@
 
     /* ── VISIT ── */
     #visit { background:var(--deep); }
-    .visit-grid { display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start;margin-top:64px; }
-    .hours-list { list-style:none; }
-    .hours-item { display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px;color:rgba(255,255,255,.7);transition:color .3s; }
-    .hours-item:hover { color:var(--white); }
-    .hours-day { font-weight:500; }
-    .hours-time { color:var(--sky-lt);font-family:'Cormorant Garamond',serif;font-size:20px; }
-    .hours-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4caf50;background:rgba(76,175,80,.1);padding:4px 12px;border-radius:20px;margin-bottom:28px; }
-    .hours-badge::before { content:'';width:6px;height:6px;background:#4caf50;border-radius:50%;animation:blink 1.5s ease-in-out infinite; }
+    /* ── COME FIND US ── */
+    .visit-inner { max-width:1100px; margin:0 auto; }
+    .visit-hours-bar {
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:20px;
+      padding:28px 36px;
+      background:linear-gradient(135deg,rgba(74,159,212,.12),rgba(29,52,97,.08));
+      border:1px solid rgba(74,159,212,.25);
+      border-radius:6px;
+      margin-top:48px; margin-bottom:40px;
+    }
+    .visit-hours-left { display:flex; align-items:center; gap:16px; }
+    .visit-hours-icon { font-size:36px; }
+    .visit-hours-label {
+      font-size:11px; font-weight:700; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--sky); margin-bottom:4px;
+    }
+    .visit-hours-time {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(26px,3vw,38px); font-weight:400;
+      color:var(--white); line-height:1;
+    }
+    .hours-badge { display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4caf50;background:rgba(76,175,80,.12);padding:8px 18px;border-radius:20px;border:1px solid rgba(76,175,80,.25); }
+    .hours-badge::before { content:'';width:7px;height:7px;background:#4caf50;border-radius:50%;animation:blink 1.5s ease-in-out infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-    .visit-info { display:flex;flex-direction:column;gap:32px; }
-    .info-block { display:flex;gap:20px;padding:28px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;transition:border-color .3s,background .3s; }
-    .info-block:hover { border-color:rgba(74,159,212,.35);background:rgba(255,255,255,.06); }
-    .info-icon { font-size:28px;flex-shrink:0; }
-    .info-content h4 { font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--white);font-weight:400;margin-bottom:6px; }
-    .info-content p { font-size:14px;line-height:1.65;color:rgba(255,255,255,.5); }
-    .info-content a { color:var(--sky-lt);text-decoration:none; }
-    .info-content a:hover { text-decoration:underline; }
-    .map-placeholder { width:100%;aspect-ratio:16/9;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin-top:32px;font-size:48px; }
-    .map-placeholder p { font-size:15px;color:rgba(255,255,255,.4); }
-    .map-pin-anim { animation:pinBounce 2s ease-in-out infinite; }
+
+    /* Row 1 — 4 info cards */
+    .visit-cards-row {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-bottom:16px;
+    }
+    .info-block {
+      display:flex; flex-direction:column; gap:12px;
+      padding:24px 22px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:6px;
+      transition:border-color .3s,background .3s,transform .3s;
+    }
+    .info-block:hover { border-color:rgba(74,159,212,.4);background:rgba(255,255,255,.07);transform:translateY(-2px); }
+    .info-icon { font-size:26px; }
+    .info-content h4 {
+      font-size:10px; font-weight:700; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--sky); margin-bottom:6px;
+    }
+    .info-content p { font-size:14px;line-height:1.7;color:rgba(255,255,255,.6); }
+    .info-content a { color:var(--sky-lt);text-decoration:none;transition:color .2s; }
+    .info-content a:hover { color:var(--white); }
+
+    /* Row 2 — map */
+    .map-placeholder {
+      width:100%; aspect-ratio:21/6;
+      background:linear-gradient(135deg,rgba(74,159,212,.06),rgba(11,37,69,.4));
+      border:1px solid rgba(74,159,212,.15);
+      border-radius:6px;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    }
+    .map-pin-anim { font-size:40px;animation:pinBounce 2s ease-in-out infinite; }
+    .map-placeholder p { font-size:14px;color:rgba(255,255,255,.35);letter-spacing:.05em; }
     @keyframes pinBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    @media(max-width:900px){ .visit-cards-row { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:500px){ .visit-cards-row { grid-template-columns:1fr; } .map-placeholder { aspect-ratio:4/3; } }
 
     /* ── CTA STRIP ── */
     #cta-strip { background:linear-gradient(135deg,var(--navy),var(--charcoal));padding:clamp(60px,8vw,100px) clamp(24px,6vw,100px);text-align:center;position:relative;overflow:hidden;border-top:3px solid var(--sky);border-bottom:3px solid var(--sky); }
@@ -1309,23 +1353,60 @@
 
 <!-- VISIT -->
 <section id="visit" style="padding-top:clamp(80px,12vw,160px)">
-  <div class="reveal">
-    <div class="section-label" style="color:var(--sky-lt)">Plan Your Visit</div>
-    <h2 class="section-title light">Come Find <em>Us</em></h2>
-  </div>
-  <div class="visit-grid">
-    <div>
-      <div class="hours-badge">● Open Today</div>
-      <ul class="hours-list">
-        <li class="hours-item reveal"><span class="hours-day">Everyday Hours</span><span class="hours-time">5 AM – 9 PM</span></li>
-      </ul>
+  <div class="visit-inner">
+    <div class="reveal">
+      <div class="section-label" style="color:var(--sky-lt)">Plan Your Visit</div>
+      <h2 class="section-title light">Come Find <em>Us</em></h2>
     </div>
-    <div class="visit-info">
-      <div class="info-block reveal"><div class="info-icon">📍</div><div class="info-content"><h4>Location</h4><p>308 N Olympic Ave<br/>Arlington, WA 98223</p></div></div>
-      <div class="info-block reveal" style="transition-delay:.1s"><div class="info-icon">📞</div><div class="info-content"><h4>Phone</h4><p><a href="tel:+13604352724">(360) 435-2724</a></p></div></div>
-      <div class="info-block reveal" style="transition-delay:.2s"><div class="info-icon">🛍️</div><div class="info-content"><h4>Online Ordering</h4><p>Order ahead for pickup via <a href="https://www.toasttab.com">Toast Tab →</a></p></div></div>
-      <div class="info-block reveal" style="transition-delay:.3s"><div class="info-icon">🅿️</div><div class="info-content"><h4>Parking</h4><p>Free street parking available on N Olympic Ave and surrounding streets.</p></div></div>
-      <div class="map-placeholder reveal" style="transition-delay:.4s"><div class="map-pin-anim">📍</div><p>308 N Olympic Ave, Arlington WA</p></div>
+
+    <!-- Hours bar -->
+    <div class="visit-hours-bar reveal">
+      <div class="visit-hours-left">
+        <div class="visit-hours-icon">🕐</div>
+        <div>
+          <div class="visit-hours-label">Everyday Hours</div>
+          <div class="visit-hours-time">5 AM – 9 PM</div>
+        </div>
+      </div>
+      <div class="hours-badge">Open Today</div>
+    </div>
+
+    <!-- Row 1 — 4 info cards -->
+    <div class="visit-cards-row">
+      <div class="info-block reveal">
+        <div class="info-icon">📍</div>
+        <div class="info-content">
+          <h4>Location</h4>
+          <p>308 N Olympic Ave<br/>Arlington, WA 98223</p>
+        </div>
+      </div>
+      <div class="info-block reveal" style="transition-delay:.08s">
+        <div class="info-icon">📞</div>
+        <div class="info-content">
+          <h4>Phone</h4>
+          <p><a href="tel:+13604352724">(360) 435-2724</a></p>
+        </div>
+      </div>
+      <div class="info-block reveal" style="transition-delay:.16s">
+        <div class="info-icon">🛍️</div>
+        <div class="info-content">
+          <h4>Online Ordering</h4>
+          <p>Order ahead for pickup via <a href="https://www.toasttab.com">Toast Tab →</a></p>
+        </div>
+      </div>
+      <div class="info-block reveal" style="transition-delay:.24s">
+        <div class="info-icon">🅿️</div>
+        <div class="info-content">
+          <h4>Free Parking</h4>
+          <p>Street parking on N Olympic Ave and surrounding streets</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 — map -->
+    <div class="map-placeholder reveal" style="transition-delay:.32s">
+      <div class="map-pin-anim">📍</div>
+      <p>308 N Olympic Ave, Arlington, WA 98223</p>
     </div>
   </div>
 </section>
