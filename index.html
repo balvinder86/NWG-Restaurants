@@ -283,6 +283,40 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
+    /* Lunch: two stacked side-by-side pairs (Gourmet|Classic, then Sandwiches+Dips|Salads+…) */
+    .bfmenu-lunch-body {
+      display: flex;
+      flex-direction: column;
+    }
+    .bfmenu-lunch-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .bfmenu-lunch-row + .bfmenu-lunch-row {
+      border-top: 3px solid rgba(29,52,97,.12);
+    }
+    .bfmenu-lunch-banner {
+      margin: 0;
+      padding: 14px 20px;
+      background: #e8f4fc;
+      border-bottom: 2px solid rgba(29,52,97,.1);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.65;
+      color: var(--navy);
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .bfms-note-lunch {
+      background: #e8f4fc;
+      border-left: 3px solid var(--sky);
+      font-style: normal;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
     .bfmenu-col { padding: 0; background: #f8fbff; }
     .bfmenu-col-left { border-right: 2px solid rgba(29,52,97,.12); }
 
@@ -597,6 +631,9 @@
     @media (max-width:900px) {
       .bfmenu-body { grid-template-columns:1fr; }
       .bfmenu-col-left { border-right:none;border-bottom:3px solid var(--navy); }
+      .bfmenu-lunch-row { grid-template-columns: 1fr; }
+      .bfmenu-lunch-row .bfmenu-col-left { border-right: none; border-bottom: 3px solid rgba(29,52,97,.12); }
+      .bfmenu-lunch-row .bfmenu-col:last-child { border-bottom: none; }
     }
     @media (max-width:768px) {
       .nav-links { display:none; }
@@ -836,7 +873,7 @@
               <div class="bfmi-combo-badge"><span class="bfmi-combo-badge-text">NO.1<sup>*</sup></span></div>
               <div class="bfmi-combo-body">
                 <div class="bfmi-combo-title">Fresh Start</div>
-                <div class="bfmi-combo-desc">Bowl of fresh fruit or hot cereal w. raisins &amp; walnuts — add a banana for 1.75, add blueberries 1.25. Choice of biscuit, English muffin, or toast*</div>
+                <div class="bfmi-combo-desc">Bowl of fresh fruit or hot cereal with raisins &amp; walnuts — add a banana for 1.75, add blueberries 1.25 Choice of biscuit, English muffin, or toast*</div>
               </div>
               <div class="bfmi-combo-price">$11.75</div>
             </div>
@@ -844,7 +881,7 @@
               <div class="bfmi-combo-badge"><span class="bfmi-combo-badge-text">NO.2<sup>*</sup></span></div>
               <div class="bfmi-combo-body">
                 <div class="bfmi-combo-title">Classic Plate</div>
-                <div class="bfmi-combo-desc">Choice of bacon, sausage, or ham (+$1.00 for German sausage) &amp; two eggs. Choice of cottage cheese, fruit, or potato. Choice of toast*, biscuit, or English muffin</div>
+                <div class="bfmi-combo-desc">Choice of bacon, sausage, or ham (+$1.00 for German sausage) &amp; two eggs Choice of cottage cheese, fruit, or potato Choice of toast*, biscuit, or English muffin</div>
               </div>
               <div class="bfmi-combo-price">$17.95</div>
             </div>
@@ -852,7 +889,7 @@
               <div class="bfmi-combo-badge"><span class="bfmi-combo-badge-text">NO.3<sup>*</sup></span></div>
               <div class="bfmi-combo-body">
                 <div class="bfmi-combo-title">Pancake &amp; Waffle Combo</div>
-                <div class="bfmi-combo-desc">Choice of 3 small pancakes, French toast, Swedish pancakes, or Belgian waffle. Choice of bacon, sausage, or ham (+$1.00 German sausage) &amp; two eggs. Add banana, blueberry, chocolate chip, or triple berry +2.25. Add strawberries + whip cream +3.25</div>
+                <div class="bfmi-combo-desc">Choice of 3 small pancakes, French toast, Swedish pancakes, or Belgian waffle Choice of bacon, sausage, or ham (+$1.00 German sausage) &amp; two eggs Add banana, blueberry, chocolate chip, or triple berry +2.25 Add strawberries + whip cream +3.25</div>
               </div>
               <div class="bfmi-combo-price">$16.50</div>
             </div>
@@ -860,7 +897,7 @@
               <div class="bfmi-combo-badge"><span class="bfmi-combo-badge-text">NO.4<sup>*</sup></span></div>
               <div class="bfmi-combo-body">
                 <div class="bfmi-combo-title">Banana Split Bowl</div>
-                <div class="bfmi-combo-desc">Vanilla yogurt, granola, almonds, coconut, banana, blueberries &amp; strawberries — served w. your choice of meat &amp; two eggs</div>
+                <div class="bfmi-combo-desc">Vanilla yogurt, granola, almonds, coconut, banana, blueberries &amp; strawberries — served with your choice of meat &amp; two eggs</div>
               </div>
               <div class="bfmi-combo-price">$18.95</div>
             </div>
@@ -868,7 +905,7 @@
               <div class="bfmi-combo-badge"><span class="bfmi-combo-badge-text">NO.5<sup>*</sup></span></div>
               <div class="bfmi-combo-body">
                 <div class="bfmi-combo-title">Full Biscuits &amp; Gravy Meal</div>
-                <div class="bfmi-combo-desc">Choice of bacon, sausage, or ham &amp; two eggs. Choice of cottage cheese, fruit, or potato</div>
+                <div class="bfmi-combo-desc">Choice of bacon, sausage, or ham &amp; two eggs Choice of cottage cheese, fruit, or potato</div>
               </div>
               <div class="bfmi-combo-price">$22.50</div>
             </div>
@@ -876,7 +913,7 @@
               <div class="bfmi-combo-badge"><span class="bfmi-combo-badge-text">NO.6<sup>*</sup></span></div>
               <div class="bfmi-combo-body">
                 <div class="bfmi-combo-title">Two Eggs Your Way</div>
-                <div class="bfmi-combo-desc">Two eggs &amp; choice of cottage cheese, fruit, or potato. Choice of biscuit, English muffin, or toast*</div>
+                <div class="bfmi-combo-desc">Two eggs &amp; choice of cottage cheese, fruit, or potato Choice of biscuit, English muffin, or toast*</div>
               </div>
               <div class="bfmi-combo-price">$12.50</div>
               <div class="bfmi-combo-note">Potato Choices: Hash Brown · O'Brien · American Fries</div>
@@ -911,12 +948,12 @@
             <div class="bfmi">
               <div class="bfmi-name">Small Sandwich <span class="dot">●</span></div>
               <div class="bfmi-price">14.95</div>
-              <div class="bfmi-desc">English muffin, Brioche bun, or biscuit w. one egg.</div>
+              <div class="bfmi-desc">English muffin - Brioche bun - or biscuit with one egg</div>
             </div>
             <div class="bfmi">
               <div class="bfmi-name">Large Sandwich<span class="star">*</span><span class="dot">●</span></div>
               <div class="bfmi-price">17.95</div>
-              <div class="bfmi-desc">Grilled bread of your choice w. two eggs</div>
+              <div class="bfmi-desc">Grilled bread of your choice with two eggs</div>
             </div>
           </div>
 
@@ -949,7 +986,7 @@
 
           <!-- MEAT COMBINATIONS -->
           <div class="bfms-head"><h3>Meat Combinations</h3></div>
-          <div class="bfms-note">Served w. two eggs &amp; choice of cottage cheese – fruit<br/>or potato &amp; choice of biscuit – English muffin – or toast*</div>
+          <div class="bfms-note">Served with two eggs &amp; choice of cottage cheese – fruit<br/>or potato &amp; choice of biscuit – English muffin – or toast*</div>
           <div class="bfms-items">
             <div class="bfmi">
               <div class="bfmi-name">Chicken Fried Steak <span class="dot">●</span></div>
@@ -959,7 +996,7 @@
             <div class="bfmi">
               <div class="bfmi-name">Two Tender Pork Loin Chops <span class="dot">●</span></div>
               <div class="bfmi-price">22.95</div>
-              <div class="bfmi-desc">Smokehouse maple seasoning &amp; served w. applesauce</div>
+              <div class="bfmi-desc">Smokehouse maple seasoning &amp; served with applesauce</div>
             </div>
             <div class="bfmi">
               <div class="bfmi-name">8 oz Flat Iron Steak <span class="dot">●</span></div>
@@ -969,22 +1006,22 @@
             <div class="bfmi">
               <div class="bfmi-name">Hamburger Steak <span class="dot">●</span></div>
               <div class="bfmi-price">22.95</div>
-              <div class="bfmi-desc">Montreal steak seasoning served w. grilled onions &amp; sautéed mushrooms</div>
+              <div class="bfmi-desc">Montreal steak seasoning served with grilled onions &amp; sautéed mushrooms</div>
             </div>
             <div class="bfmi">
               <div class="bfmi-name">Homemade Hash<span class="star">*</span><span class="dot">●</span></div>
               <div class="bfmi-price">17.95</div>
-              <div class="bfmi-desc">Corned beef or brisket hash &amp; two eggs choice of biscuit, English muffin, or toast*</div>
+              <div class="bfmi-desc">Corned beef or brisket hash &amp; two eggs choice of biscuit - English muffin -or toast*</div>
             </div>
             <div class="bfmi">
               <div class="bfmi-name">Breakfast Burrito <span class="dot">●</span></div>
               <div class="bfmi-price">17.95</div>
-              <div class="bfmi-desc">Choice of bacon, sausage, ham, chorizo, or brisket choice of American, cheddar pepper jack, or Swiss choice of potato scrambled eggs, served w. sour cream &amp; salsa</div>
+              <div class="bfmi-desc">Choice of bacon- sausage - ham - chorizo - or brisket choice of American -cheddar pepper jack- or Swiss choice of potato scrambled eggs - served with sour cream &amp; salsa</div>
             </div>
             <div class="bfmi">
               <div class="bfmi-name">G.G. Special <span class="dot">●</span></div>
               <div class="bfmi-price">27.50</div>
-              <div class="bfmi-desc">Choice of potato bacon, sausage, ham tomato, green pepper, onion, olive, spinach mushroom + covered with cheese choice and smothered in sausage gravy or hollandaise sauce topped with 3 eggs</div>
+              <div class="bfmi-desc">Choice of potato bacon - sausage - ham tomato - green pepper - onion - olive - spinach mushroom + covered with cheese choice and smothered in sausage gravy or hollandaise sauce topped with 3 eggs</div>
             </div>
           </div>
 
@@ -996,22 +1033,22 @@
             <div class="bfmi">
               <div class="bfmi-name">Build Your Own <span class="dot">●</span></div>
               <div class="bfmi-price" style="font-size:14px">Starting at 15.95</div>
-              <div class="bfmi-desc">American, cheddar, feta, pepper jack, Swiss served w. choice of cottage cheese, fruit, or potato &amp; choice of biscuit – English muffin or toast*</div>
+              <div class="bfmi-desc">American -cheddar -feta -pepper jack -Swiss served with choice of cottage cheese - fruit- or potato &amp; choice of biscuit – English muffin or toast*</div>
             </div>
             <div class="bfmi">
               <div class="bfmi-name">Add Meat</div>
               <div class="bfmi-price" style="font-size:14px">2.25 per meat</div>
-              <div class="bfmi-desc">Chili, bacon, ham, German sausage, ground beef sausage patty, chorizo, brisket, taco ground beef</div>
+              <div class="bfmi-desc">Chili -bacon -ham -German sausage -ground beef sausage patty -chorizo -brisket -taco ground beef</div>
             </div>
             <div class="bfmi">
               <div class="bfmi-name">Add Vegetable</div>
               <div class="bfmi-price" style="font-size:14px">.95 per vegetable</div>
-              <div class="bfmi-desc">Green peppers – mushrooms, olives, onions, spinach, tomatoes, jalapeños, green onion &nbsp; Side of avocado 2.95</div>
+              <div class="bfmi-desc">Green peppers – mushrooms -olives -onions -spinach -tomatoes -jalapeños -green onion &nbsp; Side of avocado 2.95</div>
             </div>
             <div class="bfmi">
               <div class="bfmi-name">"Remember The Aalmo"</div>
               <div class="bfmi-price">18.95</div>
-              <div class="bfmi-desc">Ground beef, onions, cheddar cheese</div>
+              <div class="bfmi-desc">Ground beef - onions - cheddar cheese</div>
             </div>
           </div>
 
@@ -1047,229 +1084,148 @@
         <h2 class="bfmenu-main-title">Lunch Menu</h2>
       </div>
 
-      <div class="bfms-note" style="margin:0 0 8px;padding:14px 20px;background:#e8f4fc;border-bottom:2px solid rgba(29,52,97,.1);font-size:11px;line-height:1.65">
-        <strong>All burgers, dips &amp; sandwiches include your choice of:</strong> regular or waffle fries · tater tots · coleslaw · potato salad · soup · onion rings · sweet potato fries · salad
-      </div>
+      <p class="bfmenu-lunch-banner">All burgers served on a toasted brioche bun with regular or waffle fries · Dressings available: Vinaigrette, Blue Cheese, Honey Mustard, Ranch, Italian, 1000 Island, Oil &amp; Vinegar</p>
 
-      <div class="bfmenu-body">
+      <div class="bfmenu-body bfmenu-lunch-body">
 
-        <div class="bfmenu-col bfmenu-col-left">
-
-          <div class="bfms-head"><h3>Gourmet Burgers &amp; Sandwiches</h3></div>
-          <div class="bfms-note">Gourmet come with <strong>½ lb sirloin</strong> patty. Add bacon 3.25 · Add an egg 2.00</div>
-          <div class="bfms-items">
-            <div class="bfmi">
-              <div class="bfmi-name">Basic Gourmet Burger<span class="star">*</span></div>
-              <div class="bfmi-price">21.75</div>
-              <div class="bfmi-desc">Mayonnaise · sweet relish · lettuce · red onion · tomato · cheddar cheese</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Mushroom &amp; Swiss Burger<span class="star">*</span></div>
-              <div class="bfmi-price">21.75</div>
-              <div class="bfmi-desc">Mayonnaise · sweet relish · lettuce · sautéed mushrooms &amp; onions · Swiss</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Fire in the Hole Burger<span class="star">*</span></div>
-              <div class="bfmi-price">21.75</div>
-              <div class="bfmi-desc">Spicy mayonnaise · sweet relish · lettuce · tomato · grilled jalapeños · pepper jack cheese</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Chicken Bacon Avocado<span class="star">*</span></div>
-              <div class="bfmi-price">21.75</div>
-              <div class="bfmi-desc">Grilled chicken breast · mayonnaise · lettuce · tomato · avocado · bacon · Swiss cheese</div>
+        <!-- Row 1: Salads | Soup & Fish & Chicken -->
+        <div class="bfmenu-lunch-row">
+          <div class="bfmenu-col bfmenu-col-left">
+            <div class="bfms-head"><h3>Salads</h3></div>
+            <div class="bfms-note">All salads served on crisp mixed greens with cheddar cheese, tomatoes, black olives &amp; a sliced boiled egg. Choice of dressing: Vinaigrette, Blue Cheese, Honey Mustard, Ranch, Italian, 1000 Island, Oil &amp; Vinegar</div>
+            <div class="bfms-items">
+              <div class="bfmi">
+                <div class="bfmi-name">Mini Chef</div>
+                <div class="bfmi-price">$16.50</div>
+                <div class="bfmi-desc">Diced ham, tender turkey, shredded cheddar, ripe tomatoes, black olives, sliced boiled egg</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Chicken Salad</div>
+                <div class="bfmi-price">$16.50</div>
+                <div class="bfmi-desc">Grilled or crispy chicken, shredded cheddar, ripe tomatoes, black olives, sliced boiled egg</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Steak Salad</div>
+                <div class="bfmi-price">$24.95</div>
+                <div class="bfmi-desc">8oz steak, blue cheese crumbles, red onions, cucumbers, cheddar, tomatoes, black olives, boiled egg</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Taco Salad</div>
+                <div class="bfmi-price">$16.50</div>
+                <div class="bfmi-desc">Taco beef, shredded cheddar, tomatoes, black olives, boiled egg, sour cream, salsa, avocado on the side</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Side Salad</div>
+                <div class="bfmi-price">$7.25</div>
+                <div class="bfmi-desc">Mixed greens, cheddar, tomatoes, black olives, red onions, cucumbers, boiled egg</div>
+              </div>
             </div>
           </div>
 
-          <div class="bfms-sep"></div>
+          <div class="bfmenu-col">
+            <div class="bfms-head"><h3>Soup</h3></div>
+            <div class="bfms-items">
+              <div class="bfmi">
+                <div class="bfmi-name">Chili</div>
+                <div class="bfmi-price">$6.25+</div>
+                <div class="bfmi-desc">Flavorful blend of seasoned ground beef, tender beans, tomatoes, and zesty spices simmered to perfection</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Soup of the Day</div>
+                <div class="bfmi-price">$6.25+</div>
+                <div class="bfmi-desc">Chef-crafted daily with seasonal ingredients and rich, savory flavors — ask your server for today's selection</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Soup &amp; Salad with Biscuit</div>
+                <div class="bfmi-price">$15.75</div>
+                <div class="bfmi-desc">Homemade soup, side salad with mixed greens, cheddar, tomatoes, black olives, red onions, cucumbers, boiled egg, served with a warm biscuit</div>
+              </div>
+            </div>
 
-          <div class="bfms-head"><h3>Sandwiches</h3></div>
-          <div class="bfms-items">
-            <div class="bfmi">
-              <div class="bfmi-name">Cold Deli<span class="star">*</span></div>
-              <div class="bfmi-price">16.50</div>
-              <div class="bfmi-desc">Choice of meat (ham · turkey · brisket · tuna · egg salad) · cheese · mayonnaise · lettuce · tomato · red onion</div>
+            <div class="bfms-sep"></div>
+
+            <div class="bfms-head"><h3>Fish &amp; Chicken</h3></div>
+            <div class="bfms-items">
+              <div class="bfmi">
+                <div class="bfmi-name">2 PC Fish &amp; Chips</div>
+                <div class="bfmi-price">$15.50</div>
+                <div class="bfmi-desc">Crispy golden-battered fish fillets, seasoned fries, creamy coleslaw, tartar sauce</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">3 PC Chicken Strips</div>
+                <div class="bfmi-price">$15.50</div>
+                <div class="bfmi-desc">Crispy chicken strips, seasoned fries, creamy coleslaw</div>
+              </div>
             </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Grilled Cheese + Meat<span class="star">*</span></div>
-              <div class="bfmi-price">16.50</div>
-              <div class="bfmi-desc">Choice of meat (ham · turkey · brisket · tuna) and choice of cheese</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">BLT<span class="star">*</span></div>
-              <div class="bfmi-price">16.50</div>
-              <div class="bfmi-desc">Bacon · lettuce · tomato · mayonnaise · cheese. Add avocado 2.95</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Turkey Bacon Swiss<span class="star">*</span></div>
-              <div class="bfmi-price">20.50</div>
-              <div class="bfmi-desc">Grilled hoagie · mayonnaise · lettuce · tomato · turkey bacon · Swiss</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Clubhouse<span class="star">*</span></div>
-              <div class="bfmi-price">20.50</div>
-              <div class="bfmi-desc">Mayonnaise · bacon · lettuce · tomato · turkey · ham · cheddar cheese</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Patty Melt<span class="star">*</span></div>
-              <div class="bfmi-price">17.95</div>
-              <div class="bfmi-desc">Grilled rye · Swiss cheese · grilled onions · burger patties</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Reuben<span class="star">*</span></div>
-              <div class="bfmi-price">17.95</div>
-              <div class="bfmi-desc">Grilled rye · Swiss cheese · corned beef · Thousand Island · sauerkraut</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Hoss<span class="star">*</span></div>
-              <div class="bfmi-price">18.95</div>
-              <div class="bfmi-desc">Grilled ham &amp; Swiss on hoagie · mayonnaise · sweet relish · lettuce · tomato</div>
+          </div>
+        </div><!-- /lunch row 1 -->
+
+        <!-- Row 2: Classic Burgers | Gourmet Burgers -->
+        <div class="bfmenu-lunch-row">
+          <div class="bfmenu-col bfmenu-col-left">
+            <div class="bfms-head"><h3>Classic Burgers</h3></div>
+            <div class="bfms-note">Served on a toasted brioche bun with regular or waffle fries</div>
+            <div class="bfms-items">
+              <div class="bfmi">
+                <div class="bfmi-name">Deluxe Cheeseburger</div>
+                <div class="bfmi-price">$13.50</div>
+                <div class="bfmi-desc">Juicy beef patty, melted cheddar, sweet relish, crisp lettuce, ripe tomato, sliced red onion, mayonnaise on a toasted brioche bun</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Hand Cut &amp; Breaded Fish Burger</div>
+                <div class="bfmi-price">$14.75</div>
+                <div class="bfmi-desc">Breaded fish, tartar sauce, lettuce on a toasted brioche bun</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Chicken Burger</div>
+                <div class="bfmi-price">$14.75</div>
+                <div class="bfmi-desc">Grilled or crispy chicken, melted cheddar, crisp lettuce, ripe tomato, sliced red onion, mayonnaise on a toasted brioche bun</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Garden Burger</div>
+                <div class="bfmi-price">$14.75</div>
+                <div class="bfmi-desc">Hearty grilled veggie patty with wholesome garden vegetables and grains, fresh lettuce, tomato, red onion, creamy mayo on a toasted bun</div>
+              </div>
             </div>
           </div>
 
-          <div class="bfms-sep"></div>
+          <div class="bfmenu-col">
+            <div class="bfms-head"><h3>Gourmet Burgers</h3></div>
+            <div class="bfms-note">Served on a toasted brioche bun with regular or waffle fries</div>
+            <div class="bfms-items">
+              <div class="bfmi">
+                <div class="bfmi-name">Basic Gourmet</div>
+                <div class="bfmi-price">$21.75</div>
+                <div class="bfmi-desc">Juicy beef patty, melted cheddar, sweet relish, crisp lettuce, ripe tomato, sliced red onion, mayonnaise on a toasted brioche bun</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Mushroom Swiss Burger</div>
+                <div class="bfmi-price">$21.75</div>
+                <div class="bfmi-desc">Juicy beef patty, Swiss cheese, sweet relish, crisp lettuce, sautéed mushrooms, sautéed onions, mayonnaise on a toasted brioche bun</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Fire in the Hole 🌶</div>
+                <div class="bfmi-price">$21.75</div>
+                <div class="bfmi-desc">Juicy beef patty, melted pepper jack, sweet relish, crisp lettuce, ripe tomato, grilled jalapeños, spicy mayonnaise on a toasted brioche bun</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Chicken Bacon Avocado</div>
+                <div class="bfmi-price">$21.75</div>
+                <div class="bfmi-desc">Grilled chicken breast, bacon, Swiss cheese, crisp lettuce, ripe tomato, mayonnaise, avocado on a toasted brioche bun</div>
+              </div>
+            </div>
 
-          <div class="bfms-head"><h3>Dips</h3></div>
-          <div class="bfms-note">Choice of cheese · BBQ or au jus for dipping. Add bacon 3.25 · Add grilled onion, pepper, or mushroom .95 each</div>
-          <div class="bfms-items">
-            <div class="bfmi">
-              <div class="bfmi-name">French Dip</div>
-              <div class="bfmi-price">19.95</div>
-              <div class="bfmi-desc">House, made brisket · add veggies .95 each</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Burger Dip</div>
-              <div class="bfmi-price">19.95</div>
-              <div class="bfmi-desc">½ lb sirloin · add veggies .95 each</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Ham Dip</div>
-              <div class="bfmi-price">18.95</div>
+            <div class="tractor-col">
+              <div class="tractor-emoji">🍽️</div>
+              <div class="tractor-notes">
+                $1.99 charge to split plate in kitchen<br/>
+                *Indicates food is gluten free for upcharge<br/>
+                Half orders available for 2.00 off<br/>
+                <span class="dot-red">●</span> Consuming raw / undercooked foods may cause illness <span class="dot-red">●</span>
+              </div>
             </div>
           </div>
-
-        </div><!-- /lunch left -->
-
-        <div class="bfmenu-col">
-
-          <div class="bfms-head"><h3>Classic Burgers</h3></div>
-          <div class="bfms-note">Classic come with <strong>¼ lb sirloin</strong> patty. Add bacon 3.25 · Add an egg 2.00</div>
-          <div class="bfms-items">
-            <div class="bfmi">
-              <div class="bfmi-name">Deluxe Cheeseburger<span class="star">*</span></div>
-              <div class="bfmi-price">13.50</div>
-              <div class="bfmi-desc">Mayonnaise · sweet relish · lettuce · red onion · tomato</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Deluxe Cheeseburger (chips side only)<span class="star">*</span></div>
-              <div class="bfmi-price">6.95</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Chicken Burger<span class="star">*</span></div>
-              <div class="bfmi-price">14.75</div>
-              <div class="bfmi-desc">Grilled or crispy · mayonnaise · red onion · lettuce · tomato</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Garden Burger<span class="star">*</span></div>
-              <div class="bfmi-price">14.75</div>
-              <div class="bfmi-desc">Mayonnaise · lettuce · red onion · tomato</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Hand-Cut Fish Burger<span class="star">*</span></div>
-              <div class="bfmi-price">14.75</div>
-              <div class="bfmi-desc">Tartar sauce and lettuce</div>
-            </div>
-          </div>
-
-          <div class="bfms-sep"></div>
-
-          <div class="bfms-head"><h3>Salads</h3></div>
-          <div class="bfms-note">Dressings: balsamic vinaigrette · bleu cheese · honey mustard · Italian · oil &amp; vinegar · ranch · 1000. Toppings include cheddar cheese · tomatoes · olives · boiled egg</div>
-          <div class="bfms-items">
-            <div class="bfmi">
-              <div class="bfmi-name">Mini Chef<span class="star">*</span></div>
-              <div class="bfmi-price">16.50</div>
-              <div class="bfmi-desc">Diced ham · diced turkey</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Shrimp Louie<span class="star">*</span></div>
-              <div class="bfmi-price">18.50</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Grilled or Crispy Chicken</div>
-              <div class="bfmi-price">16.50</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Flat Iron Steak<span class="star">*</span></div>
-              <div class="bfmi-price">24.95</div>
-              <div class="bfmi-desc">8 oz steak · bleu cheese crumble · red onion · cucumber</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Taco<span class="star">*</span></div>
-              <div class="bfmi-price">16.50</div>
-              <div class="bfmi-desc">Taco beef · tortilla chips · sour cream · salsa · avocado</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Side Salad<span class="star">*</span></div>
-              <div class="bfmi-price">7.25</div>
-              <div class="bfmi-desc">Red onion · cucumber</div>
-            </div>
-          </div>
-
-          <div class="bfms-sep"></div>
-
-          <div class="bfms-head"><h3>Fried Favorites</h3></div>
-          <div class="bfms-items">
-            <div class="bfmi">
-              <div class="bfmi-name">Loaded Tater Tots<span class="star">*</span></div>
-              <div class="bfmi-price">11.25</div>
-              <div class="bfmi-desc">Shredded cheddar · nacho cheese · bacon bits · green onions</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Deep Fried Mushrooms</div>
-              <div class="bfmi-price">10.25</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Mozzarella Cheese Sticks</div>
-              <div class="bfmi-price">10.25</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">3 pc Chicken Strips<span class="star">*</span></div>
-              <div class="bfmi-price">15.50</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">2 pc Fish &amp; Chips<span class="star">*</span></div>
-              <div class="bfmi-price">15.50</div>
-              <div class="bfmi-desc">Add one extra piece of fish 4.50</div>
-            </div>
-          </div>
-
-          <div class="bfms-sep"></div>
-
-          <div class="bfms-head"><h3>Homemade Soup</h3></div>
-          <div class="bfms-items">
-            <div class="bfmi">
-              <div class="bfmi-name">Soup of the Day or Red Bean Chili<span class="star">*</span></div>
-              <div class="bfmi-price">6.25 / 7.75</div>
-              <div class="bfmi-desc">Cup / Bowl</div>
-            </div>
-            <div class="bfmi">
-              <div class="bfmi-name">Soup &amp; Salad Combo</div>
-              <div class="bfmi-price">15.75</div>
-              <div class="bfmi-desc">Bowl of soup &amp; side salad · served w. biscuit</div>
-            </div>
-          </div>
-
-          <div class="tractor-col">
-            <div class="tractor-emoji">🍽️</div>
-            <div class="tractor-notes">
-              $1.99 charge to split plate in kitchen<br/>
-              *Indicates food is gluten free for upcharge<br/>
-              Half orders available for 2.00 off<br/>
-              <span class="dot-red">●</span> Consuming raw / undercooked foods may cause illness <span class="dot-red">●</span>
-            </div>
-          </div>
-
-        </div><!-- /lunch right -->
+        </div><!-- /lunch row 2 -->
 
       </div><!-- /bfmenu-body -->
 
@@ -1285,19 +1241,19 @@
   <!-- DRINKS -->
   <div class="menu-panel" id="tab-drinks">
     <div class="menu-grid">
-      <div class="menu-card reveal"><div class="menu-emoji">☕</div><div class="menu-info"><div class="menu-name">Bottomless Coffee</div><div class="menu-desc">Fresh, brewed house blend We keep it coming all morning long</div><span class="menu-badge-tag">Unlimited Refills</span></div><div class="menu-price">$3</div></div>
-      <div class="menu-card reveal" style="transition-delay:.05s"><div class="menu-emoji">🥂</div><div class="menu-info"><div class="menu-name">Bottomless Mimosas</div><div class="menu-desc">Fresh, squeezed orange juice and chilled sparkling wine</div><span class="menu-badge-tag">Weekends Only</span></div><div class="menu-price">$18</div></div>
-      <div class="menu-card reveal" style="transition-delay:.1s"><div class="menu-emoji">🥤</div><div class="menu-info"><div class="menu-name">Classic Milkshake</div><div class="menu-desc">Hand, blended with premium ice cream — vanilla, chocolate, or strawberry Topped with whipped cream</div></div><div class="menu-price">$9</div></div>
-      <div class="menu-card reveal" style="transition-delay:.15s"><div class="menu-emoji">🍊</div><div class="menu-info"><div class="menu-name">Fresh-Squeezed OJ</div><div class="menu-desc">Freshly squeezed to order Bright, sweet, and full of morning sunshine</div></div><div class="menu-price">$5</div></div>
+      <div class="menu-card reveal"><div class="menu-emoji">☕</div><div class="menu-info"><div class="menu-name">Bottomless Coffee</div><div class="menu-desc">Fresh-brewed house blend — we keep it coming all morning long</div><span class="menu-badge-tag">Unlimited Refills</span></div><div class="menu-price">$3</div></div>
+      <div class="menu-card reveal" style="transition-delay:.05s"><div class="menu-emoji">🥂</div><div class="menu-info"><div class="menu-name">Bottomless Mimosas</div><div class="menu-desc">Fresh-squeezed orange juice and chilled sparkling wine</div><span class="menu-badge-tag">Weekends Only</span></div><div class="menu-price">$18</div></div>
+      <div class="menu-card reveal" style="transition-delay:.1s"><div class="menu-emoji">🥤</div><div class="menu-info"><div class="menu-name">Classic Milkshake</div><div class="menu-desc">Hand-blended with premium ice cream — vanilla, chocolate, or strawberry — topped with whipped cream</div></div><div class="menu-price">$9</div></div>
+      <div class="menu-card reveal" style="transition-delay:.15s"><div class="menu-emoji">🍊</div><div class="menu-info"><div class="menu-name">Fresh-Squeezed OJ</div><div class="menu-desc">Freshly squeezed to order — bright, sweet, and full of morning sunshine</div></div><div class="menu-price">$5</div></div>
     </div>
   </div>
 
   <!-- WEEKEND DINNER -->
   <div class="menu-panel" id="tab-weekend">
     <div class="menu-grid">
-      <div class="menu-card reveal"><div class="menu-emoji">🥩</div><div class="menu-info"><div class="menu-name">Prime Rib</div><div class="menu-desc">Slow, roasted to perfection, served with au jus, creamy horseradish, and your choice of sides</div><span class="menu-badge-tag">Friday &amp; Saturday</span></div><div class="menu-price">$32</div></div>
-      <div class="menu-card reveal" style="transition-delay:.05s"><div class="menu-emoji">🍗</div><div class="menu-info"><div class="menu-name">Roasted Half Chicken</div><div class="menu-desc">Free, range chicken roasted golden with herbs, garlic mashed potatoes and seasonal vegetables</div></div><div class="menu-price">$24</div></div>
-      <div class="menu-card reveal" style="transition-delay:.1s"><div class="menu-emoji">🐟</div><div class="menu-info"><div class="menu-name">Pacific Northwest Salmon</div><div class="menu-desc">Pan, seared wild, caught salmon with lemon caper butter, rice pilaf, and fresh asparagus</div></div><div class="menu-price">$28</div></div>
+      <div class="menu-card reveal"><div class="menu-emoji">🥩</div><div class="menu-info"><div class="menu-name">Prime Rib</div><div class="menu-desc">Slow-roasted to perfection, served with au jus, creamy horseradish, and your choice of sides</div><span class="menu-badge-tag">Friday &amp; Saturday</span></div><div class="menu-price">$32</div></div>
+      <div class="menu-card reveal" style="transition-delay:.05s"><div class="menu-emoji">🍗</div><div class="menu-info"><div class="menu-name">Roasted Half Chicken</div><div class="menu-desc">Free-range chicken roasted golden with herbs, garlic mashed potatoes and seasonal vegetables</div></div><div class="menu-price">$24</div></div>
+      <div class="menu-card reveal" style="transition-delay:.1s"><div class="menu-emoji">🐟</div><div class="menu-info"><div class="menu-name">Pacific Northwest Salmon</div><div class="menu-desc">Pan-seared wild-caught salmon with lemon caper butter, rice pilaf, and fresh asparagus</div></div><div class="menu-price">$28</div></div>
     </div>
   </div>
 </section>
@@ -1325,9 +1281,9 @@
     <p style="margin-top:20px;color:var(--muted);font-size:15px;max-width:480px">Hover each card to reveal what makes it special.</p>
   </div>
   <div class="specials-grid">
-    <div class="special-card reveal"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥞</div><h3>Blueberry Stack</h3><p>House Signature</p></div><div class="special-back"><h3>Blueberry Stack</h3><p>Cloud-like buttermilk pancakes loaded with plump Pacific Northwest blueberries. Served with real maple syrup and cultured butter.</p><span class="price">$12</span></div></div></div>
-    <div class="special-card reveal" style="transition-delay:.1s"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥩</div><h3>Prime Rib</h3><p>Weekend Only</p></div><div class="special-back"><h3>Prime Rib</h3><p>Slow-roasted for 12 hours and sliced to order. Served with savory au jus, creamy horseradish, and two sides.</p><span class="price">$32</span></div></div></div>
-    <div class="special-card reveal" style="transition-delay:.2s"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥤</div><h3>Classic Milkshake</h3><p>Made to Order</p></div><div class="special-back"><h3>Classic Milkshake</h3><p>Hand-spun with premium ice cream in the classic Bluebird tradition. Vanilla, chocolate, or strawberry — thick and rich.</p><span class="price">$9</span></div></div></div>
+    <div class="special-card reveal"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥞</div><h3>Blueberry Stack</h3><p>House Signature</p></div><div class="special-back"><h3>Blueberry Stack</h3><p>Cloud-like buttermilk pancakes loaded with plump Pacific Northwest blueberries — served with real maple syrup and cultured butter</p><span class="price">$12</span></div></div></div>
+    <div class="special-card reveal" style="transition-delay:.1s"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥩</div><h3>Prime Rib</h3><p>Weekend Only</p></div><div class="special-back"><h3>Prime Rib</h3><p>Slow-roasted for 12 hours and sliced to order — served with savory au jus, creamy horseradish, and two sides</p><span class="price">$32</span></div></div></div>
+    <div class="special-card reveal" style="transition-delay:.2s"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥤</div><h3>Classic Milkshake</h3><p>Made to Order</p></div><div class="special-back"><h3>Classic Milkshake</h3><p>Hand-spun with premium ice cream in the classic Bluebird tradition — vanilla, chocolate, or strawberry — thick and rich</p><span class="price">$9</span></div></div></div>
   </div>
 </section>
 
