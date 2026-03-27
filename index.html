@@ -12,8 +12,8 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --cream:    #daf0fb;
-      --warm:     #c4e6f8;
+      --cream:    #eef5fc;
+      --warm:     #daeaf8;
       --gold:     #c8973a;
       --gold-lt:  #e8bb6a;
       --deep:     #0b2545;
@@ -260,7 +260,7 @@
     /* ── BREAKFAST MENU (image-matched layout) ── */
     /* ── BREAKFAST MENU WRAP ── */
     .bfmenu-wrap {
-      background: #ffffff;
+      background: #f8fbff;
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid rgba(29,52,97,.15);
@@ -317,7 +317,47 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
-    .bfmenu-col { padding: 0; background: #ffffff; }
+    .bfmenu-lunch-location {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 24px 20px;
+      background: linear-gradient(135deg, var(--deep) 0%, #0d2040 100%);
+      border-bottom: 2px solid rgba(74, 159, 212, 0.28);
+      text-align: center;
+      position: relative;
+    }
+    .bfmenu-lunch-location::before {
+      content: '';
+      position: absolute;
+      left: clamp(16px, 4vw, 32px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: var(--sky);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(74, 159, 212, 0.25);
+    }
+    .bfmenu-lunch-location-pin {
+      font-size: 22px;
+      line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+    }
+    .bfmenu-lunch-location-text {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(184, 217, 240, 0.92);
+    }
+    @media (max-width: 520px) {
+      .bfmenu-lunch-location::before { display: none; }
+    }
+    .bfmenu-col { padding: 0; background: #f8fbff; }
     .bfmenu-col-left { border-right: 2px solid rgba(29,52,97,.12); }
 
     /* section headers */
@@ -563,71 +603,27 @@
 
     /* ── VISIT ── */
     #visit { background:var(--deep); }
-    /* ── COME FIND US ── */
-    .visit-inner { max-width:1100px; margin:0 auto; }
-    .visit-hours-bar {
-      display:flex; align-items:center; justify-content:space-between;
-      flex-wrap:wrap; gap:20px;
-      padding:28px 36px;
-      background:linear-gradient(135deg,rgba(74,159,212,.12),rgba(29,52,97,.08));
-      border:1px solid rgba(74,159,212,.25);
-      border-radius:6px;
-      margin-top:48px; margin-bottom:40px;
-    }
-    .visit-hours-left { display:flex; align-items:center; gap:16px; }
-    .visit-hours-icon { font-size:36px; }
-    .visit-hours-label {
-      font-size:11px; font-weight:700; letter-spacing:.2em;
-      text-transform:uppercase; color:var(--sky); margin-bottom:4px;
-    }
-    .visit-hours-time {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(26px,3vw,38px); font-weight:400;
-      color:var(--white); line-height:1;
-    }
-    .hours-badge { display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4caf50;background:rgba(76,175,80,.12);padding:8px 18px;border-radius:20px;border:1px solid rgba(76,175,80,.25); }
-    .hours-badge::before { content:'';width:7px;height:7px;background:#4caf50;border-radius:50%;animation:blink 1.5s ease-in-out infinite; }
+    .visit-grid { display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start;margin-top:64px; }
+    .hours-list { list-style:none; }
+    .hours-item { display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px;color:rgba(255,255,255,.7);transition:color .3s; }
+    .hours-item:hover { color:var(--white); }
+    .hours-day { font-weight:500; }
+    .hours-time { color:var(--sky-lt);font-family:'Cormorant Garamond',serif;font-size:20px; }
+    .hours-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4caf50;background:rgba(76,175,80,.1);padding:4px 12px;border-radius:20px;margin-bottom:28px; }
+    .hours-badge::before { content:'';width:6px;height:6px;background:#4caf50;border-radius:50%;animation:blink 1.5s ease-in-out infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-
-    /* Row 1 — 4 info cards */
-    .visit-cards-row {
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:16px;
-      margin-bottom:16px;
-    }
-    .info-block {
-      display:flex; flex-direction:column; gap:12px;
-      padding:24px 22px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:6px;
-      transition:border-color .3s,background .3s,transform .3s;
-    }
-    .info-block:hover { border-color:rgba(74,159,212,.4);background:rgba(255,255,255,.07);transform:translateY(-2px); }
-    .info-icon { font-size:26px; }
-    .info-content h4 {
-      font-size:10px; font-weight:700; letter-spacing:.18em;
-      text-transform:uppercase; color:var(--sky); margin-bottom:6px;
-    }
-    .info-content p { font-size:14px;line-height:1.7;color:rgba(255,255,255,.6); }
-    .info-content a { color:var(--sky-lt);text-decoration:none;transition:color .2s; }
-    .info-content a:hover { color:var(--white); }
-
-    /* Row 2 — map */
-    .map-placeholder {
-      width:100%; aspect-ratio:21/6;
-      background:linear-gradient(135deg,rgba(74,159,212,.06),rgba(11,37,69,.4));
-      border:1px solid rgba(74,159,212,.15);
-      border-radius:6px;
-      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
-    }
-    .map-pin-anim { font-size:40px;animation:pinBounce 2s ease-in-out infinite; }
-    .map-placeholder p { font-size:14px;color:rgba(255,255,255,.35);letter-spacing:.05em; }
+    .visit-info { display:flex;flex-direction:column;gap:32px; }
+    .info-block { display:flex;gap:20px;padding:28px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;transition:border-color .3s,background .3s; }
+    .info-block:hover { border-color:rgba(74,159,212,.35);background:rgba(255,255,255,.06); }
+    .info-icon { font-size:28px;flex-shrink:0; }
+    .info-content h4 { font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--white);font-weight:400;margin-bottom:6px; }
+    .info-content p { font-size:14px;line-height:1.65;color:rgba(255,255,255,.5); }
+    .info-content a { color:var(--sky-lt);text-decoration:none; }
+    .info-content a:hover { text-decoration:underline; }
+    .map-placeholder { width:100%;aspect-ratio:16/9;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin-top:32px;font-size:48px; }
+    .map-placeholder p { font-size:15px;color:rgba(255,255,255,.4); }
+    .map-pin-anim { animation:pinBounce 2s ease-in-out infinite; }
     @keyframes pinBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-
-    @media(max-width:900px){ .visit-cards-row { grid-template-columns:repeat(2,1fr); } }
-    @media(max-width:500px){ .visit-cards-row { grid-template-columns:1fr; } .map-placeholder { aspect-ratio:4/3; } }
 
     /* ── CTA STRIP ── */
     #cta-strip { background:linear-gradient(135deg,var(--navy),var(--charcoal));padding:clamp(60px,8vw,100px) clamp(24px,6vw,100px);text-align:center;position:relative;overflow:hidden;border-top:3px solid var(--sky);border-bottom:3px solid var(--sky); }
@@ -1128,147 +1124,235 @@
         <h2 class="bfmenu-main-title">Lunch Menu</h2>
       </div>
 
-      <p class="bfmenu-lunch-banner">All burgers served on a toasted brioche bun with regular or waffle fries · Dressings available: Vinaigrette, Blue Cheese, Honey Mustard, Ranch, Italian, 1000 Island, Oil &amp; Vinegar</p>
+      <p class="bfmenu-lunch-banner">All burgers, dips &amp; sandwiches include your choice of: regular or waffle fries · tater tots · coleslaw · potato salad · soup · onion rings · sweet potato fries · salad</p>
+
+      <div class="bfmenu-lunch-location" aria-label="Restaurant location">
+        <span class="bfmenu-lunch-location-pin" aria-hidden="true">📍</span>
+        <p class="bfmenu-lunch-location-text">308 N Olympic Ave, Arlington, WA 98223</p>
+      </div>
 
       <div class="bfmenu-body bfmenu-lunch-body">
 
-        <!-- Row 1: Salads | Soup & Fish & Chicken -->
+        <!-- Row 1: Gourmet | Classic (aligned like printed menu) -->
         <div class="bfmenu-lunch-row">
           <div class="bfmenu-col bfmenu-col-left">
-            <div class="bfms-head"><h3>Salads</h3></div>
-            <div class="bfms-note">All salads served on crisp mixed greens with cheddar cheese, tomatoes, black olives &amp; a sliced boiled egg. Choice of dressing: Vinaigrette, Blue Cheese, Honey Mustard, Ranch, Italian, 1000 Island, Oil &amp; Vinegar</div>
+            <div class="bfms-head"><h3>Gourmet Burgers</h3></div>
+            <div class="bfms-note bfms-note-lunch">Gourmet come with 1/2 lb sirloin patty · Add bacon 3.25 · Add an egg 2.00</div>
             <div class="bfms-items">
               <div class="bfmi">
-                <div class="bfmi-name">Mini Chef</div>
-                <div class="bfmi-price">$16.50</div>
-                <div class="bfmi-desc">Diced ham, tender turkey, shredded cheddar, ripe tomatoes, black olives, sliced boiled egg</div>
+                <div class="bfmi-name">Basic Gourmet Burger<span class="star">*</span></div>
+                <div class="bfmi-price">21.75</div>
+                <div class="bfmi-desc">Mayonnaise · sweet relish · lettuce · red onion · tomato · cheddar cheese</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">Chicken Salad</div>
-                <div class="bfmi-price">$16.50</div>
-                <div class="bfmi-desc">Grilled or crispy chicken, shredded cheddar, ripe tomatoes, black olives, sliced boiled egg</div>
+                <div class="bfmi-name">Mushroom &amp; Swiss Burger<span class="star">*</span></div>
+                <div class="bfmi-price">21.75</div>
+                <div class="bfmi-desc">Mayonnaise · sweet relish · lettuce · sautéed mushrooms &amp; onions · Swiss</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">Steak Salad</div>
-                <div class="bfmi-price">$24.95</div>
-                <div class="bfmi-desc">8oz steak, blue cheese crumbles, red onions, cucumbers, cheddar, tomatoes, black olives, boiled egg</div>
+                <div class="bfmi-name">Fire in the Hole Burger<span class="star">*</span></div>
+                <div class="bfmi-price">21.75</div>
+                <div class="bfmi-desc">Spicy mayonnaise · sweet relish · lettuce · tomato · grilled jalapeños · pepper jack cheese</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">Taco Salad</div>
-                <div class="bfmi-price">$16.50</div>
-                <div class="bfmi-desc">Taco beef, shredded cheddar, tomatoes, black olives, boiled egg, sour cream, salsa, avocado on the side</div>
-              </div>
-              <div class="bfmi">
-                <div class="bfmi-name">Side Salad</div>
-                <div class="bfmi-price">$7.25</div>
-                <div class="bfmi-desc">Mixed greens, cheddar, tomatoes, black olives, red onions, cucumbers, boiled egg</div>
+                <div class="bfmi-name">Chicken Bacon Avocado<span class="star">*</span></div>
+                <div class="bfmi-price">21.75</div>
+                <div class="bfmi-desc">Grilled chicken breast · mayonnaise · lettuce · tomato · avocado · bacon · Swiss cheese</div>
               </div>
             </div>
           </div>
-
           <div class="bfmenu-col">
-            <div class="bfms-head"><h3>Soup</h3></div>
+            <div class="bfms-head"><h3>Classic Burgers</h3></div>
+            <div class="bfms-note bfms-note-lunch">Classic come with 1/4 lb sirloin patty · Add bacon 3.25 · Add an egg 2.00</div>
             <div class="bfms-items">
               <div class="bfmi">
-                <div class="bfmi-name">Chili</div>
-                <div class="bfmi-price">$6.25+</div>
-                <div class="bfmi-desc">Flavorful blend of seasoned ground beef, tender beans, tomatoes, and zesty spices simmered to perfection</div>
+                <div class="bfmi-name">Deluxe Cheeseburger<span class="star">*</span></div>
+                <div class="bfmi-price">13.50</div>
+                <div class="bfmi-desc">Mayonnaise · sweet relish · lettuce · red onion · tomato</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">Soup of the Day</div>
-                <div class="bfmi-price">$6.25+</div>
-                <div class="bfmi-desc">Chef-crafted daily with seasonal ingredients and rich, savory flavors — ask your server for today's selection</div>
+                <div class="bfmi-name">Deluxe Cheeseburger (chips side only)<span class="star">*</span></div>
+                <div class="bfmi-price">6.95</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">Soup &amp; Salad with Biscuit</div>
-                <div class="bfmi-price">$15.75</div>
-                <div class="bfmi-desc">Homemade soup, side salad with mixed greens, cheddar, tomatoes, black olives, red onions, cucumbers, boiled egg, served with a warm biscuit</div>
-              </div>
-            </div>
-
-            <div class="bfms-sep"></div>
-
-            <div class="bfms-head"><h3>Fish &amp; Chicken</h3></div>
-            <div class="bfms-items">
-              <div class="bfmi">
-                <div class="bfmi-name">2 PC Fish &amp; Chips</div>
-                <div class="bfmi-price">$15.50</div>
-                <div class="bfmi-desc">Crispy golden-battered fish fillets, seasoned fries, creamy coleslaw, tartar sauce</div>
+                <div class="bfmi-name">Chicken Burger<span class="star">*</span></div>
+                <div class="bfmi-price">14.75</div>
+                <div class="bfmi-desc">Grilled or crispy · mayonnaise · red onion · lettuce · tomato</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">3 PC Chicken Strips</div>
-                <div class="bfmi-price">$15.50</div>
-                <div class="bfmi-desc">Crispy chicken strips, seasoned fries, creamy coleslaw</div>
+                <div class="bfmi-name">Garden Burger<span class="star">*</span></div>
+                <div class="bfmi-price">14.75</div>
+                <div class="bfmi-desc">Mayonnaise · lettuce · red onion · tomato</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Hand-Cut Fish Burger<span class="star">*</span></div>
+                <div class="bfmi-price">14.75</div>
+                <div class="bfmi-desc">Tartar sauce and lettuce</div>
               </div>
             </div>
           </div>
         </div><!-- /lunch row 1 -->
 
-        <!-- Row 2: Classic Burgers | Gourmet Burgers -->
+        <!-- Row 2: Sandwiches + Dips | Salads + Fried + Soup -->
         <div class="bfmenu-lunch-row">
           <div class="bfmenu-col bfmenu-col-left">
-            <div class="bfms-head"><h3>Classic Burgers</h3></div>
-            <div class="bfms-note">Served on a toasted brioche bun with regular or waffle fries</div>
+            <div class="bfms-head"><h3>Sandwiches</h3></div>
             <div class="bfms-items">
               <div class="bfmi">
-                <div class="bfmi-name">Deluxe Cheeseburger</div>
-                <div class="bfmi-price">$13.50</div>
-                <div class="bfmi-desc">Juicy beef patty, melted cheddar, sweet relish, crisp lettuce, ripe tomato, sliced red onion, mayonnaise on a toasted brioche bun</div>
+                <div class="bfmi-name">Cold Deli<span class="star">*</span></div>
+                <div class="bfmi-price">16.50</div>
+                <div class="bfmi-desc">Choice of meat (ham · turkey · brisket · tuna · egg salad) · cheese · mayonnaise · lettuce · tomato · red onion</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">Hand Cut &amp; Breaded Fish Burger</div>
-                <div class="bfmi-price">$14.75</div>
-                <div class="bfmi-desc">Breaded fish, tartar sauce, lettuce on a toasted brioche bun</div>
+                <div class="bfmi-name">Grilled Cheese + Meat<span class="star">*</span></div>
+                <div class="bfmi-price">16.50</div>
+                <div class="bfmi-desc">Choice of meat (ham · turkey · brisket · tuna) and choice of cheese</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">Chicken Burger</div>
-                <div class="bfmi-price">$14.75</div>
-                <div class="bfmi-desc">Grilled or crispy chicken, melted cheddar, crisp lettuce, ripe tomato, sliced red onion, mayonnaise on a toasted brioche bun</div>
+                <div class="bfmi-name">BLT<span class="star">*</span></div>
+                <div class="bfmi-price">16.50</div>
+                <div class="bfmi-desc">Bacon · lettuce · tomato · mayonnaise · cheese · Add avocado 2.95</div>
               </div>
               <div class="bfmi">
-                <div class="bfmi-name">Garden Burger</div>
-                <div class="bfmi-price">$14.75</div>
-                <div class="bfmi-desc">Hearty grilled veggie patty with wholesome garden vegetables and grains, fresh lettuce, tomato, red onion, creamy mayo on a toasted bun</div>
+                <div class="bfmi-name">Turkey Bacon Swiss<span class="star">*</span></div>
+                <div class="bfmi-price">20.50</div>
+                <div class="bfmi-desc">Grilled hoagie · mayonnaise · lettuce · tomato · turkey bacon · Swiss</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Clubhouse<span class="star">*</span></div>
+                <div class="bfmi-price">20.50</div>
+                <div class="bfmi-desc">Mayonnaise · bacon · lettuce · tomato · turkey · ham · cheddar cheese</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Patty Melt<span class="star">*</span></div>
+                <div class="bfmi-price">17.95</div>
+                <div class="bfmi-desc">Grilled rye · Swiss cheese · grilled onions · burger patties</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Reuben<span class="star">*</span></div>
+                <div class="bfmi-price">17.95</div>
+                <div class="bfmi-desc">Grilled rye · Swiss cheese · corned beef · Thousand Island · sauerkraut</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Hoss<span class="star">*</span></div>
+                <div class="bfmi-price">18.95</div>
+                <div class="bfmi-desc">Grilled ham &amp; Swiss on hoagie · mayonnaise · sweet relish · lettuce · tomato</div>
+              </div>
+            </div>
+
+            <div class="bfms-sep"></div>
+
+            <div class="bfms-head"><h3>Dips</h3></div>
+            <div class="bfms-note">Choice of cheese · BBQ or au jus for dipping · Add bacon 3.25 · Add grilled onion, pepper, or mushroom .95 each</div>
+            <div class="bfms-items">
+              <div class="bfmi">
+                <div class="bfmi-name">French Dip</div>
+                <div class="bfmi-price">19.95</div>
+                <div class="bfmi-desc">House-made brisket · add veggies .95 each</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Burger Dip</div>
+                <div class="bfmi-price">19.95</div>
+                <div class="bfmi-desc">½ lb sirloin · add veggies .95 each</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Ham Dip</div>
+                <div class="bfmi-price">18.95</div>
               </div>
             </div>
           </div>
 
           <div class="bfmenu-col">
-            <div class="bfms-head"><h3>Gourmet Burgers</h3></div>
-            <div class="bfms-note">Served on a toasted brioche bun with regular or waffle fries</div>
-            <div class="bfms-items">
-              <div class="bfmi">
-                <div class="bfmi-name">Basic Gourmet</div>
-                <div class="bfmi-price">$21.75</div>
-                <div class="bfmi-desc">Juicy beef patty, melted cheddar, sweet relish, crisp lettuce, ripe tomato, sliced red onion, mayonnaise on a toasted brioche bun</div>
-              </div>
-              <div class="bfmi">
-                <div class="bfmi-name">Mushroom Swiss Burger</div>
-                <div class="bfmi-price">$21.75</div>
-                <div class="bfmi-desc">Juicy beef patty, Swiss cheese, sweet relish, crisp lettuce, sautéed mushrooms, sautéed onions, mayonnaise on a toasted brioche bun</div>
-              </div>
-              <div class="bfmi">
-                <div class="bfmi-name">Fire in the Hole 🌶</div>
-                <div class="bfmi-price">$21.75</div>
-                <div class="bfmi-desc">Juicy beef patty, melted pepper jack, sweet relish, crisp lettuce, ripe tomato, grilled jalapeños, spicy mayonnaise on a toasted brioche bun</div>
-              </div>
-              <div class="bfmi">
-                <div class="bfmi-name">Chicken Bacon Avocado</div>
-                <div class="bfmi-price">$21.75</div>
-                <div class="bfmi-desc">Grilled chicken breast, bacon, Swiss cheese, crisp lettuce, ripe tomato, mayonnaise, avocado on a toasted brioche bun</div>
-              </div>
-            </div>
 
-            <div class="tractor-col">
-              <div class="tractor-emoji">🍽️</div>
-              <div class="tractor-notes">
-                $1.99 charge to split plate in kitchen<br/>
-                *Indicates food is gluten free for upcharge<br/>
-                Half orders available for 2.00 off<br/>
-                <span class="dot-red">●</span> Consuming raw / undercooked foods may cause illness <span class="dot-red">●</span>
-              </div>
+          <div class="bfms-head"><h3>Salads</h3></div>
+          <div class="bfms-note">Dressings: balsamic vinaigrette · bleu cheese · honey mustard · Italian · oil &amp; vinegar · ranch · 1000 · Toppings include cheddar cheese · tomatoes · olives · boiled egg</div>
+          <div class="bfms-items">
+            <div class="bfmi">
+              <div class="bfmi-name">Mini Chef<span class="star">*</span></div>
+              <div class="bfmi-price">16.50</div>
+              <div class="bfmi-desc">Diced ham · diced turkey</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Shrimp Louie<span class="star">*</span></div>
+              <div class="bfmi-price">18.50</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Grilled or Crispy Chicken</div>
+              <div class="bfmi-price">16.50</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Flat Iron Steak<span class="star">*</span></div>
+              <div class="bfmi-price">24.95</div>
+              <div class="bfmi-desc">8 oz steak · bleu cheese crumble · red onion · cucumber</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Taco<span class="star">*</span></div>
+              <div class="bfmi-price">16.50</div>
+              <div class="bfmi-desc">Taco beef · tortilla chips · sour cream · salsa · avocado</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Side Salad<span class="star">*</span></div>
+              <div class="bfmi-price">7.25</div>
+              <div class="bfmi-desc">Red onion · cucumber</div>
             </div>
           </div>
+
+          <div class="bfms-sep"></div>
+
+          <div class="bfms-head"><h3>Fried Favorites</h3></div>
+          <div class="bfms-items">
+            <div class="bfmi">
+              <div class="bfmi-name">Loaded Tater Tots<span class="star">*</span></div>
+              <div class="bfmi-price">11.25</div>
+              <div class="bfmi-desc">Shredded cheddar · nacho cheese · bacon bits · green onions</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Deep Fried Mushrooms</div>
+              <div class="bfmi-price">10.25</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Mozzarella Cheese Sticks</div>
+              <div class="bfmi-price">10.25</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">3 pc Chicken Strips<span class="star">*</span></div>
+              <div class="bfmi-price">15.50</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">2 pc Fish &amp; Chips<span class="star">*</span></div>
+              <div class="bfmi-price">15.50</div>
+              <div class="bfmi-desc">Add one extra piece of fish 4.50</div>
+            </div>
+          </div>
+
+          <div class="bfms-sep"></div>
+
+          <div class="bfms-head"><h3>Homemade Soup</h3></div>
+          <div class="bfms-items">
+            <div class="bfmi">
+              <div class="bfmi-name">Soup of the Day or Red Bean Chili<span class="star">*</span></div>
+              <div class="bfmi-price">6.25 / 7.75</div>
+              <div class="bfmi-desc">Cup / Bowl</div>
+            </div>
+            <div class="bfmi">
+              <div class="bfmi-name">Soup &amp; Salad Combo</div>
+              <div class="bfmi-price">15.75</div>
+              <div class="bfmi-desc">Bowl of soup &amp; side salad · served with biscuit</div>
+            </div>
+          </div>
+
+          <div class="tractor-col">
+            <div class="tractor-emoji">🍽️</div>
+            <div class="tractor-notes">
+              $1.99 charge to split plate in kitchen<br/>
+              *Indicates food is gluten free for upcharge<br/>
+              Half orders available for 2.00 off<br/>
+              <span class="dot-red">●</span> Consuming raw / undercooked foods may cause illness <span class="dot-red">●</span>
+            </div>
+          </div>
+
+          </div><!-- /bfmenu-col row2 right -->
+
         </div><!-- /lunch row 2 -->
 
       </div><!-- /bfmenu-body -->
@@ -1353,60 +1437,29 @@
 
 <!-- VISIT -->
 <section id="visit" style="padding-top:clamp(80px,12vw,160px)">
-  <div class="visit-inner">
-    <div class="reveal">
-      <div class="section-label" style="color:var(--sky-lt)">Plan Your Visit</div>
-      <h2 class="section-title light">Come Find <em>Us</em></h2>
+  <div class="reveal">
+    <div class="section-label" style="color:var(--sky-lt)">Plan Your Visit</div>
+    <h2 class="section-title light">Come Find <em>Us</em></h2>
+  </div>
+  <div class="visit-grid">
+    <div>
+      <div class="hours-badge">● Open Today</div>
+      <ul class="hours-list">
+        <li class="hours-item reveal"><span class="hours-day">Sunday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.05s"><span class="hours-day">Monday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.1s"><span class="hours-day">Tuesday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.15s"><span class="hours-day">Wednesday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.2s"><span class="hours-day">Thursday</span><span class="hours-time">7 AM – 2 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.25s"><span class="hours-day">Friday</span><span class="hours-time">7 AM – 7 PM</span></li>
+        <li class="hours-item reveal" style="transition-delay:.3s"><span class="hours-day">Saturday</span><span class="hours-time">7 AM – 7 PM</span></li>
+      </ul>
     </div>
-
-    <!-- Hours bar -->
-    <div class="visit-hours-bar reveal">
-      <div class="visit-hours-left">
-        <div class="visit-hours-icon">🕐</div>
-        <div>
-          <div class="visit-hours-label">Everyday Hours</div>
-          <div class="visit-hours-time">5 AM – 9 PM</div>
-        </div>
-      </div>
-      <div class="hours-badge">Open Today</div>
-    </div>
-
-    <!-- Row 1 — 4 info cards -->
-    <div class="visit-cards-row">
-      <div class="info-block reveal">
-        <div class="info-icon">📍</div>
-        <div class="info-content">
-          <h4>Location</h4>
-          <p>308 N Olympic Ave<br/>Arlington, WA 98223</p>
-        </div>
-      </div>
-      <div class="info-block reveal" style="transition-delay:.08s">
-        <div class="info-icon">📞</div>
-        <div class="info-content">
-          <h4>Phone</h4>
-          <p><a href="tel:+13604352724">(360) 435-2724</a></p>
-        </div>
-      </div>
-      <div class="info-block reveal" style="transition-delay:.16s">
-        <div class="info-icon">🛍️</div>
-        <div class="info-content">
-          <h4>Online Ordering</h4>
-          <p>Order ahead for pickup via <a href="https://www.toasttab.com">Toast Tab →</a></p>
-        </div>
-      </div>
-      <div class="info-block reveal" style="transition-delay:.24s">
-        <div class="info-icon">🅿️</div>
-        <div class="info-content">
-          <h4>Free Parking</h4>
-          <p>Street parking on N Olympic Ave and surrounding streets</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 2 — map -->
-    <div class="map-placeholder reveal" style="transition-delay:.32s">
-      <div class="map-pin-anim">📍</div>
-      <p>308 N Olympic Ave, Arlington, WA 98223</p>
+    <div class="visit-info">
+      <div class="info-block reveal"><div class="info-icon">📍</div><div class="info-content"><h4>Location</h4><p>308 N Olympic Ave<br/>Arlington, WA 98223</p></div></div>
+      <div class="info-block reveal" style="transition-delay:.1s"><div class="info-icon">📞</div><div class="info-content"><h4>Phone</h4><p><a href="tel:+13604352724">(360) 435-2724</a></p></div></div>
+      <div class="info-block reveal" style="transition-delay:.2s"><div class="info-icon">🛍️</div><div class="info-content"><h4>Online Ordering</h4><p>Order ahead for pickup via <a href="https://www.toasttab.com">Toast Tab →</a></p></div></div>
+      <div class="info-block reveal" style="transition-delay:.3s"><div class="info-icon">🅿️</div><div class="info-content"><h4>Parking</h4><p>Free street parking available on N Olympic Ave and surrounding streets.</p></div></div>
+      <div class="map-placeholder reveal" style="transition-delay:.4s"><div class="map-pin-anim">📍</div><p>308 N Olympic Ave, Arlington WA</p></div>
     </div>
   </div>
 </section>
