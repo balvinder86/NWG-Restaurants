@@ -1330,11 +1330,11 @@
 
       <div class="bfmenu-body bfmenu-lunch-body">
 
-        <!-- Row 1: Starters (full width) -->
-        <div class="bfmenu-lunch-row" style="grid-template-columns:1fr">
-          <div class="bfmenu-col">
+        <!-- Single row: Starters + Dessert (left) | Entrees (right) -->
+        <div class="bfmenu-lunch-row">
+          <div class="bfmenu-col bfmenu-col-left">
             <div class="bfms-head"><h3>Starters</h3></div>
-            <div class="bfms-items" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0">
+            <div class="bfms-items">
               <div class="bfmi">
                 <div class="bfmi-name">Nest Nachos</div>
                 <div class="bfmi-price">9</div>
@@ -1356,12 +1356,29 @@
                 <div class="bfmi-desc">Caramelized onions, secret sauce, and American cheese on golden brioche slider</div>
               </div>
             </div>
-          </div>
-        </div><!-- /row 1 -->
 
-        <!-- Row 2: Entrees | Dessert -->
-        <div class="bfmenu-lunch-row">
-          <div class="bfmenu-col bfmenu-col-left">
+            <div class="bfms-sep"></div>
+
+            <div class="bfms-head"><h3>Dessert</h3></div>
+            <div class="bfms-items">
+              <div class="bfmi">
+                <div class="bfmi-name">Key Lime Pie</div>
+                <div class="bfmi-price">9</div>
+                <div class="bfmi-desc">Tangy and creamy key lime pie with a buttery graham cracker crust</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Chocolate Cake</div>
+                <div class="bfmi-price">9</div>
+                <div class="bfmi-desc">Rich, moist chocolate cake with creamy frosting</div>
+              </div>
+              <div class="bfmi">
+                <div class="bfmi-name">Cinnamon Roll</div>
+                <div class="bfmi-price">8</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bfmenu-col">
             <div class="bfms-head"><h3>Entrees</h3></div>
             <div class="bfms-items">
               <div class="bfmi">
@@ -1401,26 +1418,7 @@
               </div>
             </div>
           </div>
-          <div class="bfmenu-col">
-            <div class="bfms-head"><h3>Dessert</h3></div>
-            <div class="bfms-items">
-              <div class="bfmi">
-                <div class="bfmi-name">Key Lime Pie</div>
-                <div class="bfmi-price">9</div>
-                <div class="bfmi-desc">Tangy and creamy key lime pie with a buttery graham cracker crust</div>
-              </div>
-              <div class="bfmi">
-                <div class="bfmi-name">Chocolate Cake</div>
-                <div class="bfmi-price">9</div>
-                <div class="bfmi-desc">Rich, moist chocolate cake with creamy frosting</div>
-              </div>
-              <div class="bfmi">
-                <div class="bfmi-name">Cinnamon Roll</div>
-                <div class="bfmi-price">8</div>
-              </div>
-            </div>
-          </div>
-        </div><!-- /row 2 -->
+        </div><!-- /row -->
 
       </div><!-- /bfmenu-body -->
 
