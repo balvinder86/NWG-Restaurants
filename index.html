@@ -1144,12 +1144,12 @@
 
       <div class="bfmenu-body bfmenu-lunch-body">
 
-        <!-- Row 1: Salads | Soup -->
-        <div class="bfmenu-lunch-row">
-          <div class="bfmenu-col bfmenu-col-left">
-            <div class="bfms-head"><h3>Salads</h3></div>
+        <!-- Row 1: Salads & Homemade Soup (full width) -->
+        <div class="bfmenu-lunch-row" style="grid-template-columns:1fr">
+          <div class="bfmenu-col">
+            <div class="bfms-head"><h3>Salads &amp; Homemade Soup</h3></div>
             <div class="bfms-note">All salads served with choice of dressing: vinaigrette, bleu cheese, honey mustard, ranch, Italian, 1000 Island, oil &amp; vinegar</div>
-            <div class="bfms-items">
+            <div class="bfms-items" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0">
               <div class="bfmi">
                 <div class="bfmi-name">Mini Chef</div>
                 <div class="bfmi-price">16.50</div>
@@ -1175,15 +1175,10 @@
                 <div class="bfmi-price">7.25</div>
                 <div class="bfmi-desc">Mixed greens, shredded cheddar, tomatoes, black olives, red onions, cucumbers, boiled egg</div>
               </div>
-            </div>
-          </div>
-          <div class="bfmenu-col">
-            <div class="bfms-head"><h3>Homemade Soup</h3></div>
-            <div class="bfms-items">
               <div class="bfmi">
                 <div class="bfmi-name">Chili</div>
                 <div class="bfmi-price">6.25+</div>
-                <div class="bfmi-desc">Seasoned ground beef, tender beans, tomatoes, and zesty spices simmered to perfection</div>
+                <div class="bfmi-desc">Seasoned ground beef, tender beans, tomatoes, zesty spices simmered to perfection</div>
               </div>
               <div class="bfmi">
                 <div class="bfmi-name">Soup of the Day</div>
