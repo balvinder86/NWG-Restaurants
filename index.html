@@ -690,9 +690,8 @@
     .visit-card-value a:hover { text-decoration:underline; }
 
     /* Map row */
-    .visit-map { width:100%;aspect-ratio:21/5;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px; }
-    .visit-map-pin { font-size:40px;animation:pinBounce 2s ease-in-out infinite; }
-    .visit-map p { font-size:14px;color:rgba(255,255,255,.4); }
+    .visit-map { width:100%;aspect-ratio:16/6;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.4); }
+    .visit-map iframe { width:100%;height:100%;border:0;display:block; }
     .visit-social { margin-top:32px;text-align:center; }
     .visit-social-label { font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--sky);margin-bottom:20px; }
     .visit-social-icons { display:flex;gap:16px;justify-content:center;flex-wrap:wrap; }
@@ -1929,8 +1928,13 @@
 
     <!-- ROW 3: Map -->
     <div class="visit-map reveal">
-      <div class="visit-map-pin">📍</div>
-      <p>308 N Olympic Ave, Arlington, WA 98223</p>
+      <iframe
+        src="https://maps.google.com/maps?q=Bluebird+Cafe+%26+Diner%2C+308+N+Olympic+Ave%2C+Arlington%2C+WA+98223&output=embed&z=16"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Bluebird Café & Diner location map"
+      ></iframe>
     </div>
 
     <!-- ROW 4: Social Media -->
