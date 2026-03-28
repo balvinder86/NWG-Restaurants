@@ -357,8 +357,12 @@
     @media (max-width: 520px) {
       .bfmenu-lunch-location::before { display: none; }
     }
-    .bfmenu-col { padding: 0; background: #f8fbff; }
+    .bfmenu-col { padding: 0; background: var(--white); }
     .bfmenu-col-left { border-right: 2px solid rgba(29,52,97,.12); }
+    /* Ensure all menu item text uses brand standard colors consistently */
+    .bfmenu-col .bfmi-name { color: var(--deep); }
+    .bfmenu-col .bfmi-desc { color: var(--muted); }
+    .bfmenu-col .bfms-note { color: var(--muted); }
 
     /* section headers */
     .bfms-head {
@@ -1440,6 +1444,28 @@
             </div>
           </div>
 
+          <div class="bfms-sep"></div>
+
+          <div class="bfms-head"><h3>Gin</h3></div>
+          <div class="bfms-items">
+            <div class="bfmi"><div class="bfmi-name">Bombay Sapphire</div><div class="bfmi-price">12</div></div>
+            <div class="bfmi"><div class="bfmi-name">Hendrick's</div><div class="bfmi-price">12</div></div>
+            <div class="bfmi"><div class="bfmi-name">Tanqueray</div><div class="bfmi-price">10</div></div>
+            <div class="bfmi"><div class="bfmi-name">Botanist</div><div class="bfmi-price">12</div></div>
+            <div class="bfmi"><div class="bfmi-name">Malfy</div><div class="bfmi-price">12</div></div>
+          </div>
+
+          <div class="bfms-sep"></div>
+
+          <div class="bfms-head"><h3>Cordials</h3></div>
+          <div class="bfms-items">
+            <div class="bfmi"><div class="bfmi-name">Jägermeister</div><div class="bfmi-price">9</div></div>
+            <div class="bfmi"><div class="bfmi-name">Hennessy</div><div class="bfmi-price">14</div></div>
+            <div class="bfmi"><div class="bfmi-name">Rémy Martin 1738</div><div class="bfmi-price">16</div></div>
+            <div class="bfmi"><div class="bfmi-name">Kahlúa</div><div class="bfmi-price">8</div></div>
+            <div class="bfmi"><div class="bfmi-name">Bailey's</div><div class="bfmi-price">8</div></div>
+          </div>
+
         </div><!-- drinks left -->
 
         <div class="bfmenu-col">
@@ -1503,28 +1529,6 @@
             <div class="bfmi"><div class="bfmi-name">Bacardi Silver</div><div class="bfmi-price">10</div></div>
             <div class="bfmi"><div class="bfmi-name">Malibu</div><div class="bfmi-price">9</div></div>
             <div class="bfmi"><div class="bfmi-name">Captain Morgan</div><div class="bfmi-price">10</div></div>
-          </div>
-
-          <div class="bfms-sep"></div>
-
-          <div class="bfms-head"><h3>Gin</h3></div>
-          <div class="bfms-items">
-            <div class="bfmi"><div class="bfmi-name">Bombay Sapphire</div><div class="bfmi-price">12</div></div>
-            <div class="bfmi"><div class="bfmi-name">Hendrick's</div><div class="bfmi-price">12</div></div>
-            <div class="bfmi"><div class="bfmi-name">Tanqueray</div><div class="bfmi-price">10</div></div>
-            <div class="bfmi"><div class="bfmi-name">Botanist</div><div class="bfmi-price">12</div></div>
-            <div class="bfmi"><div class="bfmi-name">Malfy</div><div class="bfmi-price">12</div></div>
-          </div>
-
-          <div class="bfms-sep"></div>
-
-          <div class="bfms-head"><h3>Cordials</h3></div>
-          <div class="bfms-items">
-            <div class="bfmi"><div class="bfmi-name">Jägermeister</div><div class="bfmi-price">9</div></div>
-            <div class="bfmi"><div class="bfmi-name">Hennessy</div><div class="bfmi-price">14</div></div>
-            <div class="bfmi"><div class="bfmi-name">Rémy Martin 1738</div><div class="bfmi-price">16</div></div>
-            <div class="bfmi"><div class="bfmi-name">Kahlúa</div><div class="bfmi-price">8</div></div>
-            <div class="bfmi"><div class="bfmi-name">Bailey's</div><div class="bfmi-price">8</div></div>
           </div>
 
         </div><!-- drinks right -->
