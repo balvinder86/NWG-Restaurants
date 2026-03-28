@@ -562,32 +562,6 @@
     .menu-price { font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--sky-lt);white-space:nowrap;font-weight:500; }
     .menu-badge-tag { display:inline-block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(74,159,212,.15);color:var(--sky-lt);padding:3px 8px;border-radius:2px;margin-top:8px; }
 
-    /* ── EXPERIENCE ── */
-    #experience { background:var(--warm); }
-    .exp-grid { display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:16px;margin-top:64px; }
-    .exp-card { border-radius:4px;overflow:hidden;position:relative;aspect-ratio:1.2;background:linear-gradient(135deg,var(--charcoal),var(--deep));display:flex;align-items:flex-end;transition:transform .4s var(--ease);cursor:none; }
-    .exp-card:hover { transform:scale(1.02); }
-    .exp-card:nth-child(1) { grid-column:span 5;aspect-ratio:.9; }
-    .exp-card:nth-child(2) { grid-column:span 7; }
-    .exp-card:nth-child(3) { grid-column:span 4; }
-    .exp-card:nth-child(4) { grid-column:span 4; }
-    .exp-card:nth-child(5) { grid-column:span 4; }
-    .exp-emoji { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(48px,6vw,80px);animation:expFloat 4s ease-in-out infinite; }
-    .exp-card:nth-child(2) .exp-emoji { animation-delay:.5s; }
-    .exp-card:nth-child(3) .exp-emoji { animation-delay:1s; }
-    .exp-card:nth-child(4) .exp-emoji { animation-delay:1.5s; }
-    .exp-card:nth-child(5) .exp-emoji { animation-delay:2s; }
-    @keyframes expFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-    .exp-bg-gradient { position:absolute;inset:0;transition:opacity .4s; }
-    .exp-card:nth-child(1) .exp-bg-gradient { background:linear-gradient(135deg,#0b2545,#0d1e38); }
-    .exp-card:nth-child(2) .exp-bg-gradient { background:linear-gradient(135deg,#1d3461,#0b2545); }
-    .exp-card:nth-child(3) .exp-bg-gradient { background:linear-gradient(135deg,#0d2a42,#0a1e30); }
-    .exp-card:nth-child(4) .exp-bg-gradient { background:linear-gradient(135deg,#162b48,#0b1e2f); }
-    .exp-card:nth-child(5) .exp-bg-gradient { background:linear-gradient(135deg,#1a3461,#0d2040); }
-    .exp-label { position:relative;z-index:2;padding:20px 24px;width:100%;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%); }
-    .exp-label h3 { font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,26px);color:var(--white);font-weight:400; }
-    .exp-label p { font-size:12px;color:rgba(255,255,255,.5);margin-top:2px; }
-
     /* ── SPECIALS ── */
     #specials { background:var(--cream); }
     .specials-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:32px;margin-top:64px; }
@@ -733,7 +707,6 @@
   <a href="#about" onclick="closeMobile()">Our Story</a>
   <a href="#menu" onclick="closeMobile()">Menu</a>
   <a href="#specials" onclick="closeMobile()">Specials</a>
-  <a href="#experience" onclick="closeMobile()">Experience</a>
   <a href="#visit" onclick="closeMobile()">Visit Us</a>
   <a href="https://bluebirdarlington.com/order" onclick="closeMobile()" style="color:var(--sky)">Order Online →</a>
 </div>
@@ -745,7 +718,6 @@
     <li><a href="#about">Our Story</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#specials">Specials</a></li>
-    <li><a href="#experience">Experience</a></li>
     <li><a href="#visit">Visit Us</a></li>
     <li><a href="https://bluebirdarlington.com/order" class="nav-cta">Order Online</a></li>
   </ul>
@@ -1654,20 +1626,6 @@
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience">
-  <div class="reveal">
-    <div class="section-label">The Atmosphere</div>
-    <h2 class="section-title">Where Families <em>Make Memories</em></h2>
-  </div>
-  <div class="exp-grid">
-    <div class="exp-card reveal-left"><div class="exp-bg-gradient"></div><div class="exp-emoji">🥞</div><div class="exp-label"><h3>Legendary Breakfasts</h3><p>Open daily from 7 AM</p></div></div>
-    <div class="exp-card reveal-right"><div class="exp-bg-gradient"></div><div class="exp-emoji">☕</div><div class="exp-label"><h3>Morning Coffee Ritual</h3><p>Bottomless, always fresh</p></div></div>
-    <div class="exp-card reveal"><div class="exp-bg-gradient"></div><div class="exp-emoji">👨‍👩‍👧</div><div class="exp-label"><h3>Family Friendly</h3><p>Kids welcome always</p></div></div>
-    <div class="exp-card reveal" style="transition-delay:.1s"><div class="exp-bg-gradient"></div><div class="exp-emoji">🥂</div><div class="exp-label"><h3>Weekend Brunch</h3><p>Mimosas all morning</p></div></div>
-    <div class="exp-card reveal" style="transition-delay:.2s"><div class="exp-bg-gradient"></div><div class="exp-emoji">🥩</div><div class="exp-label"><h3>Fri &amp; Sat Dinner</h3><p>Prime rib &amp; more</p></div></div>
-  </div>
-</section>
-
 <!-- SPECIALS -->
 <section id="specials">
   <div class="reveal">
@@ -1761,7 +1719,7 @@
       <div class="nav-logo" style="text-decoration:none;display:inline-flex"><img src="logo.png" alt="Bluebird Café logo" /><span style="color:var(--sky-lt)">Bluebird</span> Café</div>
       <p>Family-owned and operated since 1958. Three generations of great food and genuine hospitality in the heart of Arlington, Washington.</p>
     </div>
-    <div class="footer-col"><h4>Explore</h4><ul><li><a href="#about">Our Story</a></li><li><a href="#menu">Full Menu</a></li><li><a href="#specials">Daily Specials</a></li><li><a href="#experience">The Experience</a></li></ul></div>
+    <div class="footer-col"><h4>Explore</h4><ul><li><a href="#about">Our Story</a></li><li><a href="#menu">Full Menu</a></li><li><a href="#specials">Daily Specials</a></li></ul></div>
     <div class="footer-col"><h4>Visit</h4><ul><li><a href="#visit">Hours &amp; Location</a></li><li><a href="tel:+13604352724">(360) 435-2724</a></li><li><a href="https://bluebirdarlington.com/order">Order Online</a></li><li><a href="https://www.facebook.com/bluebirdcafearlington">Facebook</a></li></ul></div>
     <div class="footer-col"><h4>Follow Us</h4><ul><li><a href="https://www.facebook.com/bluebirdcafearlington">Facebook</a></li><li><a href="https://www.yelp.com">Yelp Reviews</a></li><li><a href="https://www.tripadvisor.com">TripAdvisor</a></li></ul></div>
   </div>
