@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluebird Café & Diner — Brand Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --cream:    #eef5fc;
+      --warm:     #daeaf8;
+      --gold:     #c8973a;
+      --gold-lt:  #e8bb6a;
+      --deep:     #0b2545;
+      --charcoal: #1a3a6e;
+      --muted:    #4a7fa8;
+      --white:    #ffffff;
+      --sky:      #4a9fd4;
+      --sky-lt:   #b8d9f0;
+      --navy:     #1d3461;
+      --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); }
+
+    /* ── LAYOUT ── */
+    .page-header {
+      background: var(--deep);
+      padding: 80px clamp(24px, 6vw, 100px) 60px;
+      border-bottom: 3px solid var(--sky);
+    }
+    .page-header-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--sky); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .page-header-label::before { content: ''; flex: 0 0 32px; height: 1px; background: var(--sky); }
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 7vw, 96px); font-weight: 300;
+      color: var(--white); line-height: .95;
+    }
+    .page-header h1 em { font-style: italic; color: var(--sky-lt); display: block; }
+    .page-header p {
+      font-size: clamp(14px, 1.5vw, 17px); color: rgba(255,255,255,.55);
+      font-weight: 300; line-height: 1.7; margin-top: 24px; max-width: 600px;
+    }
+
+    /* ── NAV SIDEBAR ── */
+    .layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+    .sidebar {
+      background: var(--navy);
+      padding: 48px 24px;
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+      border-right: 1px solid rgba(74,159,212,.2);
+    }
+    .sidebar-title {
+      font-size: 10px; font-weight: 700; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--sky); margin-bottom: 24px;
+    }
+    .sidebar nav ul { list-style: none; }
+    .sidebar nav li + li { margin-top: 4px; }
+    .sidebar nav a {
+      display: block; padding: 8px 12px; border-radius: 4px;
+      font-size: 13px; font-weight: 500; color: rgba(184,217,240,.7);
+      text-decoration: none; letter-spacing: .02em;
+      transition: background .2s, color .2s;
+    }
+    .sidebar nav a:hover { background: rgba(74,159,212,.15); color: var(--white); }
+    .sidebar nav a.active { background: rgba(74,159,212,.2); color: var(--sky-lt); }
+    .sidebar-section { margin-top: 32px; }
+    .sidebar-section-label {
+      font-size: 9px; font-weight: 700; letter-spacing: .22em;
+      text-transform: uppercase; color: rgba(184,217,240,.35);
+      margin-bottom: 8px; padding: 0 12px;
+    }
+
+    .content { padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 80px); }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: clamp(64px, 8vw, 100px); }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--sky); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before { content: ''; flex: 0 0 32px; height: 1px; background: var(--sky); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px); font-weight: 300;
+      color: var(--deep); line-height: 1.05; margin-bottom: 12px;
+    }
+    .section-title em { font-style: italic; color: var(--muted); }
+    .section-desc {
+      font-size: clamp(14px, 1.4vw, 16px); color: var(--muted);
+      line-height: 1.8; max-width: 640px; margin-bottom: 40px;
+    }
+    hr.divider {
+      border: none; border-top: 1px solid rgba(74,159,212,.2);
+      margin: 64px 0;
+    }
+
+    /* ── COLOR PALETTE ── */
+    .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+    .color-swatch {
+      border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(11,37,69,.08);
+      border: 1px solid rgba(74,159,212,.12);
+    }
+    .swatch-block { height: 100px; }
+    .swatch-info { padding: 12px 14px; background: var(--white); }
+    .swatch-name { font-size: 13px; font-weight: 600; color: var(--deep); margin-bottom: 2px; }
+    .swatch-hex { font-size: 11px; font-family: 'Courier New', monospace; color: var(--muted); margin-bottom: 2px; }
+    .swatch-var { font-size: 10px; font-family: 'Courier New', monospace; color: rgba(74,127,168,.6); }
+    .swatch-role { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+    /* ── TYPOGRAPHY ── */
+    .type-row {
+      padding: 32px;
+      background: var(--white);
+      border: 1px solid rgba(74,159,212,.12);
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .type-meta {
+      font-size: 10px; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--sky); margin-bottom: 12px;
+      display: flex; gap: 16px;
+    }
+    .type-meta span { color: rgba(74,127,168,.5); font-weight: 400; letter-spacing: 0; font-style: italic; }
+    .type-sample-hero {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 96px); font-weight: 300;
+      color: var(--deep); line-height: .95;
+    }
+    .type-sample-hero em { color: var(--muted); font-style: italic; }
+    .type-sample-section {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5vw, 64px); font-weight: 300;
+      color: var(--deep); line-height: 1.05;
+    }
+    .type-sample-card {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; color: var(--deep);
+    }
+    .type-sample-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2vw, 24px); font-style: italic;
+      color: var(--charcoal); line-height: 1.6;
+    }
+    .type-sample-nav {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--charcoal);
+    }
+    .type-sample-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px; font-weight: 300; line-height: 1.85;
+      color: var(--muted); max-width: 600px;
+    }
+    .type-sample-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--sky);
+    }
+    .type-sample-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 600; color: var(--gold);
+    }
+    .type-sample-sketch {
+      font-family: 'Cabin Sketch', cursive;
+      font-size: 32px; font-weight: 700; color: var(--deep);
+    }
+
+    /* ── BUTTONS ── */
+    .btn-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+    .btn-primary {
+      background: var(--sky); color: var(--white);
+      padding: 16px 40px; border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none; border: none;
+      cursor: pointer; transition: background .3s, transform .2s, box-shadow .3s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: var(--sky-lt); color: var(--deep); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(74,159,212,.4); }
+    .btn-outline {
+      background: transparent; color: var(--charcoal);
+      padding: 16px 40px; border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(74,159,212,.5); cursor: pointer;
+      transition: border-color .3s, color .3s, transform .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover { border-color: var(--sky); color: var(--sky); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--sky);
+      padding: 12px 28px; border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none;
+      border: none; cursor: pointer;
+      transition: color .3s;
+    }
+    .btn-ghost:hover { color: var(--deep); }
+    .btn-dark {
+      background: var(--deep); color: var(--sky-lt);
+      padding: 16px 40px; border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none; border: none;
+      cursor: pointer; transition: background .3s, transform .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-dark:hover { background: var(--navy); transform: translateY(-2px); }
+
+    /* ── COMPONENTS ── */
+    .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+
+    /* Section Label component */
+    .c-section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--sky);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .c-section-label::before { content: ''; flex: 0 0 32px; height: 1px; background: var(--sky); }
+
+    /* Badge */
+    .c-badge {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: var(--sky-lt); border: 1px solid rgba(74,159,212,.4);
+      padding: 8px 20px; border-radius: 2px;
+    }
+    .c-badge-gold {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(200,151,58,.4);
+      padding: 8px 20px; border-radius: 2px;
+    }
+
+    /* Price pill */
+    .c-price {
+      background: var(--navy); color: var(--sky-lt);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px;
+      white-space: nowrap; display: inline-block;
+    }
+
+    /* Quote block */
+    .c-quote {
+      padding: 28px 32px;
+      border-left: 4px solid var(--sky);
+      background: linear-gradient(135deg, rgba(74,159,212,.07), rgba(29,52,97,.03));
+      border-radius: 0 4px 4px 0;
+      position: relative;
+    }
+    .c-quote::before {
+      content: '"'; position: absolute; top: -8px; left: 20px;
+      font-family: 'Cormorant Garamond', serif; font-size: 80px;
+      color: rgba(74,159,212,.18); line-height: 1; pointer-events: none;
+    }
+    .c-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(17px, 1.8vw, 21px); font-style: italic;
+      color: var(--charcoal); line-height: 1.6; margin-bottom: 12px;
+    }
+    .c-quote cite {
+      font-size: 12px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--sky); font-style: normal;
+    }
+
+    /* Card */
+    .c-card {
+      padding: 32px 28px;
+      background: var(--white);
+      border: 1px solid rgba(74,159,212,.15);
+      border-radius: 4px;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .c-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(11,37,69,.08); border-color: rgba(74,159,212,.35); }
+    .c-card-icon { font-size: 36px; margin-bottom: 16px; }
+    .c-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; color: var(--deep); margin-bottom: 8px;
+    }
+    .c-card-desc { font-size: 13.5px; line-height: 1.7; color: var(--muted); }
+
+    /* Dark card */
+    .c-card-dark {
+      padding: 32px 28px;
+      background: var(--charcoal);
+      border: 1px solid rgba(74,159,212,.15);
+      border-radius: 4px;
+    }
+    .c-card-dark .c-card-title { color: var(--white); }
+    .c-card-dark .c-card-desc { color: var(--sky-lt); }
+
+    /* Stat */
+    .c-stat { text-align: center; }
+    .c-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px); font-weight: 500;
+      color: var(--sky); line-height: 1; display: block;
+    }
+    .c-stat-label {
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-top: 4px; display: block;
+    }
+
+    /* Nav link */
+    .c-nav-link {
+      font-size: 13px; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.75);
+      text-decoration: none; position: relative;
+      padding-bottom: 4px;
+    }
+    .c-nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px; background: var(--sky);
+      transform: scaleX(0); transform-origin: right;
+      transition: transform .3s;
+    }
+    .c-nav-link:hover { color: var(--white); }
+    .c-nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    /* Marquee strip */
+    .c-marquee {
+      background: var(--navy); padding: 16px 0; overflow: hidden;
+      border-top: 2px solid var(--sky); border-bottom: 2px solid var(--sky);
+    }
+    .c-marquee-inner {
+      font-size: 13px; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--sky-lt);
+      white-space: nowrap; padding: 0 24px;
+    }
+
+    /* Input / form element */
+    .c-input {
+      width: 100%; padding: 14px 16px;
+      background: var(--white); color: var(--deep);
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      border: 1px solid rgba(74,159,212,.3); border-radius: 2px;
+      outline: none; transition: border-color .3s;
+      max-width: 320px;
+    }
+    .c-input:focus { border-color: var(--sky); }
+    .c-input::placeholder { color: rgba(74,127,168,.5); }
+
+    /* ── SPACING SECTION ── */
+    .spacing-table { width: 100%; border-collapse: collapse; }
+    .spacing-table th {
+      font-size: 10px; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--sky);
+      padding: 12px 16px; text-align: left;
+      border-bottom: 1px solid rgba(74,159,212,.2);
+    }
+    .spacing-table td {
+      padding: 14px 16px; font-size: 13px; color: var(--charcoal);
+      border-bottom: 1px solid rgba(74,159,212,.08);
+      vertical-align: middle;
+    }
+    .spacing-table td code {
+      font-family: 'Courier New', monospace; font-size: 12px;
+      background: rgba(74,159,212,.08); padding: 2px 6px;
+      border-radius: 3px; color: var(--sky);
+    }
+    .spacing-bar { height: 8px; background: var(--sky); border-radius: 2px; margin-top: 4px; }
+
+    /* ── DARK DEMO ── */
+    .dark-demo {
+      background: var(--deep); padding: 48px;
+      border-radius: 8px; margin-top: 32px;
+    }
+
+    /* ── TOKEN TABLE ── */
+    .token-table { width: 100%; border-collapse: collapse; }
+    .token-table th {
+      font-size: 10px; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--sky);
+      padding: 12px 16px; text-align: left;
+      border-bottom: 1px solid rgba(74,159,212,.2); background: var(--warm);
+    }
+    .token-table td {
+      padding: 12px 16px; font-size: 13px; color: var(--charcoal);
+      border-bottom: 1px solid rgba(74,159,212,.08);
+      vertical-align: middle;
+    }
+    .token-table td:first-child { font-family: 'Courier New', monospace; color: var(--sky); font-size: 12px; }
+    .token-table td:nth-child(2) { font-family: 'Courier New', monospace; font-size: 12px; color: var(--muted); }
+    .dot-swatch { display: inline-block; width: 18px; height: 18px; border-radius: 50%; vertical-align: middle; margin-right: 8px; border: 1px solid rgba(0,0,0,.08); }
+
+    /* ── DO / DON'T ── */
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .do-box, .dont-box {
+      padding: 28px; border-radius: 8px;
+    }
+    .do-box { background: rgba(74,159,212,.06); border: 1px solid rgba(74,159,212,.25); }
+    .dont-box { background: rgba(200,50,50,.05); border: 1px solid rgba(200,50,50,.2); }
+    .do-box h4 { color: var(--sky); font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 12px; }
+    .dont-box h4 { color: #cc3333; font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 12px; }
+    .do-box li, .dont-box li { font-size: 13.5px; color: var(--charcoal); line-height: 1.7; margin-bottom: 8px; list-style: none; padding-left: 20px; position: relative; }
+    .do-box li::before { content: '✓'; position: absolute; left: 0; color: var(--sky); font-weight: 700; }
+    .dont-box li::before { content: '✕'; position: absolute; left: 0; color: #cc3333; font-weight: 700; }
+
+    /* ── ANIMATION TOKENS ── */
+    .anim-card {
+      padding: 24px 28px;
+      background: var(--white);
+      border: 1px solid rgba(74,159,212,.12);
+      border-radius: 4px;
+    }
+    .anim-name { font-size: 13px; font-weight: 600; color: var(--deep); margin-bottom: 4px; }
+    .anim-value { font-size: 12px; font-family: 'Courier New', monospace; color: var(--sky); margin-bottom: 8px; }
+    .anim-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .do-dont { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-label">Brand Guidelines</div>
+  <h1>Bluebird Café<em>& Diner</em></h1>
+  <p>This document defines the visual identity, design tokens, typography, and component patterns used across all Bluebird Café digital properties. Follow these guidelines to maintain a consistent brand experience.</p>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR NAV -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Contents</div>
+    <nav>
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Foundation</div>
+        <ul>
+          <li><a href="#brand-identity">Brand Identity</a></li>
+          <li><a href="#color-palette">Color Palette</a></li>
+          <li><a href="#typography">Typography</a></li>
+          <li><a href="#spacing">Spacing & Layout</a></li>
+          <li><a href="#motion">Motion & Easing</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Components</div>
+        <ul>
+          <li><a href="#buttons">Buttons</a></li>
+          <li><a href="#labels">Labels & Badges</a></li>
+          <li><a href="#cards">Cards</a></li>
+          <li><a href="#quotes">Quote Blocks</a></li>
+          <li><a href="#navigation">Navigation</a></li>
+          <li><a href="#forms">Forms</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Usage</div>
+        <ul>
+          <li><a href="#page-template">Page Template</a></li>
+          <li><a href="#do-dont">Do & Don't</a></li>
+          <li><a href="#css-tokens">CSS Tokens</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- ── BRAND IDENTITY ── -->
+    <section class="section" id="brand-identity">
+      <div class="section-label">01 — Foundation</div>
+      <h2 class="section-title">Brand <em>Identity</em></h2>
+      <p class="section-desc">Bluebird Café & Diner is a family-owned institution in Arlington, Washington since 1958. The brand blends heritage warmth with a modern luxury aesthetic — refined but approachable, classic but current.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;margin-bottom:40px;">
+        <div class="c-card">
+          <div class="c-card-icon">🫐</div>
+          <div class="c-card-title">Heritage</div>
+          <div class="c-card-desc">Est. 1958 by Merle & Florence Peper. Family-owned for generations. Every design decision honours that history.</div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-icon">✦</div>
+          <div class="c-card-title">Refined</div>
+          <div class="c-card-desc">Luxury-tier typography and restrained colour use. Gold and sky-blue accents signal quality without excess.</div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-icon">🌄</div>
+          <div class="c-card-title">Local</div>
+          <div class="c-card-desc">Arlington, WA. Pacific Northwest roots. Farm-fresh ingredients. Community first.</div>
+        </div>
+      </div>
+
+      <div style="background:var(--deep);padding:36px 40px;border-radius:8px;border-left:4px solid var(--sky);">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,28px);font-style:italic;color:var(--sky-lt);line-height:1.5;margin-bottom:12px;">"Good food, good people, good morning — every morning since 1958."</p>
+        <p style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);font-weight:600;">Brand Voice</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── COLOR PALETTE ── -->
+    <section class="section" id="color-palette">
+      <div class="section-label">02 — Foundation</div>
+      <h2 class="section-title">Color <em>Palette</em></h2>
+      <p class="section-desc">All colours are defined as CSS custom properties in <code style="font-family:monospace;background:rgba(74,159,212,.1);padding:2px 6px;border-radius:3px;font-size:13px;">:root</code>. Never hardcode hex values in components — always reference a token.</p>
+
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#0b2545;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Deep Navy</div>
+            <div class="swatch-hex">#0b2545</div>
+            <div class="swatch-var">--deep</div>
+            <div class="swatch-role">Primary dark background — hero, menu section, footer</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1d3461;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy</div>
+            <div class="swatch-hex">#1d3461</div>
+            <div class="swatch-var">--navy</div>
+            <div class="swatch-role">Section headers, marquee strip, card backgrounds</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1a3a6e;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Charcoal Navy</div>
+            <div class="swatch-hex">#1a3a6e</div>
+            <div class="swatch-var">--charcoal</div>
+            <div class="swatch-role">Body text on light bg, card overlays, headings</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#4a9fd4;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Sky Blue</div>
+            <div class="swatch-hex">#4a9fd4</div>
+            <div class="swatch-var">--sky</div>
+            <div class="swatch-role">Primary interactive accent — buttons, links, underlines</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#b8d9f0;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Sky Light</div>
+            <div class="swatch-hex">#b8d9f0</div>
+            <div class="swatch-var">--sky-lt</div>
+            <div class="swatch-role">Headings on dark backgrounds, price pills, logo</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#4a7fa8;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Muted Blue</div>
+            <div class="swatch-hex">#4a7fa8</div>
+            <div class="swatch-var">--muted</div>
+            <div class="swatch-role">Body text, descriptions, subtitles on light bg</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#eef5fc;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Cream</div>
+            <div class="swatch-hex">#eef5fc</div>
+            <div class="swatch-var">--cream</div>
+            <div class="swatch-role">Page background, alternating light sections</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#daeaf8;border:1px solid rgba(74,159,212,.15);"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Warm Blue</div>
+            <div class="swatch-hex">#daeaf8</div>
+            <div class="swatch-var">--warm</div>
+            <div class="swatch-role">Alternate section bg — experience, visit sections</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#c8973a;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Gold</div>
+            <div class="swatch-hex">#c8973a</div>
+            <div class="swatch-var">--gold</div>
+            <div class="swatch-role">Accent — pricing emphasis, premium badges, awards</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#e8bb6a;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Gold Light</div>
+            <div class="swatch-hex">#e8bb6a</div>
+            <div class="swatch-var">--gold-lt</div>
+            <div class="swatch-role">Gold hover states, secondary accent moments</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#ffffff;border:1px solid rgba(74,159,212,.15);"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">White</div>
+            <div class="swatch-hex">#ffffff</div>
+            <div class="swatch-var">--white</div>
+            <div class="swatch-role">Card backgrounds, text on dark sections</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── TYPOGRAPHY ── -->
+    <section class="section" id="typography">
+      <div class="section-label">03 — Foundation</div>
+      <h2 class="section-title">Typography</h2>
+      <p class="section-desc">Three typefaces form a deliberate hierarchy. Cormorant Garamond carries all display and heading moments. Inter handles all functional UI text. Playfair Display is reserved for editorial pull quotes. Cabin Sketch appears only in decorative signage contexts.</p>
+
+      <div class="type-row">
+        <div class="type-meta">Hero Title <span>Cormorant Garamond · 300 weight · clamp(52px,10vw,120px) · line-height 0.95</span></div>
+        <div class="type-sample-hero">Bluebird Café<em>&</em></div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">Section Title <span>Cormorant Garamond · 300 weight · clamp(40px,6vw,72px) · line-height 1.05</span></div>
+        <div class="type-sample-section">Our Story & <em>Heritage</em></div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">Card / Menu Title <span>Cormorant Garamond · 600 weight · 22px</span></div>
+        <div class="type-sample-card">Eggs Benedict Royale</div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">Pull Quote <span>Playfair Display · 400 italic · clamp(18px,2vw,24px) · line-height 1.6</span></div>
+        <div class="type-sample-quote">"Every plate tells sixty-six years of love and craft."</div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">Body Text <span>Inter · 300 weight · 16px · line-height 1.85 · color: --muted</span></div>
+        <div class="type-sample-body">Family-owned since 1958, Bluebird Café & Diner has served Arlington with legendary breakfasts, farm-fresh lunches, and warm Pacific Northwest hospitality every single morning.</div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">Navigation / Button <span>Inter · 500–600 weight · 13px · letter-spacing 0.12em · UPPERCASE</span></div>
+        <div class="type-sample-nav">Our Menu &nbsp;&nbsp; About Us &nbsp;&nbsp; Visit Us &nbsp;&nbsp; Order Online</div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">Section Label <span>Inter · 600 weight · 11px · letter-spacing 0.3em · UPPERCASE · color: --sky</span></div>
+        <div class="type-sample-label">— &nbsp; About the Café</div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">Price Display <span>Cormorant Garamond · 600 weight · 28px · color: --gold</span></div>
+        <div class="type-sample-price">$18.95</div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">Decorative / Signage <span>Cabin Sketch · 700 weight · use sparingly for menu chalkboard moments</span></div>
+        <div class="type-sample-sketch">Today's Special</div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SPACING ── -->
+    <section class="section" id="spacing">
+      <div class="section-label">04 — Foundation</div>
+      <h2 class="section-title">Spacing <em>& Layout</em></h2>
+      <p class="section-desc">All spacing uses <code style="font-family:monospace;background:rgba(74,159,212,.1);padding:2px 6px;border-radius:3px;font-size:13px;">clamp()</code> for fluid scaling. Never use fixed pixel values for section padding or typography sizing.</p>
+
+      <table class="spacing-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+            <th>Usage</th>
+            <th style="width:120px;">Scale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Section padding Y</td>
+            <td><code>clamp(80px, 12vw, 160px)</code></td>
+            <td>Top/bottom padding on all <code>&lt;section&gt;</code> elements</td>
+            <td><div class="spacing-bar" style="width:100%;"></div></td>
+          </tr>
+          <tr>
+            <td>Section padding X</td>
+            <td><code>clamp(24px, 6vw, 100px)</code></td>
+            <td>Left/right padding on all sections</td>
+            <td><div class="spacing-bar" style="width:80%;"></div></td>
+          </tr>
+          <tr>
+            <td>Hero font size</td>
+            <td><code>clamp(52px, 10vw, 120px)</code></td>
+            <td>H1 on hero section only</td>
+            <td><div class="spacing-bar" style="width:100%;background:var(--gold);"></div></td>
+          </tr>
+          <tr>
+            <td>Section title</td>
+            <td><code>clamp(40px, 6vw, 72px)</code></td>
+            <td>All section headings</td>
+            <td><div class="spacing-bar" style="width:75%;background:var(--gold);"></div></td>
+          </tr>
+          <tr>
+            <td>Body font size</td>
+            <td><code>clamp(15px, 1.5vw, 17px)</code></td>
+            <td>Paragraph text in content sections</td>
+            <td><div class="spacing-bar" style="width:30%;background:var(--muted);"></div></td>
+          </tr>
+          <tr>
+            <td>Card gap</td>
+            <td><code>24px</code></td>
+            <td>Grid gap between cards</td>
+            <td><div class="spacing-bar" style="width:20%;background:var(--muted);"></div></td>
+          </tr>
+          <tr>
+            <td>Max content width</td>
+            <td><code>1200px</code></td>
+            <td>Inner content containers (.about-inner)</td>
+            <td><div class="spacing-bar" style="width:100%;background:var(--charcoal);"></div></td>
+          </tr>
+          <tr>
+            <td>Navbar height</td>
+            <td><code>80px</code></td>
+            <td>Fixed top navigation</td>
+            <td><div class="spacing-bar" style="width:15%;background:var(--charcoal);"></div></td>
+          </tr>
+          <tr>
+            <td>Border radius — subtle</td>
+            <td><code>2px</code></td>
+            <td>Buttons, CTA strips — intentionally minimal</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Border radius — card</td>
+            <td><code>4px</code></td>
+            <td>Value cards, menu cards, quote blocks</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Border radius — large</td>
+            <td><code>8px</code></td>
+            <td>Menu wrap, gallery cards</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:32px;">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--deep);margin-bottom:16px;">Responsive Breakpoints</h3>
+        <table class="spacing-table">
+          <thead><tr><th>Breakpoint</th><th>Layout Change</th></tr></thead>
+          <tbody>
+            <tr><td><code>&gt; 1024px</code></td><td>Full layout — two-column grids, 3D dish visible, side-by-side sections</td></tr>
+            <tr><td><code>≤ 1024px</code></td><td>3D dish hidden, grids collapse to single column</td></tr>
+            <tr><td><code>≤ 900px</code></td><td>Breakfast menu collapses to single column</td></tr>
+            <tr><td><code>≤ 768px</code></td><td>Nav links hidden → hamburger menu; grids adjust to 2-col</td></tr>
+            <tr><td><code>≤ 480px</code></td><td>Cards go full-width; stats grid 2-col</td></tr>
+            <tr><td><code>hover: none</code></td><td>Custom cursor hidden; pointer cursors restored for touch</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── MOTION ── -->
+    <section class="section" id="motion">
+      <div class="section-label">05 — Foundation</div>
+      <h2 class="section-title">Motion <em>& Easing</em></h2>
+      <p class="section-desc">All transitions use a single custom ease curve. Scroll-triggered reveals use IntersectionObserver at a 10% threshold. Durations stay between 200ms (micro-interactions) and 900ms (page reveals).</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+        <div class="anim-card">
+          <div class="anim-name">Brand Ease</div>
+          <div class="anim-value">cubic-bezier(0.25, 0.46, 0.45, 0.94)</div>
+          <div class="anim-desc">Default easing for all transitions. Defined as <code style="font-size:11px;">--ease</code>. Never use linear or browser defaults.</div>
+        </div>
+        <div class="anim-card">
+          <div class="anim-name">Scroll Reveal</div>
+          <div class="anim-value">opacity + translateY(40px) → 0 · 0.8s</div>
+          <div class="anim-desc">Elements animate in from below via .reveal class + IntersectionObserver. Left/right variants also available.</div>
+        </div>
+        <div class="anim-card">
+          <div class="anim-name">Hover Lift</div>
+          <div class="anim-value">translateY(-2px to -4px) · 0.2–0.3s</div>
+          <div class="anim-desc">Buttons lift 2px on hover; cards lift 4px. Always pair with a subtle box-shadow increase.</div>
+        </div>
+        <div class="anim-card">
+          <div class="anim-name">Float Loop</div>
+          <div class="anim-value">translateY(0 ↔ -12px) · 5–6s · infinite</div>
+          <div class="anim-desc">Used for hero dish, about emoji, and decorative elements. Creates a calm, living feel.</div>
+        </div>
+        <div class="anim-card">
+          <div class="anim-name">Counter Ease</div>
+          <div class="anim-value">1 - Math.pow(1 - progress, 3) · 2000ms</div>
+          <div class="anim-desc">Cubic ease-out for number counters in the stats section. Fires once on scroll into view.</div>
+        </div>
+        <div class="anim-card">
+          <div class="anim-name">Parallax Hero</div>
+          <div class="anim-value">translateY(scrollY × 0.35)</div>
+          <div class="anim-desc">Hero content moves at 35% of scroll speed, creating depth without motion sickness.</div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── BUTTONS ── -->
+    <section class="section" id="buttons">
+      <div class="section-label">06 — Components</div>
+      <h2 class="section-title">Buttons</h2>
+      <p class="section-desc">All buttons use 2px border-radius, 13px Inter 600, 0.12em letter-spacing, and uppercase text. Never use more than two button variants on a single section.</p>
+
+      <div style="margin-bottom:32px;">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Primary — use for the main CTA on any section</p>
+        <div class="btn-row">
+          <button class="btn-primary">Order Online ↗</button>
+          <button class="btn-primary">View Full Menu</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom:32px;">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Outline — secondary action on light backgrounds</p>
+        <div class="btn-row">
+          <button class="btn-outline">Our Story</button>
+          <button class="btn-outline">See Hours</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom:32px;">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Ghost — tertiary, inline text-level actions</p>
+        <div class="btn-row">
+          <button class="btn-ghost">Learn More →</button>
+        </div>
+      </div>
+
+      <div class="dark-demo">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--sky-lt);margin-bottom:20px;opacity:.6;">On Dark Backgrounds</p>
+        <div class="btn-row">
+          <button class="btn-primary">Order Online ↗</button>
+          <button class="btn-outline" style="color:var(--white);border-color:rgba(255,255,255,.3);">Our Story</button>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── LABELS & BADGES ── -->
+    <section class="section" id="labels">
+      <div class="section-label">07 — Components</div>
+      <h2 class="section-title">Labels <em>& Badges</em></h2>
+
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;margin-bottom:32px;">
+        <div>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Section Label (with line)</p>
+          <div class="c-section-label">About the Café</div>
+        </div>
+        <div>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Hero Badge (sky border)</p>
+          <div class="c-badge">Est. 1958 · Arlington, WA</div>
+        </div>
+        <div>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Gold Badge (premium)</p>
+          <div class="c-badge-gold">Chef's Special</div>
+        </div>
+        <div>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Price Pill</p>
+          <div class="c-price">$18.95</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <div class="c-stat">
+          <span class="c-stat-num">66+</span>
+          <span class="c-stat-label">Years Serving Arlington</span>
+        </div>
+        <div class="c-stat">
+          <span class="c-stat-num">1958</span>
+          <span class="c-stat-label">Year Founded</span>
+        </div>
+        <div class="c-stat">
+          <span class="c-stat-num">100%</span>
+          <span class="c-stat-label">Family Owned</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── CARDS ── -->
+    <section class="section" id="cards">
+      <div class="section-label">08 — Components</div>
+      <h2 class="section-title">Cards</h2>
+
+      <div class="component-grid" style="margin-bottom:32px;">
+        <div class="c-card">
+          <div class="c-card-icon">🍳</div>
+          <div class="c-card-title">Farm Fresh Eggs</div>
+          <div class="c-card-desc">Free-range eggs from local farms. Served any style with your choice of toast and house potatoes.</div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-icon">☕</div>
+          <div class="c-card-title">House Roast Coffee</div>
+          <div class="c-card-desc">Small-batch roasted beans, served in a bottomless carafe. Because one cup is never enough.</div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-icon">🫐</div>
+          <div class="c-card-title">Bluebird Pancakes</div>
+          <div class="c-card-desc">Buttermilk stacks topped with wild blueberry compote and Vermont maple syrup.</div>
+        </div>
+      </div>
+
+      <div class="dark-demo">
+        <p style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--sky-lt);margin-bottom:20px;opacity:.6;">Dark Card Variant — use on --deep backgrounds</p>
+        <div class="component-grid">
+          <div class="c-card-dark">
+            <div class="c-card-icon">🥞</div>
+            <div class="c-card-title">Weekend Special</div>
+            <div class="c-card-desc">Available Saturday & Sunday only. Ask your server for today's feature.</div>
+          </div>
+          <div class="c-card-dark">
+            <div class="c-card-icon">🌄</div>
+            <div class="c-card-title">Morning Atmosphere</div>
+            <div class="c-card-desc">Open daily at 6am. Watch the sunrise over the Cascades from our corner booth.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── QUOTE BLOCKS ── -->
+    <section class="section" id="quotes">
+      <div class="section-label">09 — Components</div>
+      <h2 class="section-title">Quote <em>Blocks</em></h2>
+      <p class="section-desc">Use for testimonials, founder quotes, and editorial moments. Always use Playfair Display italic inside the quote, Cormorant Garamond for the large decorative opening mark.</p>
+
+      <div class="c-quote" style="max-width:640px;margin-bottom:24px;">
+        <p>"I've been coming here every Saturday morning for thirty years. The biscuits and gravy are the best in Washington State."</p>
+        <cite>— Margaret T., Arlington Local</cite>
+      </div>
+
+      <div class="c-quote" style="max-width:640px;">
+        <p>"Merle and Florence started this with a handshake and a dream. We've never stopped honouring that."</p>
+        <cite>— The Peper Family</cite>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── NAVIGATION ── -->
+    <section class="section" id="navigation">
+      <div class="section-label">10 — Components</div>
+      <h2 class="section-title">Navigation</h2>
+
+      <div class="dark-demo" style="margin-bottom:24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+          <a href="#" style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--white);letter-spacing:.05em;text-decoration:none;">
+            Bluebird <span style="color:var(--sky-lt);">Café</span>
+          </a>
+          <div style="display:flex;gap:36px;">
+            <a class="c-nav-link" href="#">Menu</a>
+            <a class="c-nav-link" href="#">About</a>
+            <a class="c-nav-link" href="#">Visit Us</a>
+            <a href="#" class="btn-primary" style="padding:10px 24px;font-size:12px;">Order Online</a>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;">
+        The navbar uses <code style="font-family:monospace;background:rgba(74,159,212,.1);padding:2px 6px;border-radius:3px;">position:fixed</code> with transparent background at page-top. On scroll it adopts <code style="font-family:monospace;background:rgba(74,159,212,.1);padding:2px 6px;border-radius:3px;">rgba(11,37,69,.93)</code> with <code style="font-family:monospace;background:rgba(74,159,212,.1);padding:2px 6px;border-radius:3px;">backdrop-filter:blur(20px)</code>. A 1px sky-blue bottom border appears on scroll to mark the active state.
+      </p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── FORMS ── -->
+    <section class="section" id="forms">
+      <div class="section-label">11 — Components</div>
+      <h2 class="section-title">Forms <em>& Inputs</em></h2>
+
+      <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;margin-bottom:24px;">
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);display:block;margin-bottom:8px;">Your Name</label>
+          <input class="c-input" type="text" placeholder="Florence Peper" />
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);display:block;margin-bottom:8px;">Reservation Date</label>
+          <input class="c-input" type="text" placeholder="Saturday, April 5" />
+        </div>
+        <button class="btn-primary">Reserve Table</button>
+      </div>
+
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;">Labels use 11px Inter 600 uppercase with --sky colour. Inputs use 1px solid border at <code style="font-family:monospace;background:rgba(74,159,212,.1);padding:2px 6px;border-radius:3px;">rgba(74,159,212,.3)</code>, upgrading to <code style="font-family:monospace;background:rgba(74,159,212,.1);padding:2px 6px;border-radius:3px;">--sky</code> on focus. Border-radius 2px to match buttons.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── PAGE TEMPLATE ── -->
+    <section class="section" id="page-template">
+      <div class="section-label">12 — Usage</div>
+      <h2 class="section-title">Page <em>Template</em></h2>
+      <p class="section-desc">Copy this starter shell for any new page under the Bluebird brand. It includes all CSS tokens, fonts, and base styles pre-wired.</p>
+
+      <div style="background:var(--deep);padding:32px;border-radius:8px;overflow-x:auto;">
+        <pre style="font-family:'Courier New',monospace;font-size:12px;color:var(--sky-lt);line-height:1.7;white-space:pre-wrap;">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;title&gt;Page Title — Bluebird Café &amp; Diner&lt;/title&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Cabin+Sketch:wght@400;700&amp;display=swap" rel="stylesheet" /&gt;
+  &lt;style&gt;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:    #eef5fc;   --warm:     #daeaf8;
+      --gold:     #c8973a;   --gold-lt:  #e8bb6a;
+      --deep:     #0b2545;   --charcoal: #1a3a6e;
+      --muted:    #4a7fa8;   --white:    #ffffff;
+      --sky:      #4a9fd4;   --sky-lt:   #b8d9f0;
+      --navy:     #1d3461;
+      --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); }
+    section { padding: clamp(80px,12vw,160px) clamp(24px,6vw,100px); }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--sky); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before { content: ''; flex: 0 0 32px; height: 1px; background: var(--sky); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px,6vw,72px); font-weight: 300;
+      color: var(--deep); line-height: 1.05;
+    }
+    .section-title em { font-style: italic; color: var(--muted); }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Include shared navbar here --&gt;
+
+  &lt;section&gt;
+    &lt;div class="section-label"&gt;Section Label&lt;/div&gt;
+    &lt;h2 class="section-title"&gt;Your Title &lt;em&gt;Here&lt;/em&gt;&lt;/h2&gt;
+    &lt;!-- content --&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Include shared footer here --&gt;
+
+  &lt;script&gt;
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries =&gt; {
+      entries.forEach(e =&gt; { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el =&gt; obs.observe(el));
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── DO & DON'T ── -->
+    <section class="section" id="do-dont">
+      <div class="section-label">13 — Usage</div>
+      <h2 class="section-title">Do <em>& Don't</em></h2>
+
+      <div class="do-dont">
+        <div class="do-box">
+          <h4>Do</h4>
+          <ul>
+            <li>Use CSS tokens (--sky, --deep) — never hardcode hex values</li>
+            <li>Use clamp() for all font sizes and section padding</li>
+            <li>Use Cormorant Garamond for all headings and display text</li>
+            <li>Keep button border-radius at 2px</li>
+            <li>Use section labels (small caps + sky line) above every section title</li>
+            <li>Apply the .reveal class to animate content on scroll</li>
+            <li>Use --ease for every CSS transition</li>
+            <li>Keep gold as a rare, premium accent only</li>
+            <li>Always pair a primary button with an outline or ghost variant</li>
+            <li>Use italic in section titles for a secondary colour variation</li>
+          </ul>
+        </div>
+        <div class="dont-box">
+          <h4>Don't</h4>
+          <ul>
+            <li>Don't use more than 3 typefaces on a single page</li>
+            <li>Don't mix gold and sky-blue as co-equal accents in one component</li>
+            <li>Don't use Cabin Sketch outside of decorative chalkboard-style moments</li>
+            <li>Don't use border-radius above 8px — keep the aesthetic sharp</li>
+            <li>Don't animate more than 2 elements simultaneously on load</li>
+            <li>Don't use the custom cursor on touch/mobile devices</li>
+            <li>Don't put body text on the --deep background without significant lightening</li>
+            <li>Don't stack more than two CTAs side-by-side in the hero</li>
+            <li>Don't use box shadows without rgba(11,37,69,…) for brand consistency</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── CSS TOKENS ── -->
+    <section class="section" id="css-tokens">
+      <div class="section-label">14 — Reference</div>
+      <h2 class="section-title">CSS <em>Token Reference</em></h2>
+      <p class="section-desc">Copy this :root block into any new stylesheet to inherit the full design system.</p>
+
+      <table class="token-table">
+        <thead>
+          <tr><th>Token</th><th>Value</th><th>Swatch</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>--cream</td><td>#eef5fc</td><td><span class="dot-swatch" style="background:#eef5fc;border:1px solid #ccc;"></span></td><td>Page background</td></tr>
+          <tr><td>--warm</td><td>#daeaf8</td><td><span class="dot-swatch" style="background:#daeaf8;border:1px solid #ccc;"></span></td><td>Alternate section background</td></tr>
+          <tr><td>--gold</td><td>#c8973a</td><td><span class="dot-swatch" style="background:#c8973a;"></span></td><td>Gold accent</td></tr>
+          <tr><td>--gold-lt</td><td>#e8bb6a</td><td><span class="dot-swatch" style="background:#e8bb6a;"></span></td><td>Gold hover / light accent</td></tr>
+          <tr><td>--deep</td><td>#0b2545</td><td><span class="dot-swatch" style="background:#0b2545;"></span></td><td>Primary dark background</td></tr>
+          <tr><td>--charcoal</td><td>#1a3a6e</td><td><span class="dot-swatch" style="background:#1a3a6e;"></span></td><td>Body text, overlays</td></tr>
+          <tr><td>--muted</td><td>#4a7fa8</td><td><span class="dot-swatch" style="background:#4a7fa8;"></span></td><td>Descriptive / secondary text</td></tr>
+          <tr><td>--white</td><td>#ffffff</td><td><span class="dot-swatch" style="background:#ffffff;border:1px solid #ccc;"></span></td><td>Card backgrounds, light text</td></tr>
+          <tr><td>--sky</td><td>#4a9fd4</td><td><span class="dot-swatch" style="background:#4a9fd4;"></span></td><td>Primary interactive accent</td></tr>
+          <tr><td>--sky-lt</td><td>#b8d9f0</td><td><span class="dot-swatch" style="background:#b8d9f0;"></span></td><td>Light headings on dark bg</td></tr>
+          <tr><td>--navy</td><td>#1d3461</td><td><span class="dot-swatch" style="background:#1d3461;"></span></td><td>Section headers, nav, badges</td></tr>
+          <tr><td>--ease</td><td>cubic-bezier(0.25,0.46,0.45,0.94)</td><td>—</td><td>All transitions & animations</td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:var(--deep);padding:32px;border-radius:8px;margin-top:24px;overflow-x:auto;">
+        <pre style="font-family:'Courier New',monospace;font-size:12px;color:var(--sky-lt);line-height:1.9;white-space:pre-wrap;">:root {
+  --cream:    #eef5fc;
+  --warm:     #daeaf8;
+  --gold:     #c8973a;
+  --gold-lt:  #e8bb6a;
+  --deep:     #0b2545;
+  --charcoal: #1a3a6e;
+  --muted:    #4a7fa8;
+  --white:    #ffffff;
+  --sky:      #4a9fd4;
+  --sky-lt:   #b8d9f0;
+  --navy:     #1d3461;
+  --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}</pre>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div style="margin-top:80px;padding-top:40px;border-top:1px solid rgba(74,159,212,.2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+      <div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--deep);">Bluebird Café & Diner</p>
+        <p style="font-size:12px;color:var(--muted);margin-top:4px;">Brand Guidelines v1.0 · NWG Restaurants · 308 N Olympic Ave, Arlington, WA 98223</p>
+      </div>
+      <div class="c-badge">Est. 1958</div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
