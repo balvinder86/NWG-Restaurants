@@ -675,7 +675,9 @@
     .visit-hours-left { display:flex;align-items:center;gap:20px; }
     .visit-hours-icon { font-size:36px;line-height:1; }
     .visit-hours-label { font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);margin-bottom:4px; }
-    .visit-hours-time { font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,38px);font-weight:300;color:var(--white);letter-spacing:.02em; }
+    .visit-hours-time { font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,38px);font-weight:300;color:var(--white);letter-spacing:.02em;white-space:nowrap; }
+    .hint-tap { display:none; }
+    @media (hover: none) { .hint-hover { display:none; } .hint-tap { display:inline; } }
     .visit-open-badge { display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#4caf50;background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.25);padding:8px 18px;border-radius:20px; }
     .visit-open-dot { width:7px;height:7px;background:#4caf50;border-radius:50%;animation:blink 1.5s ease-in-out infinite;flex-shrink:0; }
 
@@ -1770,7 +1772,7 @@
   <div class="reveal">
     <div class="section-label">Chef's Picks</div>
     <h2 class="section-title">House <em>Signatures</em></h2>
-    <p style="margin-top:20px;color:var(--muted);font-size:15px;max-width:480px">Hover each card to reveal what makes it special.</p>
+    <p style="margin-top:20px;color:var(--muted);font-size:15px;max-width:480px"><span class="hint-hover">Hover</span><span class="hint-tap">Tap</span> each card to reveal what makes it special.</p>
   </div>
   <div class="specials-grid">
     <div class="special-card reveal"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥞</div><h3>Blueberry Stack</h3><p>House Signature</p></div><div class="special-back"><h3>Blueberry Stack</h3><p>Cloud-like buttermilk pancakes loaded with plump Pacific Northwest blueberries — served with real maple syrup and cultured butter</p><span class="price">$12</span></div></div></div>
