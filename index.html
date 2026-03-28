@@ -636,25 +636,30 @@
     .gallery-item { border-radius: 8px; overflow: hidden; position: relative; }
     .gallery-item--tall { grid-row: span 2; }
     .gallery-item--wide { grid-column: span 2; }
-    .gallery-placeholder {
+    .gallery-img {
       width: 100%; height: 100%;
-      background: linear-gradient(135deg, var(--charcoal), var(--deep));
-      border: 1px solid rgba(74,159,212,.2);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 12px;
-      transition: transform .4s var(--ease), border-color .3s;
-      cursor: default;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s var(--ease);
     }
-    .gallery-placeholder:hover { transform: scale(1.02); border-color: rgba(74,159,212,.5); }
-    .gallery-emoji { font-size: clamp(36px, 4vw, 60px); filter: drop-shadow(0 4px 16px rgba(74,159,212,.3)); }
-    .gallery-caption {
+    .gallery-img--logo {
+      object-fit: contain;
+      background: var(--deep);
+      padding: 20px;
+    }
+    .gallery-item:hover .gallery-img { transform: scale(1.04); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(11,37,69,.75) 0%, transparent 55%);
+      display: flex; align-items: flex-end;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span {
       font-size: 12px; font-weight: 600; letter-spacing: .1em;
-      text-transform: uppercase; color: rgba(255,255,255,.5);
-      text-align: center; padding: 0 16px;
-    }
-    .gallery-note {
-      margin-top: 32px; font-size: 14px; color: var(--muted);
-      text-align: center; line-height: 1.7;
+      text-transform: uppercase; color: var(--white);
     }
     @media (max-width: 900px) {
       .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
@@ -1698,55 +1703,82 @@
   </div>
   <div class="gallery-grid reveal">
     <div class="gallery-item gallery-item--tall">
-      <div class="gallery-placeholder">
-        <span class="gallery-emoji">🥞</span>
-        <span class="gallery-caption">Signature Blueberry Stack</span>
-      </div>
+      <img src="gallery/gallery-3.webp" alt="Fresh Berry Waffle" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Fresh Berry Waffle</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <span class="gallery-emoji">☕</span>
-        <span class="gallery-caption">Fresh Morning Coffee</span>
-      </div>
+      <img src="gallery/gallery-2.webp" alt="Crispy Tacos" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Crispy Tacos</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <span class="gallery-emoji">🍳</span>
-        <span class="gallery-caption">Farm Fresh Eggs</span>
-      </div>
+      <img src="gallery/gallery-8.webp" alt="Bacon Bleu Burger" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Bacon Bleu Burger</span></div>
     </div>
     <div class="gallery-item gallery-item--wide">
-      <div class="gallery-placeholder">
-        <span class="gallery-emoji">🏡</span>
-        <span class="gallery-caption">Bluebird Café — Arlington, WA</span>
-      </div>
+      <img src="gallery/gallery-5.webp" alt="Pan-Seared Salmon" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Pan-Seared Salmon</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <span class="gallery-emoji">🥗</span>
-        <span class="gallery-caption">Fresh Lunch Plates</span>
-      </div>
+      <img src="gallery/gallery-4.webp" alt="Signature Cocktail" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Signature Cocktail</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <span class="gallery-emoji">🍗</span>
-        <span class="gallery-caption">Chicken Marsala</span>
-      </div>
+      <img src="gallery/gallery-6.webp" alt="Garlic Parmesan Fries" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Garlic Parmesan Fries</span></div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder">
-        <span class="gallery-emoji">🥤</span>
-        <span class="gallery-caption">Classic Milkshake</span>
-      </div>
+      <img src="gallery/gallery-7.webp" alt="Cold Draft Beer" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Cold Draft Beer</span></div>
     </div>
     <div class="gallery-item gallery-item--tall">
-      <div class="gallery-placeholder">
-        <span class="gallery-emoji">🫐</span>
-        <span class="gallery-caption">Pacific Northwest Flavors</span>
-      </div>
+      <img src="gallery/gallery-1.jpg" alt="Bluebird Café & Diner — Since 1958" class="gallery-img gallery-img--logo" loading="lazy" />
+      <div class="gallery-overlay"><span>Since 1958 · Arlington, WA</span></div>
+    </div>
+    <div class="gallery-item gallery-item--wide">
+      <img src="gallery/gallery-12.webp" alt="Bluebird Cocktails" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Bluebird Cocktails</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/gallery-17.webp" alt="Classic Breakfast Combo" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Classic Breakfast Combo</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/gallery-9.webp" alt="Key Lime Pie" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Key Lime Pie</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall">
+      <img src="gallery/gallery-13.webp" alt="Flat Iron Steak" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Flat Iron Steak</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/gallery-11.webp" alt="Hamburger Steak & Gravy" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Hamburger Steak &amp; Gravy</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/gallery-16.webp" alt="Classic Club Sandwich" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Classic Club Sandwich</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/gallery-10.webp" alt="Chocolate Brownie Cake" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Chocolate Brownie Cake</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/gallery-15.webp" alt="Breakfast Burrito" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Breakfast Burrito</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/gallery-14.webp" alt="Pork Loin Marsala" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Pork Loin Marsala</span></div>
+    </div>
+    <div class="gallery-item gallery-item--wide">
+      <img src="gallery/gallery-18.webp" alt="Blueberry Salmon" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Blueberry Salmon</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/gallery-19.webp" alt="Chicken Parmigiana" class="gallery-img" loading="lazy" />
+      <div class="gallery-overlay"><span>Chicken Parmigiana</span></div>
     </div>
   </div>
-  <p class="gallery-note reveal">📸 &nbsp;Real food photography coming soon — follow us on <a href="https://www.instagram.com/bluebirdcafearlington" target="_blank" rel="noopener" style="color:var(--sky);text-decoration:none;font-weight:600;">Instagram</a> for the latest shots.</p>
 </section>
 
 <!-- CTA -->
