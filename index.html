@@ -186,7 +186,7 @@
     @keyframes fadeSlideRight { from{opacity:0;transform:translateY(-50%) translateX(40px)} to{opacity:1;transform:translateY(-50%) translateX(0)} }
 
     /* ── SECTIONS ── */
-    section { padding:clamp(80px,12vw,160px) clamp(24px,6vw,100px); }
+    section { padding:clamp(32px,4vw,48px) clamp(24px,6vw,100px); }
     .section-label { font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--sky);margin-bottom:16px;display:flex;align-items:center;gap:12px; }
     .section-label::before { content:'';flex:0 0 32px;height:1px;background:var(--sky); }
     .section-title { font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1.05;color:var(--deep); }
@@ -336,7 +336,7 @@
     }
 
     /* ── MENU SECTION SHELL ── */
-    #menu { background:var(--deep);padding-bottom:clamp(80px,12vw,160px); }
+    #menu { background:var(--deep);padding-bottom:clamp(32px,4vw,48px); }
     .menu-tabs { display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:48px;margin-top:48px; }
     .menu-tab { padding:14px 28px;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);background:none;border:none;border-bottom:2px solid transparent;cursor:none;margin-bottom:-1px;transition:color .3s,border-color .3s; }
     .menu-tab.active,.menu-tab:hover { color:var(--sky-lt);border-bottom-color:var(--sky); }
@@ -649,7 +649,7 @@
     .menu-badge-tag { display:inline-block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(74,159,212,.15);color:var(--sky-lt);padding:3px 8px;border-radius:2px;margin-top:8px; }
 
     /* ── SPECIALS ── */
-    #specials { background:var(--cream); }
+    #specials { background:var(--cream);padding-top:clamp(32px,4vw,48px); }
     .specials-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:32px;margin-top:64px; }
     .special-card { perspective:1000px;height:420px;cursor:none; }
     .special-inner { position:relative;width:100%;height:100%;transition:transform .7s var(--ease);transform-style:preserve-3d; }
@@ -886,7 +886,7 @@
     <p class="hero-sub">Three generations of family warmth, legendary breakfasts,<br/>and the kind of hospitality that turns strangers into regulars.</p>
     <div class="hero-actions">
       <a href="#menu" class="btn-primary">Explore Our Menu →</a>
-      <a href="#visit" class="btn-outline">Find Us</a>
+      <a href="https://bluebirdarlington.com/order" target="_blank" rel="noopener" class="btn-primary">Order Now</a>
     </div>
   </div>
   <div class="hero-dish-3d">
@@ -963,33 +963,6 @@
           <p class="timeline-desc">Still on the same ground where it all began, the Blue Bird Café remains Arlington's beloved gathering place — a reminder that some things are worth keeping exactly as they are.</p>
         </div>
 
-      </div>
-    </div>
-
-    <!-- VALUES -->
-    <div class="values-wrap reveal">
-      <div class="values-header">
-        <div class="section-label">What We Stand For</div>
-        <h3 class="section-title">More Than <em>a Meal</em></h3>
-        <p>The Blue Bird has always been about more than the food — though the food has always been worth the drive. It's about the ritual of sitting down, slowing down, and being in the company of people who know your name.</p>
-      </div>
-
-      <div class="values-grid">
-        <div class="value-card reveal">
-          <div class="value-icon">🍳</div>
-          <div class="value-title">Honest Food</div>
-          <p class="value-desc">Scratch cooking, real ingredients, and recipes that have stood the test of time. No shortcuts, no pretense.</p>
-        </div>
-        <div class="value-card reveal" style="transition-delay:.1s">
-          <div class="value-icon">🤝</div>
-          <div class="value-title">Community First</div>
-          <p class="value-desc">Arlington's people built this place. Every seat is a welcome seat — from the first-timer to the family that's been coming since 1962.</p>
-        </div>
-        <div class="value-card reveal" style="transition-delay:.2s">
-          <div class="value-icon">🏡</div>
-          <div class="value-title">A Place to Belong</div>
-          <p class="value-desc">Familiar, unhurried, and genuinely glad you're here. The kind of place you come back to not because you have to, but because it feels right.</p>
-        </div>
       </div>
     </div>
 
@@ -1236,6 +1209,9 @@
       </div>
 
     </div><!-- /bfmenu-wrap -->
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://bluebirdarlington.com/order" target="_blank" rel="noopener" style="display:inline-block;padding:14px 36px;background:var(--sky);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:6px;transition:background .2s;" onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--sky)'">Order Now</a>
+    </div>
   </div><!-- /tab-breakfast -->
 
   <!-- LUNCH -->
@@ -1406,25 +1382,15 @@
                 <div class="bfmi-desc">Crispy chicken strips, seasoned fries, creamy coleslaw</div>
               </div>
             </div>
-            <div class="tractor-col">
-              <div class="tractor-emoji">🍽️</div>
-              <div class="tractor-notes">
-                $1.99 charge to split plate in kitchen<br/>
-                Half orders available for 2.00 off<br/>
-                <span class="dot-red">●</span> Consuming raw / undercooked foods may cause illness <span class="dot-red">●</span>
-              </div>
-            </div>
           </div>
         </div><!-- /lunch row 3 -->
 
       </div><!-- /bfmenu-body -->
 
-      <div class="bfmenu-footer">
-        <p>$1.99 charge to split plate in kitchen &nbsp;·&nbsp; Half orders available for 2.00 off</p>
-        <p><span class="dot-red">●</span> Consuming raw / undercooked foods may cause illness <span class="dot-red">●</span></p>
-      </div>
-
     </div><!-- /bfmenu-wrap lunch -->
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://bluebirdarlington.com/order" target="_blank" rel="noopener" style="display:inline-block;padding:14px 36px;background:var(--sky);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:6px;transition:background .2s;" onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--sky)'">Order Now</a>
+    </div>
   </div>
 
   <!-- DRINKS (bar menu from Final Dinner Bar Menu PDF — beverages only) -->
@@ -1654,6 +1620,9 @@
       </div>
 
     </div><!-- /bfmenu-wrap drinks -->
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://bluebirdarlington.com/order" target="_blank" rel="noopener" style="display:inline-block;padding:14px 36px;background:var(--sky);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:6px;transition:background .2s;" onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--sky)'">Order Now</a>
+    </div>
   </div>
 
   <!-- DINNER -->
@@ -1763,6 +1732,9 @@
       </div>
 
     </div><!-- /bfmenu-wrap -->
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://bluebirdarlington.com/order" target="_blank" rel="noopener" style="display:inline-block;padding:14px 36px;background:var(--sky);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:6px;transition:background .2s;" onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--sky)'">Order Now</a>
+    </div>
   </div>
 </section>
 
@@ -1773,9 +1745,10 @@
     <div class="section-label">Chef's Picks</div>
     <h2 class="section-title">House <em>Signatures</em></h2>
     <p style="margin-top:20px;color:var(--muted);font-size:15px;max-width:480px"><span class="hint-hover">Hover</span><span class="hint-tap">Tap</span> each card to reveal what makes it special.</p>
+    <a href="https://bluebirdarlington.com/order" target="_blank" rel="noopener" style="display:inline-block;margin-top:28px;padding:14px 36px;background:var(--sky);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:6px;transition:background .2s;" onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--sky)'">Order Now</a>
   </div>
   <div class="specials-grid">
-    <div class="special-card reveal"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥞</div><h3>Blueberry Stack</h3><p>House Signature</p></div><div class="special-back"><h3>Blueberry Stack</h3><p>Cloud-like buttermilk pancakes loaded with plump Pacific Northwest blueberries — served with real maple syrup and cultured butter</p><span class="price">$12</span></div></div></div>
+    <div class="special-card reveal"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🍳</div><h3>Biscuits & Gravy</h3><p>House Signature</p></div><div class="special-back"><h3>Homemade Biscuits & Gravy</h3><p>Fluffy homemade biscuits smothered in rich, creamy country sausage gravy — a Bluebird classic made from scratch every morning</p><span class="price">$11.95</span></div></div></div>
     <div class="special-card reveal" style="transition-delay:.1s"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🍗</div><h3>Chicken Marsala</h3><p>Chef's Feature</p></div><div class="special-back"><h3>Chicken Marsala</h3><p>Pan-seared chicken breast in a rich Marsala wine and wild mushroom sauce — served over garlic mashed potatoes with seasonal vegetables</p><span class="price">$24</span></div></div></div>
     <div class="special-card reveal" style="transition-delay:.2s"><div class="special-inner"><div class="special-front"><div class="special-front-emoji">🥤</div><h3>Classic Milkshake</h3><p>Made to Order</p></div><div class="special-back"><h3>Classic Milkshake</h3><p>Hand-spun with premium ice cream in the classic Bluebird tradition — vanilla, chocolate, or strawberry — thick and rich</p><span class="price">$9</span></div></div></div>
   </div>
@@ -1787,6 +1760,7 @@
     <div class="section-label">Photo Gallery</div>
     <h2 class="section-title">A Taste of <em>Bluebird</em></h2>
     <p style="margin-top:16px;color:var(--muted);font-size:clamp(14px,1.4vw,16px);max-width:520px;line-height:1.8;">Mornings worth waking up for — from our kitchen to your table, in Arlington since 1958.</p>
+    <a href="https://bluebirdarlington.com/order" target="_blank" rel="noopener" style="display:inline-block;margin-top:28px;padding:14px 36px;background:var(--sky);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:6px;transition:background .2s;" onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--sky)'">Order Now</a>
   </div>
   <div class="gallery-grid reveal">
     <div class="gallery-item gallery-item--tall">
@@ -1885,7 +1859,7 @@
 </section>
 
 <!-- VISIT -->
-<section id="visit" style="padding-top:clamp(80px,12vw,160px);padding-bottom:clamp(80px,12vw,160px)">
+<section id="visit" style="padding-top:clamp(32px,4vw,48px);padding-bottom:clamp(32px,4vw,48px)">
   <div class="visit-inner">
     <div class="reveal">
       <div class="section-label" style="color:var(--sky-lt)">Plan Your Visit</div>
@@ -1964,6 +1938,38 @@
   </div>
 </section>
 
+<!-- FEEDBACK -->
+<section id="feedback" style="background:#111;padding:clamp(60px,10vw,120px) clamp(20px,5vw,80px);">
+  <div style="max-width:860px;margin:0 auto;text-align:center;">
+    <div class="section-label" style="color:var(--sky-lt)">Share Your Experience</div>
+    <h2 style="font-size:clamp(28px,4vw,48px);color:var(--white);font-family:var(--serif);margin:12px 0 40px;">Your Feedback is <em style="color:var(--sky-lt);font-style:italic;">Important to Us!</em></h2>
+    <form id="feedback-form" onsubmit="handleFeedback(event)" style="text-align:left;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <input type="text" placeholder="First Name" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
+        <input type="text" placeholder="Last Name" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
+        <input type="email" placeholder="Email" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
+        <input type="tel" placeholder="Phone" style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;justify-content:center;">
+        <span style="color:#888;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;">Rate Us</span>
+        <div id="star-rating" style="display:flex;gap:6px;">
+          <span class="star" data-val="1" onclick="setRating(1)" style="font-size:32px;cursor:pointer;color:#d4c9b0;transition:color .15s;">&#9733;</span>
+          <span class="star" data-val="2" onclick="setRating(2)" style="font-size:32px;cursor:pointer;color:#d4c9b0;transition:color .15s;">&#9733;</span>
+          <span class="star" data-val="3" onclick="setRating(3)" style="font-size:32px;cursor:pointer;color:#d4c9b0;transition:color .15s;">&#9733;</span>
+          <span class="star" data-val="4" onclick="setRating(4)" style="font-size:32px;cursor:pointer;color:#d4c9b0;transition:color .15s;">&#9733;</span>
+          <span class="star" data-val="5" onclick="setRating(5)" style="font-size:32px;cursor:pointer;color:#d4c9b0;transition:color .15s;">&#9733;</span>
+        </div>
+        <input type="hidden" id="rating-value" value="0" />
+      </div>
+      <textarea placeholder="Write your feedback here" rows="5" required style="width:100%;padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit;"></textarea>
+      <div style="text-align:center;margin-top:28px;">
+        <button type="submit" style="padding:15px 48px;background:var(--sky);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--sky)'">Send Feedback</button>
+      </div>
+    </form>
+    <div id="feedback-thanks" style="display:none;color:var(--sky-lt);font-size:20px;font-weight:600;margin-top:24px;">Thank you! We appreciate your feedback. &#10003;</div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1988,6 +1994,36 @@
 <script>
   // LOADER
   window.addEventListener('load', () => { setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2000); });
+
+  // STAR RATING
+  var currentRating = 0;
+  function setRating(val) {
+    currentRating = val;
+    document.getElementById('rating-value').value = val;
+    document.querySelectorAll('#star-rating .star').forEach(function(s) {
+      s.style.color = parseInt(s.getAttribute('data-val')) <= val ? '#f5c518' : '#d4c9b0';
+    });
+  }
+  document.querySelectorAll('#star-rating .star').forEach(function(s) {
+    s.addEventListener('mouseover', function() {
+      var v = parseInt(s.getAttribute('data-val'));
+      document.querySelectorAll('#star-rating .star').forEach(function(st) {
+        st.style.color = parseInt(st.getAttribute('data-val')) <= v ? '#f5c518' : '#d4c9b0';
+      });
+    });
+    s.addEventListener('mouseout', function() {
+      document.querySelectorAll('#star-rating .star').forEach(function(st) {
+        st.style.color = parseInt(st.getAttribute('data-val')) <= currentRating ? '#f5c518' : '#d4c9b0';
+      });
+    });
+  });
+
+  // FEEDBACK FORM
+  function handleFeedback(e) {
+    e.preventDefault();
+    document.getElementById('feedback-form').style.display = 'none';
+    document.getElementById('feedback-thanks').style.display = 'block';
+  }
 
   // CURSOR
   const cursor = document.getElementById('cursor');
