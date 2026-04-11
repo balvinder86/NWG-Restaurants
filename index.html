@@ -678,8 +678,12 @@
     .visit-hours-time { font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,38px);font-weight:300;color:var(--white);letter-spacing:.02em;white-space:nowrap; }
     .hint-tap { display:none; }
     @media (hover: none) { .hint-hover { display:none; } .hint-tap { display:inline; } }
-    .visit-open-badge { display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#4caf50;background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.25);padding:8px 18px;border-radius:20px; }
-    .visit-open-dot { width:7px;height:7px;background:#4caf50;border-radius:50%;animation:blink 1.5s ease-in-out infinite;flex-shrink:0; }
+    .visit-open-badge { display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 18px;border-radius:20px; }
+    .visit-open-badge.is-open { color:#4caf50;background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.25); }
+    .visit-open-badge.is-closed { color:#e57373;background:rgba(229,115,115,.1);border:1px solid rgba(229,115,115,.25); }
+    .visit-open-dot { width:7px;height:7px;border-radius:50%;animation:blink 1.5s ease-in-out infinite;flex-shrink:0; }
+    .is-open .visit-open-dot { background:#4caf50; }
+    .is-closed .visit-open-dot { background:#e57373; }
 
     /* 4 info cards */
     .visit-cards-row { display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px; }
@@ -1876,7 +1880,7 @@
           <div class="visit-hours-time">5 AM – 9 PM</div>
         </div>
       </div>
-      <div class="visit-open-badge"><span class="visit-open-dot"></span>Open Today</div>
+      <div class="visit-open-badge" id="openBadge"><span class="visit-open-dot"></span><span id="openLabel">Open Now</span></div>
     </div>
 
     <!-- ROW 2: 4 info cards -->
@@ -2035,6 +2039,17 @@
 
   // NAVBAR
   window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>60); }, {passive:true});
+
+  // OPEN / CLOSED BADGE — open 5 AM to 9 PM daily
+  (function() {
+    const badge = document.getElementById('openBadge');
+    const label = document.getElementById('openLabel');
+    const now = new Date();
+    const h = now.getHours() + now.getMinutes() / 60;
+    const isOpen = h >= 5 && h < 21;
+    badge.classList.add(isOpen ? 'is-open' : 'is-closed');
+    label.textContent = isOpen ? 'Open Now' : 'Closed Now';
+  })();
 
   // MOBILE MENU
   function toggleMobile(){ document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('hamburger').classList.toggle('open'); }
