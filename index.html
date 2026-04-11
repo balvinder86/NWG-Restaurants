@@ -753,9 +753,10 @@
       .gallery-item--wide { grid-column: span 2; }
     }
     @media (max-width: 520px) {
-      .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
-      .gallery-item--tall { grid-row: span 1; }
-      .gallery-item--wide { grid-column: span 2; }
+      .gallery-grid { display: block; columns: 2; column-gap: 16px; grid-template-columns: unset; }
+      .gallery-item { break-inside: avoid; margin-bottom: 16px; height: auto; }
+      .gallery-item--tall, .gallery-item--wide { grid-row: unset; grid-column: unset; }
+      .gallery-img { height: auto; min-height: 120px; max-height: 240px; object-fit: cover; }
     }
 
     /* ── CTA STRIP ── */
