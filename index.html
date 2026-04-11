@@ -1950,10 +1950,10 @@
     <h2 style="font-size:clamp(28px,4vw,48px);color:var(--white);font-family:var(--serif);margin:12px 0 40px;">Your Feedback is <em style="color:var(--sky-lt);font-style:italic;">Important to Us!</em></h2>
     <form id="feedback-form" onsubmit="handleFeedback(event)" style="text-align:left;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-        <input type="text" placeholder="First Name" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
-        <input type="text" placeholder="Last Name" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
-        <input type="email" placeholder="Email" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
-        <input type="tel" placeholder="Phone" style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
+        <input type="text" name="first_name" placeholder="First Name" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
+        <input type="text" name="last_name" placeholder="Last Name" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
+        <input type="email" name="email" placeholder="Email" required style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
+        <input type="tel" name="phone" placeholder="Phone" style="padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;" />
       </div>
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;justify-content:center;">
         <span style="color:#888;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;">Rate Us</span>
@@ -1966,7 +1966,10 @@
         </div>
         <input type="hidden" id="rating-value" value="0" />
       </div>
-      <textarea placeholder="Write your feedback here" rows="5" required style="width:100%;padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit;"></textarea>
+      <textarea name="message" placeholder="Write your feedback here" rows="5" required style="width:100%;padding:16px;border:1px solid #2a2a2a;border-bottom:2px solid var(--sky);background:#1a1a1a;color:var(--white);font-size:15px;border-radius:4px 4px 0 0;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit;"></textarea>
+      <input type="hidden" name="rating" id="rating-hidden" value="0" />
+      <input type="hidden" name="_replyto" value="" />
+      <input type="hidden" name="_subject" value="New Feedback — Bluebird Café & Diner" />
       <div style="text-align:center;margin-top:28px;">
         <button type="submit" style="padding:15px 48px;background:var(--sky);color:var(--white);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='var(--deep)'" onmouseout="this.style.background='var(--sky)'">Send Feedback</button>
       </div>
@@ -2023,11 +2026,33 @@
     });
   });
 
-  // FEEDBACK FORM
+  // FEEDBACK FORM — submits to Formspree → forwards to info@bluebirdcafearlington.com
   function handleFeedback(e) {
     e.preventDefault();
-    document.getElementById('feedback-form').style.display = 'none';
-    document.getElementById('feedback-thanks').style.display = 'block';
+    var form = document.getElementById('feedback-form');
+    var btn = form.querySelector('button[type="submit"]');
+    // sync rating to hidden field
+    document.getElementById('rating-hidden').value = document.getElementById('rating-value').value;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    fetch('https://formspree.io/f/mbdpndkb', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('feedback-thanks').style.display = 'block';
+      } else {
+        btn.textContent = 'Send Feedback';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(function() {
+      btn.textContent = 'Send Feedback';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    });
   }
 
   // CURSOR
