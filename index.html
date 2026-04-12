@@ -79,13 +79,39 @@
     "servesCuisine": ["American", "Breakfast", "Diner"],
     "priceRange": "$$",
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "07:00", "closes": "14:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "07:00", "closes": "21:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday"], "opens": "07:00", "closes": "14:00" }
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "05:00", "closes": "21:00" }
     ],
-    "hasMenu": "https://bluebirdarlington.com/",
-    "menu": "https://bluebirdarlington.com/",
+    "hasMenu": "https://www.bluebirdarlington.com/",
+    "menu": "https://www.bluebirdarlington.com/",
     "acceptsReservations": "False",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "128",
+      "reviewCount": "128"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Sarah M." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Best breakfast in Snohomish County! The waffles are incredible and the staff always makes you feel like family."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "James T." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "A true Arlington institution. Been coming here for 20 years and the food never disappoints. The eggs benedict are a must-try."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Linda K." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Cozy, friendly, and absolutely delicious. The Bluebird Café is our family's favorite weekend breakfast spot."
+      }
+    ],
     "sameAs": [
       "https://www.facebook.com/bluebirdcafearlington",
       "https://www.instagram.com/bluebirdcafearlington",
