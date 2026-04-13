@@ -332,14 +332,15 @@
 
     /* ── HERO ── */
     #hero { min-height:100vh;background:var(--deep);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center; }
-    .hero-bg { position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 60%,rgba(74,159,212,.15) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(29,52,97,.3) 0%,transparent 60%); }
+    .hero-bg { position:absolute;inset:0;background-image:url('gallery/gallery-8.webp');background-size:cover;background-position:center;background-repeat:no-repeat; }
+    .hero-bg::after { content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,45,.70) 0%,rgba(8,20,45,.58) 45%,rgba(8,20,45,.82) 100%); }
     .particle { position:absolute;pointer-events:none;font-size:clamp(16px,2vw,28px);opacity:0;animation:particleDrift var(--dur,12s) var(--delay,0s) infinite ease-in-out; }
     @keyframes particleDrift { 0%{opacity:0;transform:translate(0,0) rotate(0deg) scale(.6)} 10%{opacity:.6} 90%{opacity:.6} 100%{opacity:0;transform:translate(var(--tx,40px),var(--ty,-120px)) rotate(var(--rot,30deg)) scale(1.1)} }
     .hero-content { position:relative;z-index:2;text-align:center;padding:clamp(24px,6vw,80px);max-width:900px; }
     .hero-badge { display:inline-block;font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--sky-lt);border:1px solid rgba(74,159,212,.4);padding:8px 20px;border-radius:2px;margin-bottom:32px;animation:fadeSlideUp .8s .3s var(--ease) both; }
     .hero-title { font-family:'Cormorant Garamond',serif;font-size:clamp(52px,10vw,120px);font-weight:300;line-height:.95;color:var(--white);animation:fadeSlideUp .9s .5s var(--ease) both; }
     .hero-title em { font-style:italic;color:var(--sky-lt);display:block; }
-    .hero-sub { font-size:clamp(14px,2vw,18px);color:rgba(255,255,255,.55);font-weight:300;letter-spacing:.04em;line-height:1.7;margin:28px 0 48px;animation:fadeSlideUp .9s .7s var(--ease) both; }
+    .hero-sub { font-size:clamp(14px,2vw,18px);color:rgba(255,255,255,.85);font-weight:300;letter-spacing:.04em;line-height:1.7;margin:28px 0 48px;animation:fadeSlideUp .9s .7s var(--ease) both; }
     .hero-actions { display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeSlideUp .9s .9s var(--ease) both; }
     .btn-primary { background:var(--sky);color:var(--white);padding:16px 40px;border-radius:2px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:none;cursor:none;transition:background .3s,transform .2s,box-shadow .3s;display:inline-flex;align-items:center;gap:8px; }
     .btn-primary:hover { background:var(--sky-lt);color:var(--deep);transform:translateY(-2px);box-shadow:0 12px 40px rgba(74,159,212,.4); }
