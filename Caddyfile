@@ -1,0 +1,7 @@
+:{$PORT} {
+    @bare host bluebirdarlington.com
+    redir @bare https://www.bluebirdarlington.com{uri} 301
+
+    root * /app
+    file_server
+}
